@@ -1,13 +1,13 @@
 package arcade.frenzy.controller;
 
-import arcade.frenzy.model.game.Collect_The_Coins;
-import arcade.frenzy.model.game.Frenzy_Mode;
-import arcade.frenzy.model.game.Frogger;
-import arcade.frenzy.model.game.Get_Down;
-import arcade.frenzy.model.game.Jump_The_Car;
-import arcade.frenzy.model.game.Tree_Climber;
-import arcade.frenzy.model.main.menu.Main_Menu;
 import arcade.frenzy.model.player.Player;
+import arcade.frenzy.view.game.Collect_The_Coins;
+import arcade.frenzy.view.game.Frenzy_Mode;
+import arcade.frenzy.view.game.Frogger;
+import arcade.frenzy.view.game.Get_Down;
+import arcade.frenzy.view.game.Jump_The_Car;
+import arcade.frenzy.view.game.Tree_Climber;
+import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Main_Controller {
 	Player player;

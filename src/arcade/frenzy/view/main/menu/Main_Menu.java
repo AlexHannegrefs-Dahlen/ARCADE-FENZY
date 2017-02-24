@@ -1,4 +1,4 @@
-package arcade.frenzy.model.main.menu;
+package arcade.frenzy.view.main.menu;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

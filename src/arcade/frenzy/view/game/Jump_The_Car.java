@@ -1,11 +1,11 @@
-package arcade.frenzy.model.game;
+package arcade.frenzy.view.game;
 
 import java.awt.Color;
 
-import arcade.frenzy.model.main.menu.Main_Menu;
 import arcade.frenzy.model.player.Player;
+import arcade.frenzy.view.main.menu.Main_Menu;
 
-public class Tree_Climber extends Base_Game {
+public class Jump_The_Car extends Base_Game {
 	private Player player;
 
 	/**
@@ -13,10 +13,10 @@ public class Tree_Climber extends Base_Game {
 	 * @param game
 	 *            - The Main_Menu instance
 	 * @param player
-	 *            - The Player instance
+	 *            - The player instance
 	 */
-	public Tree_Climber(Main_Menu game, Player player) {
-		this.setBackground(Color.BLUE);
+	public Jump_The_Car(Main_Menu game, Player player) {
+		this.setBackground(Color.ORANGE);
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.player = player;
