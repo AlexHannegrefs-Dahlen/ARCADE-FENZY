@@ -11,7 +11,11 @@ import javax.swing.JPanel;
 
 import arcade.frenzy.controller.ButtonNames;
 import arcade.frenzy.controller.Main_Controller;
-
+/**
+ * 
+ * @author Alex
+ *
+ */
 public class Main_Menu implements ActionListener {
 	private Main_Controller con;
 
@@ -21,6 +25,12 @@ public class Main_Menu implements ActionListener {
 
 	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode;
 
+	/**
+	 * Makes the Main Screen JFrame and JPanel, sets the JFrame to visible
+	 * 
+	 * @param controller
+	 *            - the main controller of the program
+	 */
 	public void init(Main_Controller controller) {
 		this.con = controller;
 

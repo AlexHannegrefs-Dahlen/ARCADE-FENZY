@@ -26,12 +26,15 @@ public class Main_Controller {
 	}
 
 	public void handleButtonClicked(ButtonNames buttonClicked) throws InterruptedException {
+		if (game.getMainPanel().isVisible())
+			game.getMainPanel().setVisible(false);
+
 		switch (buttonClicked) {
 		case Collect_The_Coins:
 			coins = new Collect_The_Coins(game);
 			break;
 		case Tree_Climber:
-			climber = new Tree_Climber(game);
+			climber = new Tree_Climber(game, player);
 			break;
 		case Frogger:
 			frogger = new Frogger(game);
@@ -40,7 +43,7 @@ public class Main_Controller {
 			down = new Get_Down(game);
 			break;
 		case Jump_The_Car:
-			carJumper = new Jump_The_Car(game);
+			carJumper = new Jump_The_Car(game, player);
 			break;
 		case Frenzy_Mode:
 			frenzy = new Frenzy_Mode(this, game);
