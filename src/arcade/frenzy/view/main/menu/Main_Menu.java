@@ -8,7 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import arcade.frenzy.controller.ButtonNames;
 import arcade.frenzy.controller.Main_Controller;
@@ -27,7 +27,7 @@ public class Main_Menu implements ActionListener {
 
 	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode, getName;
 
-	private JTextArea nameEntry;
+	private JTextField nameEntry;
 
 	/**
 	 * Makes the Main Screen JFrame and JPanel, sets the JFrame to visible
@@ -48,7 +48,7 @@ public class Main_Menu implements ActionListener {
 		collectTheCoins.addActionListener(this);
 		buttonPanelLeft.add(collectTheCoins);
 
-		nameEntry = new JTextArea();
+		nameEntry = new JTextField(0);
 		buttonPanelLeft.add(nameEntry);
 
 		getName = new JButton("Update name");
