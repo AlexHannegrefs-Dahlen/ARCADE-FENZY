@@ -1,10 +1,11 @@
-package arcade.frenzy.model.game;
+package arcade.frenzy.view.game;
 
-import arcade.frenzy.UI.Games.TreeClimb_UI;
-import arcade.frenzy.model.main.menu.Main_Menu;
+import java.awt.Color;
+
 import arcade.frenzy.model.player.Player;
+import arcade.frenzy.view.main.menu.Main_Menu;
 
-public class Tree_Climber extends Base_Game {
+public class Jump_The_Car extends Base_Game {
 	private Player player;
 
 	/**
@@ -12,11 +13,11 @@ public class Tree_Climber extends Base_Game {
 	 * @param game
 	 *            - The Main_Menu instance
 	 * @param player
-	 *            - The Player instance
+	 *            - The player instance
 	 */
-	public Tree_Climber(Main_Menu game, Player player) {
-		TreeClimb_UI ui = new TreeClimb_UI(game);
-		game.getMainScreen().add(ui.getGamePanel());
+	public Jump_The_Car(Main_Menu game, Player player) {
+	
+		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.player = player;
 	}

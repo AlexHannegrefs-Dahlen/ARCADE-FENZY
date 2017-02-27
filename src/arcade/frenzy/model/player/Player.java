@@ -7,29 +7,57 @@ package arcade.frenzy.model.player;
  */
 public class Player {
 	int xLoc, yLoc, width, height, xVel, yVel;
+	String name;
+
+	/**
+	 * Basic constructor
+	 */
+	public Player() {
+
+	}
+
+	/**
+	 * Overloaded constructor
+	 * 
+	 * @param xLoc
+	 *            - the xLocation of the player
+	 * @param yLoc
+	 *            - the y location of the player
+	 * @param width
+	 *            - the width of the player
+	 * @param height
+	 *            - the height of the player
+	 * @param xVel
+	 *            - the x velocity of the player
+	 * @param yVel
+	 *            - the y velocity of the player
+	 * @param name
+	 *            - the name of the player
+	 */
+	public Player(int xLoc, int yLoc, int width, int height, int xVel, int yVel, String name) {
+		this.setxLoc(xLoc);
+		this.setyLoc(yLoc);
+		this.setWidth(width);
+		this.setHeight(height);
+		this.setxVel(xVel);
+		this.setyVel(yVel);
+		this.setName(name);
+	}
 
 	/**
 	 * 
-	 * @param xLoc
-	 *            - the x location of the player object
-	 * @param yLoc
-	 *            - the y location of the player object
-	 * @param width
-	 *            - the width of the player object
-	 * @param height
-	 *            - the height of the player object
-	 * @param xVel
-	 *            - the xVel of the player object
-	 * @param yVel
-	 *            - the yVel of the player object
+	 * @return
 	 */
-	public Player(int xLoc, int yLoc, int width, int height, int xVel, int yVel) {
-		this.xLoc = xLoc;
-		this.yLoc = yLoc;
-		this.width = width;
-		this.height = height;
-		this.xVel = xVel;
-		this.yVel = yVel;
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * 
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**

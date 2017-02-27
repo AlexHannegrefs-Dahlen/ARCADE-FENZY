@@ -1,8 +1,8 @@
-package arcade.frenzy.model.game;
+package arcade.frenzy.view.game;
 
 import java.awt.Color;
 
-import arcade.frenzy.model.main.menu.Main_Menu;
+import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
 

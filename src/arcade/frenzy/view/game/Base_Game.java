@@ -1,4 +1,4 @@
-package arcade.frenzy.model.game;
+package arcade.frenzy.view.game;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
