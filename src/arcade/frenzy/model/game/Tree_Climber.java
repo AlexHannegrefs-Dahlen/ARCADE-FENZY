@@ -1,7 +1,6 @@
 package arcade.frenzy.model.game;
 
-import java.awt.Color;
-
+import arcade.frenzy.UI.Games.TreeClimb_UI;
 import arcade.frenzy.model.main.menu.Main_Menu;
 import arcade.frenzy.model.player.Player;
 
@@ -16,8 +15,8 @@ public class Tree_Climber extends Base_Game {
 	 *            - The Player instance
 	 */
 	public Tree_Climber(Main_Menu game, Player player) {
-		this.setBackground(Color.BLUE);
-		game.getMainScreen().add(this);
+		TreeClimb_UI ui = new TreeClimb_UI(game);
+		game.getMainScreen().add(ui.getGamePanel());
 		game.getMainScreen().setVisible(true);
 		this.player = player;
 	}

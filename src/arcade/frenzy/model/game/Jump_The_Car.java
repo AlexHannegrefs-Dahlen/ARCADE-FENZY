@@ -16,7 +16,7 @@ public class Jump_The_Car extends Base_Game {
 	 *            - The player instance
 	 */
 	public Jump_The_Car(Main_Menu game, Player player) {
-		this.setBackground(Color.ORANGE);
+	
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.player = player;
