@@ -8,9 +8,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import arcade.frenzy.controller.ButtonNames;
 import arcade.frenzy.controller.Main_Controller;
+
 /**
  * 
  * @author Alex
@@ -23,7 +25,9 @@ public class Main_Menu implements ActionListener {
 
 	private JPanel mainPanel, buttonPanelLeft, buttonPanelRight;
 
-	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode;
+	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode, getName;
+
+	private JTextArea nameEntry;
 
 	/**
 	 * Makes the Main Screen JFrame and JPanel, sets the JFrame to visible
@@ -44,16 +48,23 @@ public class Main_Menu implements ActionListener {
 		collectTheCoins.addActionListener(this);
 		buttonPanelLeft.add(collectTheCoins);
 
-		frogger = new JButton("Frogger");
-		frogger.addActionListener(this);
-		buttonPanelLeft.add(frogger);
+		nameEntry = new JTextArea();
+		buttonPanelLeft.add(nameEntry);
 
-		getDown = new JButton("Get Down");
-		getDown.addActionListener(this);
-		buttonPanelLeft.add(getDown);
+		getName = new JButton("Update name");
+		getName.addActionListener(this);
+		buttonPanelLeft.add(getName);
 
 		buttonPanelRight = new JPanel();
 		buttonPanelRight.setLayout(new BoxLayout(buttonPanelRight, BoxLayout.Y_AXIS));
+
+		frogger = new JButton("Frogger");
+		frogger.addActionListener(this);
+		buttonPanelRight.add(frogger);
+
+		getDown = new JButton("Get Down");
+		getDown.addActionListener(this);
+		buttonPanelRight.add(getDown);
 
 		jumpTheCar = new JButton("Jump the Car");
 		jumpTheCar.addActionListener(this);
@@ -122,6 +133,9 @@ public class Main_Menu implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		else if (e.getSource() == getName) {
+			this.con.setPlayersName(nameEntry.getText());
+		}
 
 	}
 
