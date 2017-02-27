@@ -5,6 +5,7 @@ import arcade.frenzy.view.game.Collect_The_Coins;
 import arcade.frenzy.view.game.Frenzy_Mode;
 import arcade.frenzy.view.game.Frogger;
 import arcade.frenzy.view.game.Get_Down;
+import arcade.frenzy.view.game.Highscores;
 import arcade.frenzy.view.game.Jump_The_Car;
 import arcade.frenzy.view.game.Tree_Climber;
 import arcade.frenzy.view.main.menu.Main_Menu;
@@ -18,6 +19,7 @@ public class Main_Controller {
 	Jump_The_Car carJumper;
 	Frenzy_Mode frenzy;
 	Main_Menu game;
+	Highscores highscore;
 
 	public void start() {
 		game = new Main_Menu();
@@ -48,6 +50,8 @@ public class Main_Controller {
 		case Frenzy_Mode:
 			frenzy = new Frenzy_Mode(this, game);
 			break;
+		case Highscores:
+			highscore = new Highscores(game);
 		default:
 			break;
 		}
