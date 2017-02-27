@@ -1,14 +1,20 @@
 package arcade.frenzy.view.main.menu;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import arcade.frenzy.controller.ButtonNames;
 import arcade.frenzy.controller.Main_Controller;
@@ -29,6 +35,12 @@ public class Main_Menu implements ActionListener {
 
 	private JTextField nameEntry;
 
+	private JMenuBar menuBar;
+
+	private JMenu menu;
+
+	private JMenuItem viewScores, resetScores;
+
 	/**
 	 * Makes the Main Screen JFrame and JPanel, sets the JFrame to visible
 	 * 
@@ -37,9 +49,24 @@ public class Main_Menu implements ActionListener {
 	 */
 	public void init(Main_Controller controller) {
 		this.con = controller;
+		Font font = new Font("sans-serif", Font.PLAIN, 20);
+		UIManager.put("Menu.font", font);
+		UIManager.put("MenuItem.font", font);
 
 		mainScreen = new JFrame("Arcade Frenzy");
 		mainPanel = new JPanel(new BorderLayout());
+
+		viewScores = new JMenuItem("View Highscores");
+		viewScores.addActionListener(this);
+		resetScores = new JMenuItem("Reset Highscores");
+		resetScores.addActionListener(this);
+
+		menu = new JMenu("Options");
+		menuBar = new JMenuBar();
+		menu.add(viewScores);
+		menu.add(resetScores);
+		menuBar.add(menu);
+		mainScreen.setJMenuBar(menuBar);
 
 		buttonPanelLeft = new JPanel();
 		buttonPanelLeft.setLayout(new BoxLayout(buttonPanelLeft, BoxLayout.Y_AXIS));
@@ -137,6 +164,16 @@ public class Main_Menu implements ActionListener {
 			this.con.setPlayersName(nameEntry.getText());
 		}
 
+		if (e.getSource() == viewScores) {
+			try {
+				this.con.handleButtonClicked(ButtonNames.Highscores);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} else if (e.getSource() == resetScores) {
+			JOptionPane.showConfirmDialog(mainScreen, "Are you sure you want to reset the Highscores?");
+		}
 	}
 
 	/**

@@ -5,13 +5,13 @@ import arcade.frenzy.view.game.Collect_The_Coins;
 import arcade.frenzy.view.game.Frenzy_Mode;
 import arcade.frenzy.view.game.Frogger;
 import arcade.frenzy.view.game.Get_Down;
+import arcade.frenzy.view.game.Highscores;
 import arcade.frenzy.view.game.Jump_The_Car;
 import arcade.frenzy.view.game.Tree_Climber;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Main_Controller {
 	private String playersName;
-
 	private Player player;
 	private Collect_The_Coins coins;
 	private Tree_Climber climber;
@@ -20,6 +20,7 @@ public class Main_Controller {
 	private Jump_The_Car carJumper;
 	private Frenzy_Mode frenzy;
 	private Main_Menu game;
+	private Highscores highscore;
 
 	public void start() {
 		game = new Main_Menu();
@@ -50,6 +51,8 @@ public class Main_Controller {
 		case Frenzy_Mode:
 			this.frenzy = new Frenzy_Mode(this, game);
 			break;
+		case Highscores:
+			this.highscore = new Highscores(game);
 		default:
 			break;
 		}
@@ -190,6 +193,20 @@ public class Main_Controller {
 	 */
 	public void setGame(Main_Menu game) {
 		this.game = game;
+	}
+
+	/**
+	 * @return the highscore
+	 */
+	public Highscores getHighscore() {
+		return highscore;
+	}
+
+	/**
+	 * @param highscore the highscore to set
+	 */
+	public void setHighscore(Highscores highscore) {
+		this.highscore = highscore;
 	}
 
 }
