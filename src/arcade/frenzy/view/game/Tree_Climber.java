@@ -1,6 +1,5 @@
 package arcade.frenzy.view.game;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -18,7 +17,7 @@ public class Tree_Climber extends Base_Game {
 	 *            - The Main_Menu instance
 	 * @param player
 	 *            - The Player instance
-	 * @param gui 
+	 * @param gui
 	 */
 	public Tree_Climber(Main_Menu game, Player player, Game_UI gui) {
 		gui.setGameBackGround(ButtonNames.Tree_Climber);

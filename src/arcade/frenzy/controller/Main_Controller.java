@@ -43,10 +43,10 @@ public class Main_Controller {
 			this.climber = new Tree_Climber(game, player, gui);
 			break;
 		case Frogger:
-			this.frogger = new Frogger(game, gui);
+			this.frogger = new Frogger(game, gui, player);
 			break;
 		case Get_Down:
-			this.down = new Get_Down(game, gui);
+			this.down = new Get_Down(game, gui, player);
 			break;
 		case Jump_The_Car:
 			this.carJumper = new Jump_The_Car(game, player, gui);

@@ -2,7 +2,6 @@ package arcade.frenzy.view.game;
 
 import arcade.frenzy.UI.Games.Game_UI;
 import arcade.frenzy.controller.ButtonNames;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import arcade.frenzy.model.player.Player;
