@@ -23,14 +23,13 @@ public class Main_Controller {
 	private Main_Menu game;
 	private Highscores highscore;
 	private Game_UI gui;
-	
 
 	public void start() {
 		game = new Main_Menu();
 		game.init(this);
 		player = new Player();
 		gui = new Game_UI(game);
-		
+
 	}
 
 	public void handleButtonClicked(ButtonNames buttonClicked) throws InterruptedException {
@@ -38,19 +37,19 @@ public class Main_Controller {
 			game.getMainPanel().setVisible(false);
 		switch (buttonClicked) {
 		case Collect_The_Coins:
-			this.coins = new Collect_The_Coins(game,gui);
+			this.coins = new Collect_The_Coins(game, player, gui);
 			break;
 		case Tree_Climber:
-			this.climber = new Tree_Climber(game, player,gui);
+			this.climber = new Tree_Climber(game, player, gui);
 			break;
 		case Frogger:
-			this.frogger = new Frogger(game,gui);
+			this.frogger = new Frogger(game, gui);
 			break;
 		case Get_Down:
-			this.down = new Get_Down(game,gui);
+			this.down = new Get_Down(game, gui);
 			break;
 		case Jump_The_Car:
-			this.carJumper = new Jump_The_Car(game, player,gui);
+			this.carJumper = new Jump_The_Car(game, player, gui);
 			break;
 		case Frenzy_Mode:
 			this.frenzy = new Frenzy_Mode(this, game);
