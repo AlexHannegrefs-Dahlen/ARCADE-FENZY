@@ -1,11 +1,6 @@
 package arcade.frenzy.view.game;
 
-import arcade.frenzy.model.player.Player;
-
 public interface Game_Interface {
-	Player player = null;
-	
-	default void detectCollision() {
 
-	}
+	void detectCollision(int PxLoc, int PyLoc, int Pwidth, int Pheight, int OxLoc, int OyLoc, int Owidth, int Oheight);
 }

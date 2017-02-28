@@ -22,6 +22,12 @@ public class Collect_The_Coins extends Base_Game {
 	private static final long serialVersionUID = 1L;
 
 	@Override
+	public void detectCollision(int PxLoc, int PyLoc, int Pwidth, int Pheight, int OxLoc, int OyLoc, int Owidth,
+			int Oheight) {
+
+	}
+
+	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 

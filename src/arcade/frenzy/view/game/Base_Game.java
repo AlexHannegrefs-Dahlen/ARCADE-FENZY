@@ -32,7 +32,8 @@ public abstract class Base_Game extends JPanel implements Game_Interface, KeyLis
 	}
 
 	@Override
-	public void detectCollision() {
+	public void detectCollision(int PxLoc, int PyLoc, int Pwidth, int Pheight, int OxLoc, int OyLoc, int Owidth,
+			int Oheight) {
 
 	}
 
