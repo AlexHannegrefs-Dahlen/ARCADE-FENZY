@@ -1,9 +1,10 @@
 package arcade.frenzy.view.game;
 
+import arcade.frenzy.UI.Games.Game_UI;
+import arcade.frenzy.controller.ButtonNames;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
@@ -16,10 +17,11 @@ public class Jump_The_Car extends Base_Game {
 	 *            - The Main_Menu instance
 	 * @param player
 	 *            - The player instance
+	 * @param gui
 	 */
-	public Jump_The_Car(Main_Menu game, Player player) {
-		this.setBackground(Color.ORANGE);
-		game.getMainScreen().add(this);
+	public Jump_The_Car(Main_Menu game, Player player, Game_UI gui) {
+		gui.setGameBackGround(ButtonNames.Jump_The_Car);
+		game.getMainScreen().add(gui.getPanel());
 		game.getMainScreen().setVisible(true);
 		this.player = player;
 	}

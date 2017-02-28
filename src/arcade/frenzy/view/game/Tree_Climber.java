@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
+import arcade.frenzy.UI.Games.Game_UI;
+import arcade.frenzy.controller.ButtonNames;
+import arcade.frenzy.model.player.Player;
 
 public class Tree_Climber extends Base_Game {
 	private Player player;
@@ -16,10 +18,11 @@ public class Tree_Climber extends Base_Game {
 	 *            - The Main_Menu instance
 	 * @param player
 	 *            - The Player instance
+	 * @param gui 
 	 */
-	public Tree_Climber(Main_Menu game, Player player) {
-		this.setBackground(Color.BLUE);
-		game.getMainScreen().add(this);
+	public Tree_Climber(Main_Menu game, Player player, Game_UI gui) {
+		gui.setGameBackGround(ButtonNames.Tree_Climber);
+		game.getMainScreen().add(gui.getPanel());
 		game.getMainScreen().setVisible(true);
 		this.player = player;
 	}
