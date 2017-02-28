@@ -1,8 +1,9 @@
 package arcade.frenzy.view.game;
 
-import arcade.frenzy.UI.Games.TreeClimb_UI;
-import arcade.frenzy.view.main.menu.Main_Menu;
 
+import arcade.frenzy.view.main.menu.Main_Menu;
+import arcade.frenzy.UI.Games.Game_UI;
+import arcade.frenzy.controller.ButtonNames;
 import arcade.frenzy.model.player.Player;
 
 public class Tree_Climber extends Base_Game {
@@ -14,10 +15,11 @@ public class Tree_Climber extends Base_Game {
 	 *            - The Main_Menu instance
 	 * @param player
 	 *            - The Player instance
+	 * @param gui 
 	 */
-	public Tree_Climber(Main_Menu game, Player player) {
-		TreeClimb_UI ui = new TreeClimb_UI(game);
-		game.getMainScreen().add(ui.getGamePanel());
+	public Tree_Climber(Main_Menu game, Player player, Game_UI gui) {
+		gui.setGameBackGround(ButtonNames.Tree_Climber);
+		game.getMainScreen().add(gui.getPanel());
 		game.getMainScreen().setVisible(true);
 		this.player = player;
 	}

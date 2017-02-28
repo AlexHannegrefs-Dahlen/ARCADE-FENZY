@@ -1,5 +1,6 @@
 package arcade.frenzy.controller;
 
+import arcade.frenzy.UI.Games.Game_UI;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.game.Collect_The_Coins;
 import arcade.frenzy.view.game.Frenzy_Mode;
@@ -21,32 +22,35 @@ public class Main_Controller {
 	private Frenzy_Mode frenzy;
 	private Main_Menu game;
 	private Highscores highscore;
+	private Game_UI gui;
+	
 
 	public void start() {
 		game = new Main_Menu();
 		game.init(this);
 		player = new Player();
+		gui = new Game_UI(game);
+		
 	}
 
 	public void handleButtonClicked(ButtonNames buttonClicked) throws InterruptedException {
 		if (game.getMainPanel().isVisible())
 			game.getMainPanel().setVisible(false);
-
 		switch (buttonClicked) {
 		case Collect_The_Coins:
-			this.coins = new Collect_The_Coins(game);
+			this.coins = new Collect_The_Coins(game,gui);
 			break;
 		case Tree_Climber:
-			this.climber = new Tree_Climber(game, player);
+			this.climber = new Tree_Climber(game, player,gui);
 			break;
 		case Frogger:
-			this.frogger = new Frogger(game);
+			this.frogger = new Frogger(game,gui);
 			break;
 		case Get_Down:
-			this.down = new Get_Down(game);
+			this.down = new Get_Down(game,gui);
 			break;
 		case Jump_The_Car:
-			this.carJumper = new Jump_The_Car(game, player);
+			this.carJumper = new Jump_The_Car(game, player,gui);
 			break;
 		case Frenzy_Mode:
 			this.frenzy = new Frenzy_Mode(this, game);
