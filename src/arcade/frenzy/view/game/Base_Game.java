@@ -1,15 +1,18 @@
 package arcade.frenzy.view.game;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import arcade.frenzy.model.player.Player;
 
-public class Base_Game extends JPanel implements Game_Interface, KeyListener {
-	Player player;
+public abstract class Base_Game extends JPanel implements Game_Interface, KeyListener, ActionListener {
+	private Player player;
+
+	private Timer timer = new Timer(5, this);
 	/**
 	 * 
 	 */
@@ -33,22 +36,34 @@ public class Base_Game extends JPanel implements Game_Interface, KeyListener {
 
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+	/**
+	 * @return the player
+	 */
+	public Player getPlayer() {
+		return player;
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+	/**
+	 * @param player
+	 *            the player to set
+	 */
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+	/**
+	 * @return the timer
+	 */
+	public Timer getTimer() {
+		return timer;
+	}
 
+	/**
+	 * @param timer
+	 *            the timer to set
+	 */
+	public void setTimer(Timer timer) {
+		this.timer = timer;
 	}
 
 }

@@ -34,19 +34,19 @@ public class Main_Controller {
 
 		switch (buttonClicked) {
 		case Collect_The_Coins:
-			this.coins = new Collect_The_Coins(game);
+			this.coins = new Collect_The_Coins(game, this.getPlayer());
 			break;
 		case Tree_Climber:
-			this.climber = new Tree_Climber(game, player);
+			this.climber = new Tree_Climber(game, this.getPlayer());
 			break;
 		case Frogger:
-			this.frogger = new Frogger(game);
+			this.frogger = new Frogger(game, this.getPlayer());
 			break;
 		case Get_Down:
-			this.down = new Get_Down(game);
+			this.down = new Get_Down(game, this.getPlayer());
 			break;
 		case Jump_The_Car:
-			this.carJumper = new Jump_The_Car(game, player);
+			this.carJumper = new Jump_The_Car(game, this.getPlayer());
 			break;
 		case Frenzy_Mode:
 			this.frenzy = new Frenzy_Mode(this, game);
@@ -203,7 +203,8 @@ public class Main_Controller {
 	}
 
 	/**
-	 * @param highscore the highscore to set
+	 * @param highscore
+	 *            the highscore to set
 	 */
 	public void setHighscore(Highscores highscore) {
 		this.highscore = highscore;
