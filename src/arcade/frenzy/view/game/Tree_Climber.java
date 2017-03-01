@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 import arcade.frenzy.view.main.menu.Main_Menu;
 import arcade.frenzy.UI.Games.Game_UI;
-import arcade.frenzy.controller.ButtonNames;
+import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.model.player.Player;
 
 public class Tree_Climber extends Base_Game {
@@ -20,7 +20,7 @@ public class Tree_Climber extends Base_Game {
 	 * @param gui
 	 */
 	public Tree_Climber(Main_Menu game, Player player, Game_UI gui) {
-		gui.setGameBackGround(ButtonNames.Tree_Climber);
+		gui.setGameBackGround(GameNames.Tree_Climber);
 		game.getMainScreen().add(gui.getPanel());
 		game.getMainScreen().setVisible(true);
 		this.player = player;

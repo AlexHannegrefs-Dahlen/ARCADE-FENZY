@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import arcade.frenzy.controller.ButtonNames;
+import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.controller.Main_Controller;
 
 /**
@@ -138,37 +138,37 @@ public class Main_Menu implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == collectTheCoins)
 			try {
-				this.con.handleButtonClicked(ButtonNames.Collect_The_Coins);
+				this.con.handleButtonClicked(GameNames.Collect_The_Coins);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == frogger)
 			try {
-				this.con.handleButtonClicked(ButtonNames.Frogger);
+				this.con.handleButtonClicked(GameNames.Frogger);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == getDown)
 			try {
-				this.con.handleButtonClicked(ButtonNames.Get_Down);
+				this.con.handleButtonClicked(GameNames.Get_Down);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == jumpTheCar)
 			try {
-				this.con.handleButtonClicked(ButtonNames.Jump_The_Car);
+				this.con.handleButtonClicked(GameNames.Jump_The_Car);
 			} catch (InterruptedException e2) {
 				e2.printStackTrace();
 			}
 		else if (e.getSource() == treeClimber)
 			try {
-				this.con.handleButtonClicked(ButtonNames.Tree_Climber);
+				this.con.handleButtonClicked(GameNames.Tree_Climber);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == frenzyMode)
 			try {
-				this.con.handleButtonClicked(ButtonNames.Frenzy_Mode);
+				this.con.handleButtonClicked(GameNames.Frenzy_Mode);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
@@ -178,7 +178,7 @@ public class Main_Menu implements ActionListener {
 
 		if (e.getSource() == viewScores) {
 			try {
-				this.con.handleButtonClicked(ButtonNames.Highscores);
+				this.con.handleButtonClicked(GameNames.Highscores);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}

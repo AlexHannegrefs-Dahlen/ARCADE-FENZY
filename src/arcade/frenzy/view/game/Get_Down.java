@@ -1,7 +1,7 @@
 package arcade.frenzy.view.game;
 
 import arcade.frenzy.UI.Games.Game_UI;
-import arcade.frenzy.controller.ButtonNames;
+import arcade.frenzy.controller.GameNames;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -12,7 +12,7 @@ public class Get_Down extends Base_Game {
 
 	public Get_Down(Main_Menu game, Game_UI gui, Player player) {
 		super.setPlayer(player);
-		gui.setGameBackGround(ButtonNames.Get_Down);
+		gui.setGameBackGround(GameNames.Get_Down);
 		game.getMainScreen().add(gui.getPanel());
 
 		game.getMainScreen().setVisible(true);

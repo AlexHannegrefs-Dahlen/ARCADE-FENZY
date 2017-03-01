@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import arcade.frenzy.controller.ButtonNames;
+import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Game_UI {
@@ -23,7 +23,7 @@ public class Game_UI {
 		panel = new JPanel();
 	}
 
-	public void setGameBackGround(ButtonNames gamePlaying) {
+	public void setGameBackGround(GameNames gamePlaying) {
 		switch (gamePlaying) {
 		case Collect_The_Coins:
 			panel.removeAll();

@@ -10,11 +10,11 @@ import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
-	
+
 	private int width = 50, height = 50, xVel = 25, yVel = 25;
 
-
 	public Collect_The_Coins(Main_Menu game, Player player, Game_UI gui) {
+		this.setGame(game);
 		this.setPlayer(player);
 		this.getPlayer().setxLoc(game.getMainScreen().getWidth() / 2);
 		this.getPlayer().setyLoc(game.getMainScreen().getHeight() / 2);
@@ -22,7 +22,7 @@ public class Collect_The_Coins extends Base_Game {
 		this.getPlayer().setHeight(height);
 		this.getPlayer().setxVel(xVel);
 		this.getPlayer().setyVel(yVel);
-		
+
 		this.setBackground(Color.BLACK);
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
@@ -42,20 +42,28 @@ public class Collect_The_Coins extends Base_Game {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			if(!super.detectCollisionPlayerInsideTopWall(this.getGame().getMainPanel().getX(),
+					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
+					this.getGame().getMainPanel().getHeight()))
 			this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 			this.repaint();
-			detectCollision(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), this.getPlayer().getWidth(), this.getPlayer().getHeight(), height, height, height, height);
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			if(!super.detectCollisionPlayerInsideBottomWall(this.getGame().getMainPanel().getX(),
+					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
+					this.getGame().getMainPanel().getHeight()))
 			this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
-			this.repaint();
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			this.repaint();		
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if(!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
+					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
+					this.getGame().getMainPanel().getHeight()))
 			this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
 			this.repaint();
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			if(!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
+					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
+					this.getGame().getMainPanel().getHeight()))
 			this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
 			this.repaint();
 		}

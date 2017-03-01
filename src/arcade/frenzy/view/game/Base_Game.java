@@ -8,9 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import arcade.frenzy.model.player.Player;
+import arcade.frenzy.view.main.menu.Main_Menu;
 
-public abstract class Base_Game extends JPanel implements Game_Interface, KeyListener, ActionListener {
+public abstract class Base_Game extends JPanel
+		/* Backgroundpanel */ implements Game_Interface, KeyListener, ActionListener {
 	private Player player;
+
+	private Main_Menu game;
 
 	private Timer timer = new Timer(5, this);
 	/**
@@ -32,9 +36,77 @@ public abstract class Base_Game extends JPanel implements Game_Interface, KeyLis
 	}
 
 	@Override
-	public void detectCollision(int PxLoc, int PyLoc, int Pwidth, int Pheight, int OxLoc, int OyLoc, int Owidth,
-			int Oheight) {
+	public boolean detectCollisionPlayerInsideLeftWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
+		if (OxLoc >= this.getPlayer().getxLoc())
+			return true;
+		else
+			return false;
 
+	}
+
+	@Override
+	public boolean detectCollisionPlayerInsideRightWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
+		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= OxLoc + Owidth)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean detectCollisionPlayerInsideTopWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
+		if (this.getPlayer().getyLoc() <= OyLoc)
+			return true;
+		else
+			return false;
+
+	}
+
+	@Override
+	public boolean detectCollisionPlayerInsideBottomWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= OyLoc + Oheight)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean detectCollisionPlayerOutsideBottomWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
+		if (OyLoc + Oheight >= this.getPlayer().getyLoc())
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean detectCollisionPlayerOutsideTopWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= OyLoc)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean detectCollisionPlayerOutsideRightWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
+		if (OxLoc + Owidth >= this.getPlayer().getxLoc())
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean detectCollisionPlayerOutsideLeftWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
+		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= OxLoc)
+			return true;
+		else
+			return false;
+	}
+
+	public Main_Menu getGame() {
+		return game;
+	}
+
+	public void setGame(Main_Menu game) {
+		this.game = game;
 	}
 
 	/**

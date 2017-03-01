@@ -1,7 +1,7 @@
 package arcade.frenzy.view.game;
 
 import arcade.frenzy.UI.Games.Game_UI;
-import arcade.frenzy.controller.ButtonNames;
+import arcade.frenzy.controller.GameNames;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import arcade.frenzy.model.player.Player;
@@ -19,7 +19,7 @@ public class Jump_The_Car extends Base_Game {
 	 * @param gui
 	 */
 	public Jump_The_Car(Main_Menu game, Player player, Game_UI gui) {
-		gui.setGameBackGround(ButtonNames.Jump_The_Car);
+		gui.setGameBackGround(GameNames.Jump_The_Car);
 		game.getMainScreen().add(gui.getPanel());
 		game.getMainScreen().setVisible(true);
 		this.player = player;

@@ -32,7 +32,7 @@ public class Main_Controller {
 
 	}
 
-	public void handleButtonClicked(ButtonNames buttonClicked) throws InterruptedException {
+	public void handleButtonClicked(GameNames buttonClicked) throws InterruptedException {
 		if (game.getMainPanel().isVisible())
 			game.getMainPanel().setVisible(false);
 		switch (buttonClicked) {

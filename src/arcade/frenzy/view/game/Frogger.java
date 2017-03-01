@@ -1,7 +1,7 @@
 package arcade.frenzy.view.game;
 
 import arcade.frenzy.UI.Games.Game_UI;
-import arcade.frenzy.controller.ButtonNames;
+import arcade.frenzy.controller.GameNames;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -12,7 +12,7 @@ public class Frogger extends Base_Game {
 
 	public Frogger(Main_Menu game, Game_UI gui, Player player) {
 		super.setPlayer(player);
-		gui.setGameBackGround(ButtonNames.Frogger);
+		gui.setGameBackGround(GameNames.Frogger);
 		game.getMainScreen().add(gui.getPanel());
 		game.getMainScreen().setVisible(true);
 	}
