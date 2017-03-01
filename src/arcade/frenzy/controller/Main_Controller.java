@@ -38,6 +38,8 @@ public class Main_Controller {
 		switch (buttonClicked) {
 		case Collect_The_Coins:
 			this.coins = new Collect_The_Coins(game, player, gui);
+			coins.setFocusable(true);
+			coins.requestFocusInWindow();
 			break;
 		case Tree_Climber:
 			this.climber = new Tree_Climber(game, player, gui);
