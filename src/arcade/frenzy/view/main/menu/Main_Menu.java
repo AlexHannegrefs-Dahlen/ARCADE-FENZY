@@ -2,9 +2,13 @@ package arcade.frenzy.view.main.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,7 +33,9 @@ public class Main_Menu implements ActionListener {
 
 	private JFrame mainScreen;
 
-	private JPanel mainPanel, buttonPanelLeft, buttonPanelRight;
+	private BackgroundPanel mainPanel;
+
+	private JPanel buttonPanelLeft, buttonPanelRight;
 
 	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode, getName;
 
@@ -40,6 +46,10 @@ public class Main_Menu implements ActionListener {
 	private JMenu menu;
 
 	private JMenuItem viewScores, resetScores;
+
+	private Image backgroundImg;
+
+	private File backgroundImgFile;
 
 	/**
 	 * Makes the Main Screen JFrame and JPanel, sets the JFrame to visible
@@ -54,7 +64,15 @@ public class Main_Menu implements ActionListener {
 		UIManager.put("MenuItem.font", font);
 
 		mainScreen = new JFrame("Arcade Frenzy");
-		mainPanel = new JPanel(new BorderLayout());
+
+		backgroundImgFile = new File("BlankScreen.png");
+		try {
+			backgroundImg = ImageIO.read(backgroundImgFile);
+		} catch (IOException e) {
+		}
+
+		mainPanel = new BackgroundPanel(backgroundImg);
+		mainPanel.setLayout(new BorderLayout());
 
 		viewScores = new JMenuItem("View Highscores");
 		viewScores.addActionListener(this);
@@ -122,42 +140,36 @@ public class Main_Menu implements ActionListener {
 			try {
 				this.con.handleButtonClicked(ButtonNames.Collect_The_Coins);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == frogger)
 			try {
 				this.con.handleButtonClicked(ButtonNames.Frogger);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == getDown)
 			try {
 				this.con.handleButtonClicked(ButtonNames.Get_Down);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == jumpTheCar)
 			try {
 				this.con.handleButtonClicked(ButtonNames.Jump_The_Car);
 			} catch (InterruptedException e2) {
-				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
 		else if (e.getSource() == treeClimber)
 			try {
 				this.con.handleButtonClicked(ButtonNames.Tree_Climber);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == frenzyMode)
 			try {
 				this.con.handleButtonClicked(ButtonNames.Frenzy_Mode);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == getName) {
@@ -168,7 +180,6 @@ public class Main_Menu implements ActionListener {
 			try {
 				this.con.handleButtonClicked(ButtonNames.Highscores);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		} else if (e.getSource() == resetScores) {
@@ -217,7 +228,7 @@ public class Main_Menu implements ActionListener {
 	 * @param mainPanel
 	 *            the mainPanel to set
 	 */
-	public void setMainPanel(JPanel mainPanel) {
+	public void setMainPanel(BackgroundPanel mainPanel) {
 		this.mainPanel = mainPanel;
 	}
 

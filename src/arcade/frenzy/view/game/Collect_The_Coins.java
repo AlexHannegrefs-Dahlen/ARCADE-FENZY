@@ -10,11 +10,19 @@ import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
-	private int x = 500;
-	private int y = 500;
+	
+	private int width = 50, height = 50, xVel = 25, yVel = 25;
+
 
 	public Collect_The_Coins(Main_Menu game, Player player, Game_UI gui) {
 		this.setPlayer(player);
+		this.getPlayer().setxLoc(game.getMainScreen().getWidth() / 2);
+		this.getPlayer().setyLoc(game.getMainScreen().getHeight() / 2);
+		this.getPlayer().setWidth(width);
+		this.getPlayer().setHeight(height);
+		this.getPlayer().setxVel(xVel);
+		this.getPlayer().setyVel(yVel);
+		
 		this.setBackground(Color.BLACK);
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
@@ -24,7 +32,7 @@ public class Collect_The_Coins extends Base_Game {
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.WHITE);
-		g.fillOval(x, y, 50, 50);
+		g.fillOval(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), width, height);
 	}
 
 	/**
@@ -35,19 +43,20 @@ public class Collect_The_Coins extends Base_Game {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
-			y-=50;
+			this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 			this.repaint();
+			detectCollision(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), this.getPlayer().getWidth(), this.getPlayer().getHeight(), height, height, height, height);
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			y+=50;
+			this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
 			this.repaint();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			x-=50;
+			this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
 			this.repaint();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			x+=50;
+			this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
 			this.repaint();
 		}
 		this.repaint();
