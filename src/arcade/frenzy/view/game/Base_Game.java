@@ -71,7 +71,9 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideBottomWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
-		if (OyLoc + Oheight >= this.getPlayer().getyLoc())
+		if (OyLoc + Oheight >= this.getPlayer().getyLoc()
+				&& OxLoc <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
+				&& OxLoc + Owidth >= this.getPlayer().getxLoc())
 			return true;
 		else
 			return false;
@@ -79,7 +81,9 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideTopWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
-		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= OyLoc)
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= OyLoc
+				&& OxLoc <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
+				&& OxLoc + Owidth >= this.getPlayer().getxLoc())
 			return true;
 		else
 			return false;
@@ -87,7 +91,9 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideRightWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
-		if (OxLoc + Owidth >= this.getPlayer().getxLoc())
+		if (OxLoc + Owidth >= this.getPlayer().getxLoc()
+				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= OyLoc
+				&& this.getPlayer().getyLoc() <= OyLoc + Oheight)
 			return true;
 		else
 			return false;

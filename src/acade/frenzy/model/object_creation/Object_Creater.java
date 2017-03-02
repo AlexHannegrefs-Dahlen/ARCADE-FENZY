@@ -1,8 +1,8 @@
-package acade.frenzy.model.object_cration;
+package acade.frenzy.model.object_creation;
 
 import java.awt.Color;
 
-public class Object_Creation {
+public class Object_Creater {
 	private int Hight;
 	private int Width;
 	private int X_Loaction;
@@ -12,7 +12,7 @@ public class Object_Creation {
 	private String Img_URL;
 	private Color color;
 
-	public Object_Creation() {
+	public Object_Creater() {
 
 	}
 
@@ -32,7 +32,7 @@ public class Object_Creation {
 	 * @param img_url
 	 *            String of the location of the file
 	 */
-	public Object_Creation(int hight, int width, int x_loaction, int y_loaction, int x_velocity, int y_velocity,
+	public Object_Creater(int hight, int width, int x_loaction, int y_loaction, int x_velocity, int y_velocity,
 			String img_url) {
 		this.setHight(hight);
 		this.setWidth(width);
@@ -62,7 +62,7 @@ public class Object_Creation {
 	 *            of the object
 	 */
 
-	public Object_Creation(int hight, int width, int x_loaction, int y_loaction, int x_velocity, int y_velocity,
+	public Object_Creater(int hight, int width, int x_loaction, int y_loaction, int x_velocity, int y_velocity,
 			Color color) {
 		this.setHight(hight);
 		this.setWidth(width);

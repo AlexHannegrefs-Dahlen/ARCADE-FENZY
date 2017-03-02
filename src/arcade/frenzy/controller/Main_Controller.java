@@ -13,15 +13,25 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Main_Controller {
 	private String playersName;
+
 	private Player player;
+
 	private Collect_The_Coins coins;
+
 	private Tree_Climber climber;
+
 	private Frogger frogger;
+
 	private Get_Down down;
+
 	private Jump_The_Car carJumper;
+
 	private Frenzy_Mode frenzy;
+
 	private Main_Menu game;
+
 	private Highscores highscore;
+
 	private Game_UI gui;
 
 	public void start() {
