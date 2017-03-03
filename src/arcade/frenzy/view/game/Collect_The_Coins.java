@@ -12,7 +12,7 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
 
-	private int width = 50, height = 50, xVel = 25, yVel = 25;
+	private int width = 50, height = 50, xVel = 8, yVel = 8;
 
 	private Object_Creater test;
 
@@ -40,7 +40,7 @@ public class Collect_The_Coins extends Base_Game {
 		g.setColor(Color.WHITE);
 		g.fillOval(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), width, height);
 		g.setColor(test.getColor());
-		g.fillRect(test.getX_Loaction(), test.getY_Loaction(), test.getWidth(), test.getHight());
+		g.drawRect(test.getX_Loaction(), test.getY_Loaction(), test.getWidth(), test.getHight());
 	}
 
 	/**
@@ -53,40 +53,42 @@ public class Collect_The_Coins extends Base_Game {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			if (!super.detectCollisionPlayerInsideTopWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight())
-					&& !super.detectCollisionPlayerOutsideBottomWall(test.getX_Loaction(), test.getY_Loaction(),
-							test.getWidth(), test.getHight()))
+					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideBottomWall(test))
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
-			else {
-				this.getPlayer().setyLoc(test.getY_Loaction() + test.getHight());
+			else
 				this.repaint();
-			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (!super.detectCollisionPlayerInsideBottomWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight())
-					&& !super.detectCollisionPlayerOutsideTopWall(test.getX_Loaction(), test.getY_Loaction(),
-							test.getWidth(), test.getHight()))
-				this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
-			else {
-				this.getPlayer().setyLoc(test.getY_Loaction() - this.getPlayer().getHeight());
+					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideTopWall(test))
+				super.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
+			else
 				this.repaint();
-			}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight())
-					&& !super.detectCollisionPlayerOutsideRightWall(test.getX_Loaction(), test.getY_Loaction(),
-							test.getWidth(), test.getHight()))
+					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideRightWall(test)) {
 				this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
+				if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
+						this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
+						this.getGame().getMainPanel().getHeight())
+						&& !super.detectCollisionPlayerOutsideRightWall(test)) {
+				} else
+					this.getPlayer().setxLoc(test.getX_Loaction() + test.getWidth() + 5);
+			}
 			this.repaint();
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight())
-					&& !super.detectCollisionPlayerOutsideLeftWall(test.getX_Loaction(), test.getY_Loaction(),
-							test.getWidth(), test.getHight()))
+					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideLeftWall(test)) {
 				this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
+				if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
+						this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
+						this.getGame().getMainPanel().getHeight())
+						&& !super.detectCollisionPlayerOutsideLeftWall(test)) {
+				} else
+					this.getPlayer().setxLoc(test.getX_Loaction() - this.getPlayer().getWidth() - 5);
+			}
 			this.repaint();
 		}
 		this.repaint();
