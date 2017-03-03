@@ -119,7 +119,7 @@ public class Collect_The_Coins extends Base_Game {
 					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 				if (super.detectCollisionPlayerOutsideBottomWall(center))
-					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight() + 5);
+					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight());
 				if (super.detectCollisionPlayerOutsideBottomWall(topLeft))
 					this.getPlayer().setyLoc(topLeft.getY_Location() + topLeft.getHeight() + 5);
 				if (super.detectCollisionPlayerOutsideBottomWall(topRight))
@@ -285,11 +285,10 @@ public class Collect_The_Coins extends Base_Game {
 		}
 		this.repaint();
 		if (this.checkForWin()) {
-			if(!this.getGame().isFrenzy()){
-			JOptionPane.showMessageDialog(this, "You won!");
-			super.gameOver(this);
-			}
-			else
+			if (!this.getGame().isFrenzy()) {
+				JOptionPane.showMessageDialog(this, "You won!");
+				super.gameOver(this);
+			} else
 				try {
 					this.getGame().getCon().getFrenzy().gameOver(this);
 				} catch (InterruptedException e1) {
