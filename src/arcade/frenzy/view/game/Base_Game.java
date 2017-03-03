@@ -72,11 +72,11 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideBottomWall(Object_Creater object) {
-		if (object.getY_Loaction() + object.getHight() > this.getPlayer().getyLoc()
-				&& this.getPlayer().getyLoc() - this.getPlayer().getyVel() < object.getY_Loaction()
-						+ object.getHight() / 2
-				&& object.getX_Loaction() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
-				&& object.getX_Loaction() + object.getWidth() >= this.getPlayer().getxLoc())
+		if (object.getY_Location() + object.getHeight() > this.getPlayer().getyLoc()
+				&& this.getPlayer().getyLoc() - this.getPlayer().getyVel() < object.getY_Location()
+						+ object.getHeight() / 2
+				&& object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
+				&& object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc())
 			return true;
 		else
 			return false;
@@ -84,11 +84,11 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideTopWall(Object_Creater object) {
-		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Loaction()
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
 				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight()
-						+ this.getPlayer().getyVel() > object.getY_Loaction() + object.getHight() / 2
-				&& object.getX_Loaction() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
-				&& object.getX_Loaction() + object.getWidth() >= this.getPlayer().getxLoc())
+						+ this.getPlayer().getyVel() > object.getY_Location() + object.getHeight() / 2
+				&& object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
+				&& object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc())
 			return true;
 		else
 			return false;
@@ -96,11 +96,11 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideRightWall(Object_Creater object) {
-		if (object.getX_Loaction() + object.getWidth() >= this.getPlayer().getxLoc()
-				&& this.getPlayer().getxLoc() - this.getPlayer().getxVel() < object.getX_Loaction() + object.getWidth()
+		if (object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc()
+				&& this.getPlayer().getxLoc() - this.getPlayer().getxVel() < object.getX_Location() + object.getWidth()
 						- 1
-				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Loaction()
-				&& this.getPlayer().getyLoc() <= object.getY_Loaction() + object.getHight())
+				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
+				&& this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight())
 			return true;
 		else
 			return false;
@@ -108,11 +108,11 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideLeftWall(Object_Creater object) {
-		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= object.getX_Loaction()
+		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= object.getX_Location()
 				&& this.getPlayer().getxLoc() + this.getPlayer().getWidth()
-						+ this.getPlayer().getxVel() > object.getX_Loaction() + 1
-				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Loaction()
-				&& this.getPlayer().getyLoc() <= object.getY_Loaction() + object.getHight())
+						+ this.getPlayer().getxVel() > object.getX_Location() + 1
+				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
+				&& this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight())
 			return true;
 		else
 			return false;

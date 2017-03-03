@@ -27,7 +27,7 @@ public class Game_UI {
 		switch (gamePlaying) {
 		case Collect_The_Coins:
 			panel.removeAll();
-			ImageIcon rawIMGC = new ImageIcon("LoactionOfIMG");
+			ImageIcon rawIMGC = new ImageIcon("Colect_the_coin/background.jpg");
 			Image smallC = rawIMGC.getImage();
 			Image FullsizeC = smallC.getScaledInstance(game.getMainPanel().getWidth(), game.getMainPanel().getHeight(),
 					Image.SCALE_SMOOTH);

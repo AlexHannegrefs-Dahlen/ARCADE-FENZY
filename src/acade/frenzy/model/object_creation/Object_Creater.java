@@ -3,27 +3,74 @@ package acade.frenzy.model.object_creation;
 import java.awt.Color;
 
 public class Object_Creater {
-	private int Hight;
+	private int Height;
 	private int Width;
-	private int X_Loaction;
-	private int Y_Loaction;
+	private int X_Location;
+	private int Y_Location;
 	private int X_Velocity;
 	private int Y_Velocity;
 	private String Img_URL;
 	private Color color;
+	private boolean taken;
 
 	public Object_Creater() {
 
 	}
 
 	/**
-	 * @param hight
+	 * 
+	 * @param height
+	 * @param width
+	 * @param x_location
+	 * @param y_location
+	 * @param x_velocity
+	 * @param y_velocity
+	 * @param color
+	 * @param taken
+	 */
+	public Object_Creater(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
+			Color color, boolean taken) {
+		this.setHight(height);
+		this.setWidth(width);
+		this.setX_Location(x_location);
+		this.setY_Location(y_location);
+		this.setX_Velocity(x_velocity);
+		this.setY_Velocity(y_velocity);
+		this.setColor(color);
+		this.setTaken(taken);
+	}
+
+	/**
+	 * 
+	 * @param height
+	 * @param width
+	 * @param x_location
+	 * @param y_location
+	 * @param x_velocity
+	 * @param y_velocity
+	 * @param img_url
+	 * @param taken
+	 */
+	public Object_Creater(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
+			String img_url, boolean taken) {
+		this.setHight(height);
+		this.setWidth(width);
+		this.setX_Location(x_location);
+		this.setY_Location(y_location);
+		this.setX_Velocity(x_velocity);
+		this.setY_Velocity(y_velocity);
+		this.setImg_URL(img_url);
+		this.setTaken(taken);
+	}
+
+	/**
+	 * @param height
 	 *            of the object
 	 * @param width
 	 *            of the object
-	 * @param x_loaction
+	 * @param x_location
 	 *            of the object
-	 * @param y_loaction
+	 * @param y_location
 	 *            of the object
 	 * @param x_velocity
 	 *            of the object
@@ -32,12 +79,12 @@ public class Object_Creater {
 	 * @param img_url
 	 *            String of the location of the file
 	 */
-	public Object_Creater(int hight, int width, int x_loaction, int y_loaction, int x_velocity, int y_velocity,
+	public Object_Creater(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			String img_url) {
-		this.setHight(hight);
+		this.setHight(height);
 		this.setWidth(width);
-		this.setX_Loaction(x_loaction);
-		this.setY_Loaction(y_loaction);
+		this.setX_Location(x_location);
+		this.setY_Location(y_location);
 		this.setX_Velocity(x_velocity);
 		this.setY_Velocity(y_velocity);
 		this.setImg_URL(img_url);
@@ -46,13 +93,13 @@ public class Object_Creater {
 
 	/**
 	 * 
-	 * @param hight
+	 * @param height
 	 *            of the object
 	 * @param width
 	 *            of the object
-	 * @param x_loaction
+	 * @param x_location
 	 *            of the object
-	 * @param y_loaction
+	 * @param y_location
 	 *            of the object
 	 * @param x_velocity
 	 *            of the object
@@ -62,12 +109,12 @@ public class Object_Creater {
 	 *            of the object
 	 */
 
-	public Object_Creater(int hight, int width, int x_loaction, int y_loaction, int x_velocity, int y_velocity,
+	public Object_Creater(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			Color color) {
-		this.setHight(hight);
+		this.setHight(height);
 		this.setWidth(width);
-		this.setX_Loaction(x_loaction);
-		this.setY_Loaction(y_loaction);
+		this.setX_Location(x_location);
+		this.setY_Location(y_location);
 		this.setX_Velocity(x_velocity);
 		this.setY_Velocity(y_velocity);
 		this.setColor(color);
@@ -90,21 +137,21 @@ public class Object_Creater {
 	}
 
 	/**
-	 * @return the hight
+	 * @return the height
 	 */
-	public int getHight() {
-		return Hight;
+	public int getHeight() {
+		return Height;
 	}
 
 	/**
-	 * @param hight
-	 *            the hight to set
+	 * @param height
+	 *            the height to set
 	 */
-	public void setHight(int hight) {
-		if (hight < 0) {
+	public void setHight(int height) {
+		if (height < 0) {
 			return;
 		}
-		this.Hight = hight;
+		this.Height = height;
 	}
 
 	/**
@@ -128,37 +175,37 @@ public class Object_Creater {
 	/**
 	 * @return the x_Loaction
 	 */
-	public int getX_Loaction() {
-		return X_Loaction;
+	public int getX_Location() {
+		return X_Location;
 	}
 
 	/**
-	 * @param x_Loaction
-	 *            the x_Loaction to set
+	 * @param x_Location
+	 *            the x_Location to set
 	 */
-	public void setX_Loaction(int x_Loaction) {
-		if (x_Loaction < 0) {
+	public void setX_Location(int x_Location) {
+		if (x_Location < 0) {
 			return;
 		}
-		this.X_Loaction = x_Loaction;
+		this.X_Location = x_Location;
 	}
 
 	/**
-	 * @return the y_Loaction
+	 * @return the y_Location
 	 */
-	public int getY_Loaction() {
-		return Y_Loaction;
+	public int getY_Location() {
+		return Y_Location;
 	}
 
 	/**
-	 * @param y_Loaction
-	 *            the y_Loaction to set
+	 * @param y_Location
+	 *            the y_Location to set
 	 */
-	public void setY_Loaction(int y_Loaction) {
-		if (y_Loaction < 0) {
+	public void setY_Location(int y_Location) {
+		if (y_Location < 0) {
 			return;
 		}
-		this.Y_Loaction = y_Loaction;
+		this.Y_Location = y_Location;
 	}
 
 	/**
@@ -210,6 +257,21 @@ public class Object_Creater {
 			return;
 		}
 		this.Img_URL = img_URL;
+	}
+
+	/**
+	 * @return the taken
+	 */
+	public boolean isTaken() {
+		return taken;
+	}
+
+	/**
+	 * @param taken
+	 *            the taken to set
+	 */
+	public void setTaken(boolean taken) {
+		this.taken = taken;
 	}
 
 }
