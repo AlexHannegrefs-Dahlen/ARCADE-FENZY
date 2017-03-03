@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-
 import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.UI.Games.Game_UI;
 import arcade.frenzy.model.player.Player;
@@ -12,7 +11,9 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
 
-	private int width = 50, height = 50, xVel = 6, yVel = 6;
+	private int width = 50, height = 50, xVel = 5, yVel = 5;
+
+	private int coinCount = 3;
 
 	private Object_Creator center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
 
@@ -49,10 +50,10 @@ public class Collect_The_Coins extends Base_Game {
 
 		Coin1 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2 - 312,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.YELLOW, false);
-		Coin2 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2, game.getMainScreen().getHeight() / 2, 0,
-				0, Color.YELLOW, false);
-		Coin3 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2, game.getMainScreen().getHeight() / 2, 0,
-				0, Color.YELLOW, false);
+		Coin2 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2 - 100,
+				game.getMainScreen().getHeight() / 2 - 125, 0, 0, Color.YELLOW, false);
+		Coin3 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2 + 250,
+				game.getMainScreen().getHeight() / 2 + 285, 0, 0, Color.YELLOW, false);
 
 		this.setBackground(Color.BLACK);
 		game.getMainScreen().add(this);
@@ -132,6 +133,24 @@ public class Collect_The_Coins extends Base_Game {
 					this.getPlayer().setyLoc(left.getY_Location() + left.getHeight() + 5);
 				if (super.detectCollisionPlayerOutsideBottomWall(bot))
 					this.getPlayer().setyLoc(bot.getY_Location() + bot.getHeight() + 5);
+				if (super.detectCollisionPlayerOutsideBottomWall(Coin1)) {
+					if (!Coin1.isTaken()) {
+						Coin1.setTaken(true);
+						coinCount -= 1;
+					}
+				}
+				if (super.detectCollisionPlayerOutsideBottomWall(Coin2)) {
+					if (!Coin2.isTaken()) {
+						Coin2.setTaken(true);
+						coinCount -= 1;
+					}
+				}
+				if (super.detectCollisionPlayerOutsideBottomWall(Coin3)) {
+					if (!Coin3.isTaken()) {
+						Coin3.setTaken(true);
+						coinCount -= 1;
+					}
+				}
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -157,6 +176,24 @@ public class Collect_The_Coins extends Base_Game {
 					this.getPlayer().setyLoc(left.getY_Location() - this.getPlayer().getHeight() - 5);
 				if (super.detectCollisionPlayerOutsideTopWall(bot))
 					this.getPlayer().setyLoc(bot.getY_Location() - this.getPlayer().getHeight() - 5);
+				if (super.detectCollisionPlayerOutsideTopWall(Coin1)) {
+					if (!Coin1.isTaken()) {
+						Coin1.setTaken(true);
+						coinCount -= 1;
+					}
+				}
+				if (super.detectCollisionPlayerOutsideTopWall(Coin2)) {
+					if (!Coin2.isTaken()) {
+						Coin2.setTaken(true);
+						coinCount -= 1;
+					}
+				}
+				if (super.detectCollisionPlayerOutsideTopWall(Coin3)) {
+					if (!Coin3.isTaken()) {
+						Coin3.setTaken(true);
+						coinCount -= 1;
+					}
+				}
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
@@ -181,8 +218,25 @@ public class Collect_The_Coins extends Base_Game {
 					this.getPlayer().setxLoc(left.getX_Location() + left.getWidth() + 5);
 				if (super.detectCollisionPlayerOutsideRightWall(right))
 					this.getPlayer().setxLoc(right.getX_Location() + right.getWidth() + 5);
+				if (super.detectCollisionPlayerOutsideRightWall(Coin1)) {
+					if (!Coin1.isTaken()) {
+						Coin1.setTaken(true);
+						coinCount -= 1;
+					}
+				}
+				if (super.detectCollisionPlayerOutsideRightWall(Coin2)) {
+					if (!Coin2.isTaken()) {
+						Coin2.setTaken(true);
+						coinCount -= 1;
+					}
+				}
+				if (super.detectCollisionPlayerOutsideRightWall(Coin3)) {
+					if (!Coin3.isTaken()) {
+						Coin3.setTaken(true);
+						coinCount -= 1;
+					}
+				}
 			}
-			this.repaint();
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
@@ -206,10 +260,30 @@ public class Collect_The_Coins extends Base_Game {
 					this.getPlayer().setxLoc(left.getX_Location() - this.getPlayer().getWidth() - 5);
 				if (super.detectCollisionPlayerOutsideLeftWall(right))
 					this.getPlayer().setxLoc(right.getX_Location() - this.getPlayer().getWidth() - 5);
+				if (super.detectCollisionPlayerOutsideLeftWall(Coin1)) {
+					if (!Coin1.isTaken()) {
+						Coin1.setTaken(true);
+						coinCount -= 1;
+					}
+				}
+				if (super.detectCollisionPlayerOutsideLeftWall(Coin2)) {
+					if (!Coin2.isTaken()) {
+						Coin2.setTaken(true);
+						coinCount -= 1;
+					}
+				}
+				if (super.detectCollisionPlayerOutsideLeftWall(Coin3)) {
+					if (!Coin3.isTaken()) {
+						Coin3.setTaken(true);
+						coinCount -= 1;
+					}
+				}
 			}
 		}
 		this.repaint();
-
+		if (this.checkForWin()) {
+			System.out.println("You Won!");
+		}
 	}
 
 	@Override
@@ -228,4 +302,11 @@ public class Collect_The_Coins extends Base_Game {
 
 	}
 
+	private boolean checkForWin() {
+		if (coinCount == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
