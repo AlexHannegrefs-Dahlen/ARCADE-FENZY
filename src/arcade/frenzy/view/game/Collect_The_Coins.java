@@ -107,25 +107,28 @@ public class Collect_The_Coins extends Base_Game {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			if (!super.detectCollisionPlayerInsideTopWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideBottomWall(center))
+					this.getGame().getMainPanel().getHeight())
+					&& !super.detectCollisionPlayerOutsideBottomWall(center)) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
+				if (super.detectCollisionPlayerOutsideBottomWall(center))
+					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight() + 5);
+			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (!super.detectCollisionPlayerInsideBottomWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideTopWall(center))
+					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideTopWall(center)) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
+				if (super.detectCollisionPlayerOutsideTopWall(center))
+					this.getPlayer().setyLoc(center.getY_Location() - this.getPlayer().getHeight() - 5);
+			}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())
 					&& !super.detectCollisionPlayerOutsideRightWall(center)) {
 				this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
-				if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
-						this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-						this.getGame().getMainPanel().getHeight())
-						&& !super.detectCollisionPlayerOutsideRightWall(center)) {
-				} else
+				if (super.detectCollisionPlayerOutsideRightWall(center))
 					this.getPlayer().setxLoc(center.getX_Location() + center.getWidth() + 5);
 			}
 			this.repaint();
@@ -134,13 +137,8 @@ public class Collect_The_Coins extends Base_Game {
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideLeftWall(center)) {
 				this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
-				if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
-						this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-						this.getGame().getMainPanel().getHeight())
-						&& !super.detectCollisionPlayerOutsideLeftWall(center)) {
-				} else
+				if (super.detectCollisionPlayerOutsideLeftWall(center))
 					this.getPlayer().setxLoc(center.getX_Location() - this.getPlayer().getWidth() - 5);
-				this.repaint();
 			}
 		}
 		this.repaint();

@@ -72,9 +72,11 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideBottomWall(Object_Creater object) {
-		if (object.getY_Location() + object.getHeight() > this.getPlayer().getyLoc()
-				&& this.getPlayer().getyLoc() - this.getPlayer().getyVel() < object.getY_Location()
-						+ object.getHeight() / 2
+		if (this.getPlayer().getyLoc() < object.getY_Location() + object.getHeight())
+			return false;
+		if (object.getY_Location() + object.getHeight() >= this.getPlayer().getyLoc()
+				&& this.getPlayer().getyLoc() - this.getPlayer().getyVel() < object.getY_Location() + object.getHeight()
+						- 1
 				&& object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
 				&& object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc())
 			return true;
@@ -84,9 +86,11 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideTopWall(Object_Creater object) {
+		if (this.getPlayer().getyLoc() > object.getY_Location())
+			return false;
 		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
 				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight()
-						+ this.getPlayer().getyVel() > object.getY_Location() + object.getHeight() / 2
+						+ this.getPlayer().getyVel() > object.getY_Location() + 1
 				&& object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
 				&& object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc())
 			return true;
@@ -96,9 +100,12 @@ public abstract class Base_Game extends JPanel
 
 	@Override
 	public boolean detectCollisionPlayerOutsideRightWall(Object_Creater object) {
+		if (this.getPlayer().getxLoc() < object.getX_Location())
+			return false;
 		if (object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc()
 				&& this.getPlayer().getxLoc() - this.getPlayer().getxVel() < object.getX_Location() + object.getWidth()
 						- 1
+				&& this.getPlayer().getxLoc() <= object.getX_Location() + object.getWidth()
 				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
 				&& this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight())
 			return true;
@@ -111,6 +118,7 @@ public abstract class Base_Game extends JPanel
 		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= object.getX_Location()
 				&& this.getPlayer().getxLoc() + this.getPlayer().getWidth()
 						+ this.getPlayer().getxVel() > object.getX_Location() + 1
+				&& this.getPlayer().getxLoc() + this.getPlayer().getWidth() <= object.getX_Location()
 				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
 				&& this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight())
 			return true;
