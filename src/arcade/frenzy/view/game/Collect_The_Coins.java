@@ -12,7 +12,7 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
 
-	private int width = 50, height = 50, xVel = 5, yVel = 5;
+	private int width = 50, height = 50, xVel = 6, yVel = 6;
 
 	private Object_Creator center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
 
@@ -115,7 +115,7 @@ public class Collect_The_Coins extends Base_Game {
 					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 				if (super.detectCollisionPlayerOutsideBottomWall(center))
-					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight() + 5);
+					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight());
 				if (super.detectCollisionPlayerOutsideBottomWall(topLeft))
 					this.getPlayer().setyLoc(topLeft.getY_Location() + topLeft.getHeight() + 5);
 				if (super.detectCollisionPlayerOutsideBottomWall(topRight))
