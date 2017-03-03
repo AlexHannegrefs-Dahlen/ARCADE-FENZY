@@ -2,7 +2,7 @@ package acade.frenzy.model.object_creation;
 
 import java.awt.Color;
 
-public class Object_Creater {
+public class Object_Creator {
 	private int Height;
 	private int Width;
 	private int X_Location;
@@ -13,7 +13,7 @@ public class Object_Creater {
 	private Color color;
 	private boolean taken;
 
-	public Object_Creater() {
+	public Object_Creator() {
 
 	}
 
@@ -28,7 +28,7 @@ public class Object_Creater {
 	 * @param color
 	 * @param taken
 	 */
-	public Object_Creater(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
+	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			Color color, boolean taken) {
 		this.setHight(height);
 		this.setWidth(width);
@@ -51,7 +51,7 @@ public class Object_Creater {
 	 * @param img_url
 	 * @param taken
 	 */
-	public Object_Creater(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
+	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			String img_url, boolean taken) {
 		this.setHight(height);
 		this.setWidth(width);
@@ -79,7 +79,7 @@ public class Object_Creater {
 	 * @param img_url
 	 *            String of the location of the file
 	 */
-	public Object_Creater(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
+	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			String img_url) {
 		this.setHight(height);
 		this.setWidth(width);
@@ -109,7 +109,7 @@ public class Object_Creater {
 	 *            of the object
 	 */
 
-	public Object_Creater(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
+	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			Color color) {
 		this.setHight(height);
 		this.setWidth(width);

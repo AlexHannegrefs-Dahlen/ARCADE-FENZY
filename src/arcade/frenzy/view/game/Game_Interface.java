@@ -1,6 +1,6 @@
 package arcade.frenzy.view.game;
 
-import acade.frenzy.model.object_creation.Object_Creater;
+import acade.frenzy.model.object_creation.Object_Creator;
 
 public interface Game_Interface {
 
@@ -12,12 +12,12 @@ public interface Game_Interface {
 
 	boolean detectCollisionPlayerInsideBottomWall(int OxLoc, int OyLoc, int Owidth, int Oheight);
 
-	boolean detectCollisionPlayerOutsideBottomWall(Object_Creater object);
+	boolean detectCollisionPlayerOutsideBottomWall(Object_Creator object);
 
-	boolean detectCollisionPlayerOutsideTopWall(Object_Creater object);
+	boolean detectCollisionPlayerOutsideTopWall(Object_Creator object);
 
-	boolean detectCollisionPlayerOutsideRightWall(Object_Creater object);
+	boolean detectCollisionPlayerOutsideRightWall(Object_Creator object);
 
-	boolean detectCollisionPlayerOutsideLeftWall(Object_Creater object);
+	boolean detectCollisionPlayerOutsideLeftWall(Object_Creator object);
 
 }

@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import acade.frenzy.model.object_creation.Object_Creater;
+import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
@@ -71,7 +71,7 @@ public abstract class Base_Game extends JPanel
 	}
 
 	@Override
-	public boolean detectCollisionPlayerOutsideBottomWall(Object_Creater object) {
+	public boolean detectCollisionPlayerOutsideBottomWall(Object_Creator object) {
 		if (this.getPlayer().getyLoc() < object.getY_Location() + object.getHeight())
 			return false;
 		if (object.getY_Location() + object.getHeight() >= this.getPlayer().getyLoc()
@@ -85,7 +85,7 @@ public abstract class Base_Game extends JPanel
 	}
 
 	@Override
-	public boolean detectCollisionPlayerOutsideTopWall(Object_Creater object) {
+	public boolean detectCollisionPlayerOutsideTopWall(Object_Creator object) {
 		if (this.getPlayer().getyLoc() > object.getY_Location())
 			return false;
 		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
@@ -99,7 +99,7 @@ public abstract class Base_Game extends JPanel
 	}
 
 	@Override
-	public boolean detectCollisionPlayerOutsideRightWall(Object_Creater object) {
+	public boolean detectCollisionPlayerOutsideRightWall(Object_Creator object) {
 		if (this.getPlayer().getxLoc() < object.getX_Location())
 			return false;
 		if (object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc()
@@ -114,7 +114,7 @@ public abstract class Base_Game extends JPanel
 	}
 
 	@Override
-	public boolean detectCollisionPlayerOutsideLeftWall(Object_Creater object) {
+	public boolean detectCollisionPlayerOutsideLeftWall(Object_Creator object) {
 		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= object.getX_Location()
 				&& this.getPlayer().getxLoc() + this.getPlayer().getWidth()
 						+ this.getPlayer().getxVel() > object.getX_Location() + 1

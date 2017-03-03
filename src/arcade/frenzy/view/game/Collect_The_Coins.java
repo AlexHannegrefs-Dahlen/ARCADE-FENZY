@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import acade.frenzy.model.object_creation.Object_Creater;
+import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.UI.Games.Game_UI;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
@@ -14,7 +14,7 @@ public class Collect_The_Coins extends Base_Game {
 
 	private int width = 50, height = 50, xVel = 5, yVel = 5;
 
-	private Object_Creater center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
+	private Object_Creator center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
 
 	public Collect_The_Coins(Main_Menu game, Player player, Game_UI gui) {
 		this.setGame(game);
@@ -26,32 +26,32 @@ public class Collect_The_Coins extends Base_Game {
 		this.getPlayer().setxVel(xVel);
 		this.getPlayer().setyVel(yVel);
 
-		center = new Object_Creater(100, 100, game.getMainScreen().getWidth() / 2 - 50,
+		center = new Object_Creator(100, 100, game.getMainScreen().getWidth() / 2 - 50,
 				game.getMainScreen().getHeight() / 2 - 50, 0, 0, Color.WHITE);
 
-		topLeft = new Object_Creater(100, 100, game.getMainScreen().getWidth() / 2 - 250,
+		topLeft = new Object_Creator(100, 100, game.getMainScreen().getWidth() / 2 - 250,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.WHITE);
-		topRight = new Object_Creater(100, 100, game.getMainScreen().getWidth() / 2 + 150,
+		topRight = new Object_Creator(100, 100, game.getMainScreen().getWidth() / 2 + 150,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.WHITE);
-		botLeft = new Object_Creater(100, 100, game.getMainScreen().getWidth() / 2 - 250,
+		botLeft = new Object_Creator(100, 100, game.getMainScreen().getWidth() / 2 - 250,
 				game.getMainScreen().getHeight() / 2 + 150, 0, 0, Color.WHITE);
-		botRight = new Object_Creater(100, 100, game.getMainScreen().getWidth() / 2 + 150,
+		botRight = new Object_Creator(100, 100, game.getMainScreen().getWidth() / 2 + 150,
 				game.getMainScreen().getHeight() / 2 + 150, 0, 0, Color.WHITE);
 
-		top = new Object_Creater(75, 500, game.getMainScreen().getWidth() / 2 - 250,
+		top = new Object_Creator(75, 500, game.getMainScreen().getWidth() / 2 - 250,
 				game.getMainScreen().getHeight() / 2 - 425, 0, 0, Color.WHITE);
-		bot = new Object_Creater(75, 500, game.getMainScreen().getWidth() / 2 - 250,
+		bot = new Object_Creator(75, 500, game.getMainScreen().getWidth() / 2 - 250,
 				game.getMainScreen().getHeight() / 2 + 350, 0, 0, Color.WHITE);
-		left = new Object_Creater(500, 75, game.getMainScreen().getWidth() / 2 - 425,
+		left = new Object_Creator(500, 75, game.getMainScreen().getWidth() / 2 - 425,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.WHITE);
-		right = new Object_Creater(500, 75, game.getMainScreen().getWidth() / 2 + 350,
+		right = new Object_Creator(500, 75, game.getMainScreen().getWidth() / 2 + 350,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.WHITE);
 
-		Coin1 = new Object_Creater(30, 30, game.getMainScreen().getWidth() / 2 - 312,
+		Coin1 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2 - 312,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.YELLOW, false);
-		Coin2 = new Object_Creater(30, 30, game.getMainScreen().getWidth() / 2, game.getMainScreen().getHeight() / 2, 0,
+		Coin2 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2, game.getMainScreen().getHeight() / 2, 0,
 				0, Color.YELLOW, false);
-		Coin3 = new Object_Creater(30, 30, game.getMainScreen().getWidth() / 2, game.getMainScreen().getHeight() / 2, 0,
+		Coin3 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2, game.getMainScreen().getHeight() / 2, 0,
 				0, Color.YELLOW, false);
 
 		this.setBackground(Color.BLACK);
@@ -112,15 +112,7 @@ public class Collect_The_Coins extends Base_Game {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			if (!super.detectCollisionPlayerInsideTopWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideBottomWall(center)
-					&& !super.detectCollisionPlayerOutsideBottomWall(topLeft)
-					&& !super.detectCollisionPlayerOutsideBottomWall(topRight)
-					&& !super.detectCollisionPlayerOutsideBottomWall(botLeft)
-					&& !super.detectCollisionPlayerOutsideBottomWall(botRight)
-					&& !super.detectCollisionPlayerOutsideBottomWall(top)
-					&& !super.detectCollisionPlayerOutsideBottomWall(bot)
-					&& !super.detectCollisionPlayerOutsideBottomWall(left)
-					&& !super.detectCollisionPlayerOutsideBottomWall(right)) {
+					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 				if (super.detectCollisionPlayerOutsideBottomWall(center))
 					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight() + 5);
@@ -145,15 +137,7 @@ public class Collect_The_Coins extends Base_Game {
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (!super.detectCollisionPlayerInsideBottomWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideTopWall(center)
-					&& !super.detectCollisionPlayerOutsideTopWall(topLeft)
-					&& !super.detectCollisionPlayerOutsideTopWall(topRight)
-					&& !super.detectCollisionPlayerOutsideTopWall(botLeft)
-					&& !super.detectCollisionPlayerOutsideTopWall(botRight)
-					&& !super.detectCollisionPlayerOutsideTopWall(top)
-					&& !super.detectCollisionPlayerOutsideTopWall(bot)
-					&& !super.detectCollisionPlayerOutsideTopWall(left)
-					&& !super.detectCollisionPlayerOutsideTopWall(right)) {
+					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
 				if (super.detectCollisionPlayerOutsideTopWall(center))
 					this.getPlayer().setyLoc(center.getY_Location() - this.getPlayer().getHeight() - 5);
@@ -177,15 +161,7 @@ public class Collect_The_Coins extends Base_Game {
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideRightWall(center)
-					&& !super.detectCollisionPlayerOutsideRightWall(topLeft)
-					&& !super.detectCollisionPlayerOutsideRightWall(topRight)
-					&& !super.detectCollisionPlayerOutsideRightWall(botRight)
-					&& !super.detectCollisionPlayerOutsideRightWall(botLeft)
-					&& !super.detectCollisionPlayerOutsideRightWall(top)
-					&& !super.detectCollisionPlayerOutsideRightWall(bot)
-					&& !super.detectCollisionPlayerOutsideRightWall(left)
-					&& !super.detectCollisionPlayerOutsideRightWall(right)) {
+					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
 				if (super.detectCollisionPlayerOutsideRightWall(center))
 					this.getPlayer().setxLoc(center.getX_Location() + center.getWidth() + 5);
@@ -210,7 +186,7 @@ public class Collect_The_Coins extends Base_Game {
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
-					this.getGame().getMainPanel().getHeight()) && !super.detectCollisionPlayerOutsideLeftWall(center)) {
+					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
 				if (super.detectCollisionPlayerOutsideLeftWall(center))
 					this.getPlayer().setxLoc(center.getX_Location() - this.getPlayer().getWidth() - 5);
