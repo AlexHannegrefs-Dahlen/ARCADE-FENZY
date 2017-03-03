@@ -15,7 +15,7 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 public class Collect_The_Coins extends Base_Game {
 
 	private int width = 50, height = 50, xVel = 5, yVel = 5;
-	
+
 	private int coinCount = 3;
 
 	private Object_Creator center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
@@ -119,7 +119,7 @@ public class Collect_The_Coins extends Base_Game {
 					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 				if (super.detectCollisionPlayerOutsideBottomWall(center))
-					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight() + 5);
+					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight());
 				if (super.detectCollisionPlayerOutsideBottomWall(topLeft))
 					this.getPlayer().setyLoc(topLeft.getY_Location() + topLeft.getHeight() + 5);
 				if (super.detectCollisionPlayerOutsideBottomWall(topRight))
@@ -137,19 +137,19 @@ public class Collect_The_Coins extends Base_Game {
 				if (super.detectCollisionPlayerOutsideBottomWall(bot))
 					this.getPlayer().setyLoc(bot.getY_Location() + bot.getHeight() + 5);
 				if (super.detectCollisionPlayerOutsideBottomWall(Coin1)) {
-					if(!Coin1.isTaken()) {
+					if (!Coin1.isTaken()) {
 						Coin1.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 				if (super.detectCollisionPlayerOutsideBottomWall(Coin2)) {
-					if(!Coin2.isTaken()) {
+					if (!Coin2.isTaken()) {
 						Coin2.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 				if (super.detectCollisionPlayerOutsideBottomWall(Coin3)) {
-					if(!Coin3.isTaken()) {
+					if (!Coin3.isTaken()) {
 						Coin3.setTaken(true);
 						coinCount -= 1;
 					}
@@ -180,19 +180,19 @@ public class Collect_The_Coins extends Base_Game {
 				if (super.detectCollisionPlayerOutsideTopWall(bot))
 					this.getPlayer().setyLoc(bot.getY_Location() - this.getPlayer().getHeight() - 5);
 				if (super.detectCollisionPlayerOutsideTopWall(Coin1)) {
-					if(!Coin1.isTaken()) {
+					if (!Coin1.isTaken()) {
 						Coin1.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 				if (super.detectCollisionPlayerOutsideTopWall(Coin2)) {
-					if(!Coin2.isTaken()) {
+					if (!Coin2.isTaken()) {
 						Coin2.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 				if (super.detectCollisionPlayerOutsideTopWall(Coin3)) {
-					if(!Coin3.isTaken()) {
+					if (!Coin3.isTaken()) {
 						Coin3.setTaken(true);
 						coinCount -= 1;
 					}
@@ -222,25 +222,24 @@ public class Collect_The_Coins extends Base_Game {
 				if (super.detectCollisionPlayerOutsideRightWall(right))
 					this.getPlayer().setxLoc(right.getX_Location() + right.getWidth() + 5);
 				if (super.detectCollisionPlayerOutsideRightWall(Coin1)) {
-					if(!Coin1.isTaken()) {
+					if (!Coin1.isTaken()) {
 						Coin1.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 				if (super.detectCollisionPlayerOutsideRightWall(Coin2)) {
-					if(!Coin2.isTaken()) {
+					if (!Coin2.isTaken()) {
 						Coin2.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 				if (super.detectCollisionPlayerOutsideRightWall(Coin3)) {
-					if(!Coin3.isTaken()) {
+					if (!Coin3.isTaken()) {
 						Coin3.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 			}
-			this.repaint();
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
@@ -265,19 +264,19 @@ public class Collect_The_Coins extends Base_Game {
 				if (super.detectCollisionPlayerOutsideLeftWall(right))
 					this.getPlayer().setxLoc(right.getX_Location() - this.getPlayer().getWidth() - 5);
 				if (super.detectCollisionPlayerOutsideLeftWall(Coin1)) {
-					if(!Coin1.isTaken()) {
+					if (!Coin1.isTaken()) {
 						Coin1.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 				if (super.detectCollisionPlayerOutsideLeftWall(Coin2)) {
-					if(!Coin2.isTaken()) {
+					if (!Coin2.isTaken()) {
 						Coin2.setTaken(true);
 						coinCount -= 1;
 					}
 				}
 				if (super.detectCollisionPlayerOutsideLeftWall(Coin3)) {
-					if(!Coin3.isTaken()) {
+					if (!Coin3.isTaken()) {
 						Coin3.setTaken(true);
 						coinCount -= 1;
 					}
@@ -285,11 +284,17 @@ public class Collect_The_Coins extends Base_Game {
 			}
 		}
 		this.repaint();
-		if(this.checkForWin()) {
-			System.out.println("You Won!");
+		if (this.checkForWin()) {
+			if (!this.getGame().isFrenzy()) {
+				JOptionPane.showMessageDialog(this, "You won!");
+				super.gameOver(this);
+			} else
+				try {
+					this.getGame().getCon().getFrenzy().gameOver(this);
+				} catch (InterruptedException e1) {
+				}
 		}
 	}
-
 
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -308,10 +313,9 @@ public class Collect_The_Coins extends Base_Game {
 	}
 
 	private boolean checkForWin() {
-		if(coinCount == 0) {
+		if (coinCount == 0) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}

@@ -225,4 +225,11 @@ public class Main_Controller {
 		this.highscore = highscore;
 	}
 
+	public void frenzyOver() {
+		this.getGame().getMainPanel().setVisible(true);
+		this.getGame().getMainPanel().setFocusable(true);
+		this.getGame().getMainPanel().requestFocusInWindow();
+		this.getGame().setFrenzy(false);
+	}
+
 }
