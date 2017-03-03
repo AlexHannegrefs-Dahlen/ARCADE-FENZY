@@ -1,7 +1,6 @@
 package arcade.frenzy.view.game;
 
 import arcade.frenzy.UI.Games.Game_UI;
-import arcade.frenzy.controller.GameNames;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,8 +12,7 @@ import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Frogger extends Base_Game {
-
-	private int width = 50, height = 50, Xvel = 5, Yvel = 5;
+	private int width = 50, height = 50, xVel = 25, yVel = 25;
 
 	private Object_Creator Car1, Car2, Car3;
 
@@ -25,8 +23,8 @@ public class Frogger extends Base_Game {
 		this.getPlayer().setyLoc(game.getMainScreen().getHeight() / 2 + 500);
 		this.getPlayer().setWidth(width);
 		this.getPlayer().setHeight(height);
-		this.getPlayer().setxVel(Xvel);
-		this.getPlayer().setyVel(Yvel);
+		this.getPlayer().setxVel(xVel);
+		this.getPlayer().setyVel(yVel);
 
 		Car1 = new Object_Creator(100, 200, 0, 975, 25, 0, Color.CYAN);
 		Car2 = new Object_Creator(100, 200, 2360, 575, 25, 0, Color.MAGENTA);
