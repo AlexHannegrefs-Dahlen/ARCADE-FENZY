@@ -51,6 +51,8 @@ public class Main_Menu implements ActionListener {
 
 	private File backgroundImgFile;
 
+	private boolean frenzy;
+
 	/**
 	 * Makes the Main Screen JFrame and JPanel, sets the JFrame to visible
 	 * 
@@ -168,6 +170,7 @@ public class Main_Menu implements ActionListener {
 			}
 		else if (e.getSource() == frenzyMode)
 			try {
+				this.setFrenzy(true);
 				this.con.handleButtonClicked(GameNames.Frenzy_Mode);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
@@ -350,6 +353,21 @@ public class Main_Menu implements ActionListener {
 	 */
 	public void setFrenzyMode(JButton frenzyMode) {
 		this.frenzyMode = frenzyMode;
+	}
+
+	/**
+	 * @return the frenzy
+	 */
+	public boolean isFrenzy() {
+		return frenzy;
+	}
+
+	/**
+	 * @param frenzy
+	 *            the frenzy to set
+	 */
+	public void setFrenzy(boolean frenzy) {
+		this.frenzy = frenzy;
 	}
 
 }
