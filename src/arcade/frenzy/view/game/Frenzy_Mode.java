@@ -8,9 +8,6 @@ public class Frenzy_Mode {
 
 	public Frenzy_Mode(Main_Controller main_Controller, Main_Menu game) throws InterruptedException {
 		main_Controller.handleButtonClicked(GameNames.Collect_The_Coins);
-		Thread.sleep(500);
-		main_Controller.handleButtonClicked(GameNames.Frogger);
-		Thread.sleep(500);
 	}
 
 }

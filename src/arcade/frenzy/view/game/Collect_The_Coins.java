@@ -182,7 +182,6 @@ public class Collect_The_Coins extends Base_Game {
 				if (super.detectCollisionPlayerOutsideRightWall(right))
 					this.getPlayer().setxLoc(right.getX_Location() + right.getWidth() + 5);
 			}
-			this.repaint();
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
