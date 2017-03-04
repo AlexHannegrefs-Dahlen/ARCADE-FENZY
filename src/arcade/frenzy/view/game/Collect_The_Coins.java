@@ -1,10 +1,16 @@
 package arcade.frenzy.view.game;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import acade.frenzy.model.object_creation.Object_Creator;
@@ -14,13 +20,14 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
 
-	private int width = 50, height = 50, xVel = 5, yVel = 5;
+	private int width = 60, height = 60, xVel = 5, yVel = 5;
 
 	private int coinCount = 3;
 
 	private Object_Creator center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
 
-	public Collect_The_Coins(Main_Menu game, Player player, Game_UI gui) {
+	public Collect_The_Coins(Main_Menu game, Player player, Game_UI gui, Image image) throws IOException {
+		super(image);
 		this.setGame(game);
 		this.setPlayer(player);
 		this.getPlayer().setxLoc(game.getMainScreen().getWidth() / 2 - 25);
@@ -51,12 +58,12 @@ public class Collect_The_Coins extends Base_Game {
 		right = new Object_Creator(500, 75, game.getMainScreen().getWidth() / 2 + 350,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.WHITE);
 
-		Coin1 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2 - 312,
-				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.YELLOW, false);
-		Coin2 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2 - 100,
-				game.getMainScreen().getHeight() / 2 - 125, 0, 0, Color.YELLOW, false);
-		Coin3 = new Object_Creator(30, 30, game.getMainScreen().getWidth() / 2 + 250,
-				game.getMainScreen().getHeight() / 2 + 285, 0, 0, Color.YELLOW, false);
+		Coin1 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 - 312,
+				game.getMainScreen().getHeight() / 2 - 250, 0, 0, "Collect the coin/coin.gif", false);
+		Coin2 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 - 100,
+				game.getMainScreen().getHeight() / 2 - 125, 0, 0, "Collect the coin/coin.gif", false);
+		Coin3 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 + 250,
+				game.getMainScreen().getHeight() / 2 + 285, 0, 0, "Collect the coin/coin.gif", false);
 
 		this.setBackground(Color.BLACK);
 		game.getMainScreen().add(this);
@@ -69,10 +76,17 @@ public class Collect_The_Coins extends Base_Game {
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.WHITE);
-		g.fillOval(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), width, height);
-
-		g.setColor(center.getColor());
-		g.drawRect(center.getX_Location(), center.getY_Location(), center.getWidth(), center.getHeight());
+		// g.fillOval(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(),
+		// width, height);
+		try {
+			g.drawImage(ImageIO.read(new File("Collect the coin/pot of gold.gif")), this.getPlayer().getxLoc(),
+					this.getPlayer().getyLoc(), width, height, this);
+		} catch (IOException e) {
+		}
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setStroke(new BasicStroke(5));
+		g2.setColor(center.getColor());
+		g2.drawRect(center.getX_Location(), center.getY_Location(), center.getWidth(), center.getHeight());
 
 		g.setColor(topLeft.getColor());
 		g.drawRect(topLeft.getX_Location(), topLeft.getY_Location(), topLeft.getWidth(), topLeft.getHeight());
@@ -93,16 +107,16 @@ public class Collect_The_Coins extends Base_Game {
 		g.drawRect(right.getX_Location(), right.getY_Location(), right.getWidth(), right.getHeight());
 
 		if (!Coin1.isTaken()) {
-			g.setColor(Coin1.getColor());
-			g.fillOval(Coin1.getX_Location(), Coin1.getY_Location(), Coin1.getWidth(), Coin1.getHeight());
+			g.drawImage(Coin1.getPicture(), Coin1.getX_Location(), Coin1.getY_Location(), Coin1.getWidth(),
+					Coin1.getHeight(), this);
 		}
 		if (!Coin2.isTaken()) {
-			g.setColor(Coin2.getColor());
-			g.fillOval(Coin2.getX_Location(), Coin2.getY_Location(), Coin2.getWidth(), Coin2.getHeight());
+			g.drawImage(Coin2.getPicture(), Coin2.getX_Location(), Coin2.getY_Location(), Coin2.getWidth(),
+					Coin2.getHeight(), this);
 		}
 		if (!Coin3.isTaken()) {
-			g.setColor(Coin3.getColor());
-			g.fillOval(Coin3.getX_Location(), Coin3.getY_Location(), Coin3.getWidth(), Coin3.getHeight());
+			g.drawImage(Coin3.getPicture(), Coin3.getX_Location(), Coin3.getY_Location(), Coin3.getWidth(),
+					Coin3.getHeight(), this);
 		}
 	}
 
@@ -119,7 +133,7 @@ public class Collect_The_Coins extends Base_Game {
 					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 				if (super.detectCollisionPlayerOutsideBottomWall(center))
-					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight());
+					this.getPlayer().setyLoc(center.getY_Location() + center.getHeight() + 5);
 				if (super.detectCollisionPlayerOutsideBottomWall(topLeft))
 					this.getPlayer().setyLoc(topLeft.getY_Location() + topLeft.getHeight() + 5);
 				if (super.detectCollisionPlayerOutsideBottomWall(topRight))
@@ -291,7 +305,7 @@ public class Collect_The_Coins extends Base_Game {
 			} else
 				try {
 					this.getGame().getCon().getFrenzy().gameOver(this);
-				} catch (InterruptedException e1) {
+				} catch (InterruptedException | IOException e1) {
 				}
 		}
 	}

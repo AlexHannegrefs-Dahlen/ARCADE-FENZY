@@ -1,6 +1,11 @@
 package acade.frenzy.model.object_creation;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Object_Creator {
 	private int Height;
@@ -10,6 +15,7 @@ public class Object_Creator {
 	private int X_Velocity;
 	private int Y_Velocity;
 	private String Img_URL;
+	private BufferedImage picture;
 	private Color color;
 	private boolean taken;
 
@@ -50,16 +56,17 @@ public class Object_Creator {
 	 * @param y_velocity
 	 * @param img_url
 	 * @param taken
+	 * @throws IOException
 	 */
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
-			String img_url, boolean taken) {
+			String img_url, boolean taken) throws IOException {
 		this.setHight(height);
 		this.setWidth(width);
 		this.setX_Location(x_location);
 		this.setY_Location(y_location);
 		this.setX_Velocity(x_velocity);
 		this.setY_Velocity(y_velocity);
-		this.setImg_URL(img_url);
+		this.setPicture(ImageIO.read(new File(img_url)));
 		this.setTaken(taken);
 	}
 
@@ -272,6 +279,21 @@ public class Object_Creator {
 	 */
 	public void setTaken(boolean taken) {
 		this.taken = taken;
+	}
+
+	/**
+	 * @return the picture
+	 */
+	public BufferedImage getPicture() {
+		return picture;
+	}
+
+	/**
+	 * @param picture
+	 *            the picture to set
+	 */
+	public void setPicture(BufferedImage picture) {
+		this.picture = picture;
 	}
 
 }

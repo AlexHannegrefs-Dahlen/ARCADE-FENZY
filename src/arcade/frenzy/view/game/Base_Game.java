@@ -1,18 +1,18 @@
 package arcade.frenzy.view.game;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.model.player.Player;
+import arcade.frenzy.view.main.menu.BackgroundPanel;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
-public abstract class Base_Game extends JPanel
-		/* Backgroundpanel */ implements Game_Interface, KeyListener, ActionListener {
+public abstract class Base_Game extends BackgroundPanel implements Game_Interface, KeyListener, ActionListener {
 	private Player player;
 
 	private Main_Menu game;
@@ -27,7 +27,12 @@ public abstract class Base_Game extends JPanel
 
 	}
 
-	public Base_Game(Player player) {
+	public Base_Game(Image image) {
+		super(image);
+	}
+
+	public Base_Game(Player player, Image image) {
+		super(image);
 		this.player = player;
 	}
 

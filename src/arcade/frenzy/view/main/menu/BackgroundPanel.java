@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import arcade.frenzy.model.player.Player;
+
 public class BackgroundPanel extends JPanel {
 	/**
 	 * 
@@ -23,7 +25,15 @@ public class BackgroundPanel extends JPanel {
 	/*
 	 * Set image as the background with the SCALED style
 	 */
+	public BackgroundPanel() {
+
+	}
+
 	public BackgroundPanel(Image image) {
+		this(image, SCALED);
+	}
+
+	public BackgroundPanel(Player player, Image image) {
 		this(image, SCALED);
 	}
 

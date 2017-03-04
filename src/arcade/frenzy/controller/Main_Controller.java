@@ -1,5 +1,10 @@
 package arcade.frenzy.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import arcade.frenzy.UI.Games.Game_UI;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.game.Collect_The_Coins;
@@ -42,12 +47,13 @@ public class Main_Controller {
 
 	}
 
-	public void handleButtonClicked(GameNames buttonClicked) throws InterruptedException {
+	public void handleButtonClicked(GameNames buttonClicked) throws InterruptedException, IOException {
 		if (game.getMainPanel().isVisible())
 			game.getMainPanel().setVisible(false);
 		switch (buttonClicked) {
 		case Collect_The_Coins:
-			this.coins = new Collect_The_Coins(game, player, gui);
+			this.coins = new Collect_The_Coins(game, player, gui,
+					ImageIO.read(new File("Collect the coin/background.jpg")));
 			coins.setFocusable(true);
 			coins.requestFocusInWindow();
 			break;

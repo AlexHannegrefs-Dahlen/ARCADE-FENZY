@@ -1,5 +1,6 @@
 package arcade.frenzy.view.game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,12 +13,12 @@ public class Frenzy_Mode {
 			GameNames.Frogger, GameNames.Get_Down, GameNames.Jump_The_Car, GameNames.Tree_Climber));
 	private Main_Controller con;
 
-	public Frenzy_Mode(Main_Controller main_Controller, Main_Menu game) throws InterruptedException {
+	public Frenzy_Mode(Main_Controller main_Controller, Main_Menu game) throws InterruptedException, IOException {
 		this.setCon(main_Controller);
 		this.playNextGame(main_Controller);
 	}
 
-	private void playNextGame(Main_Controller main_Controller) throws InterruptedException {
+	private void playNextGame(Main_Controller main_Controller) throws InterruptedException, IOException {
 		if (games.size() != 0)
 			main_Controller.handleButtonClicked(games.get(0));
 		else
@@ -28,7 +29,7 @@ public class Frenzy_Mode {
 		this.getCon().frenzyOver();
 	}
 
-	public void gameOver(Base_Game gamePlayed) throws InterruptedException {
+	public void gameOver(Base_Game gamePlayed) throws InterruptedException, IOException {
 		games.remove(0);
 		this.getCon().getGame().getMainScreen().remove(gamePlayed);
 		this.playNextGame(gamePlayed.getGame().getCon());

@@ -141,38 +141,38 @@ public class Main_Menu implements ActionListener {
 		if (e.getSource() == collectTheCoins)
 			try {
 				this.con.handleButtonClicked(GameNames.Collect_The_Coins);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == frogger)
 			try {
 				this.con.handleButtonClicked(GameNames.Frogger);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == getDown)
 			try {
 				this.con.handleButtonClicked(GameNames.Get_Down);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == jumpTheCar)
 			try {
 				this.con.handleButtonClicked(GameNames.Jump_The_Car);
-			} catch (InterruptedException e2) {
+			} catch (InterruptedException | IOException e2) {
 				e2.printStackTrace();
 			}
 		else if (e.getSource() == treeClimber)
 			try {
 				this.con.handleButtonClicked(GameNames.Tree_Climber);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == frenzyMode)
 			try {
 				this.setFrenzy(true);
 				this.con.handleButtonClicked(GameNames.Frenzy_Mode);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == getName) {
@@ -182,7 +182,7 @@ public class Main_Menu implements ActionListener {
 		if (e.getSource() == viewScores) {
 			try {
 				this.con.handleButtonClicked(GameNames.Highscores);
-			} catch (InterruptedException e1) {
+			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		} else if (e.getSource() == resetScores) {
