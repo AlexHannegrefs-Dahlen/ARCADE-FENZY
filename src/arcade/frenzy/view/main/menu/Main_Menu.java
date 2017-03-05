@@ -1,6 +1,7 @@
 package arcade.frenzy.view.main.menu;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -33,9 +35,9 @@ public class Main_Menu implements ActionListener {
 
 	private JFrame mainScreen;
 
-	private BackgroundPanel mainPanel;
+	private BackgroundPanel centerPanel;
 
-	private JPanel buttonPanelLeft, buttonPanelRight;
+	private JPanel mainPanel, buttonPanelLeft, buttonPanelRight;
 
 	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode, getName;
 
@@ -67,14 +69,18 @@ public class Main_Menu implements ActionListener {
 
 		mainScreen = new JFrame("Arcade Frenzy");
 
-		backgroundImgFile = new File("BlankScreen.png");
+		backgroundImgFile = new File("Background.jpg");
 		try {
 			backgroundImg = ImageIO.read(backgroundImgFile);
 		} catch (IOException e) {
+			System.out.println("Not found");
 		}
 
-		mainPanel = new BackgroundPanel(backgroundImg);
+		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
+
+		centerPanel = new BackgroundPanel(backgroundImg);
+		mainPanel.add(centerPanel, BorderLayout.CENTER);
 
 		viewScores = new JMenuItem("View Highscores");
 		viewScores.addActionListener(this);
@@ -95,7 +101,8 @@ public class Main_Menu implements ActionListener {
 		collectTheCoins.addActionListener(this);
 		buttonPanelLeft.add(collectTheCoins);
 
-		nameEntry = new JTextField(0);
+		nameEntry = new JTextField("Enter Text");
+		nameEntry.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 150));
 		buttonPanelLeft.add(nameEntry);
 
 		getName = new JButton("Update name");

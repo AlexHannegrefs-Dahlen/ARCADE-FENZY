@@ -20,7 +20,7 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
 
-	private int width = 60, height = 60, xVel = 5, yVel = 5;
+	private int width = 60, height = 60, xVel = 6, yVel = 6;
 
 	private int coinCount = 3;
 
@@ -84,7 +84,7 @@ public class Collect_The_Coins extends Base_Game {
 		} catch (IOException e) {
 		}
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(5));
+		g2.setStroke(new BasicStroke(8));
 		g2.setColor(center.getColor());
 		g2.drawRect(center.getX_Location(), center.getY_Location(), center.getWidth(), center.getHeight());
 
