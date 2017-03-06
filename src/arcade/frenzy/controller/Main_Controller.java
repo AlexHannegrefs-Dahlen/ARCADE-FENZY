@@ -62,6 +62,8 @@ public class Main_Controller {
 			break;
 		case Frogger:
 			this.frogger = new Frogger(game, gui, player);
+			frogger.setFocusable(true);
+			frogger.requestFocusInWindow();
 			break;
 		case Get_Down:
 			this.down = new Get_Down(game, gui, player);
