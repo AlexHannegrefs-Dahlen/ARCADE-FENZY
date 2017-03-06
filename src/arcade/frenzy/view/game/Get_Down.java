@@ -3,19 +3,27 @@ package arcade.frenzy.view.game;
 import arcade.frenzy.UI.Games.Game_UI;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Get_Down extends Base_Game {
+	private Timer gravityTimer = new Timer(50 / 1, this);
 
 	private Object_Creator TopPlatFormLeft, TopPlatFormRight, MidPlatFormLeft, MidPlatFormRight, BotPlatFormLeft,
 			BotPlatFormRight, FinishLine;
 
-	private int width = 50, height = 50, xvel = 5, yvel = 5;// player
+	private int width = 210, height = 105, xvel = 15, yvel = 20;
 
 	private final int TopRightPlatFormHight = 45, TopRightPlatFormWidth = 900, TopRightPlatFrom_Xloc = 0,
 			TopRightPlatForm_Yloc = 200;
@@ -31,11 +39,12 @@ public class Get_Down extends Base_Game {
 
 	private final int BotLeftHight = 45, BotLeftWidth = 2200, BotLeftXloc = 400, BotLeftYloc = 820;
 
-	public Get_Down(Main_Menu game, Game_UI gui, Player player) {
+	public Get_Down(Main_Menu game, Game_UI gui, Player player, Image Image) {
+		super(Image);
 		this.setGame(game);
 		this.setPlayer(player);
 		this.getPlayer().setxLoc(game.getMainScreen().getWidth() / 2);
-		this.getPlayer().setyLoc(game.getMainScreen().getHeight() / 2);
+		this.getPlayer().setyLoc(yvel);
 		this.getPlayer().setWidth(width);
 		this.getPlayer().setHeight(height);
 		this.getPlayer().setxVel(xvel);
@@ -63,25 +72,34 @@ public class Get_Down extends Base_Game {
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.addKeyListener(this);
+		gravityTimer.start();
 	}
-	
-	public void Winner(){
-		if(this.getPlayer().getyLoc() + this.getPlayer().getHeight() <= this.FinishLine.getY_Location()){
-			// winner 
+
+	public void Winner() {
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= this.FinishLine.getY_Location()) {
+			gravityTimer.stop();
+			gameOver();
 		}
 	}
 
 	/**
 	 * 
 	 */
-	// Move  to Game Ui eventuly 
+	// Move to Game Ui eventuly
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.setColor(Color.WHITE);
-		g.fillRect(this.getPlayer().getxLoc(), this.getPlayer().getyVel(), width, height);
+		// g.setColor(Color.WHITE);
+		// g.fillRect(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(),
+		// width, height);
+
+		try {
+			g.drawImage(ImageIO.read(new File("GetDown/blobe.gif")), this.getPlayer().getxLoc(),
+					this.getPlayer().getyLoc(), width, height, this);
+		} catch (IOException e) {
+		}
 
 		g.setColor(TopPlatFormLeft.getColor());
 		g.fillRect(TopPlatFormLeft.getX_Location(), TopPlatFormLeft.getY_Location(), TopPlatFormLeft.getWidth(),
@@ -114,7 +132,20 @@ public class Get_Down extends Base_Game {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
+					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
+					this.getGame().getMainPanel().getHeight())) {
+				this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
+			}
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
+					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
+					this.getGame().getMainPanel().getHeight())) {
+				this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
+			}
+		}
+		repaint();
 
 	}
 
@@ -126,14 +157,39 @@ public class Get_Down extends Base_Game {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		keyPressed(e);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
+		if (super.detectCollisionPlayerOutsideTopWall(TopPlatFormRight))
+			this.getPlayer().setyLoc(TopRightPlatForm_Yloc - this.getPlayer().getHeight());
+		if (super.detectCollisionPlayerOutsideTopWall(TopPlatFormLeft))
+			this.getPlayer().setyLoc(TopLeftPlatForm_Yloc - this.getPlayer().getHeight());
+		if (super.detectCollisionPlayerOutsideTopWall(MidPlatFormLeft))
+			this.getPlayer().setyLoc(MidLeftYloc - this.getPlayer().getHeight());
+		if (super.detectCollisionPlayerOutsideTopWall(MidPlatFormRight))
+			this.getPlayer().setyLoc(MidRightYloc - this.getPlayer().getHeight());
+		if (super.detectCollisionPlayerOutsideTopWall(BotPlatFormRight))
+			this.getPlayer().setyLoc(BotRightYloc - this.getPlayer().getHeight());
+		if (super.detectCollisionPlayerOutsideTopWall(BotPlatFormLeft))
+			this.getPlayer().setyLoc(BotLeftYloc - this.getPlayer().getHeight());
 
+		repaint();
+		Winner();
+	}
+
+	private void gameOver() {
+		if (!this.getGame().isFrenzy()) {
+			JOptionPane.showMessageDialog(this, "You won!");
+			super.gameOver(this);
+		} else
+			try {
+				this.getGame().getCon().getFrenzy().gameOver(this);
+			} catch (InterruptedException | IOException e1) {
+			}
 	}
 
 }
