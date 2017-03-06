@@ -4,31 +4,37 @@ import arcade.frenzy.UI.Games.Game_UI;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Frogger extends Base_Game {
-	private int width = 50, height = 50, xVel = 25, yVel = 25;
 
 	private Object_Creator Car1, Car2, Car3, start, firstRoad, firstGrass, secondRoad, secondGrass, thirdRoad, finish;
+	
+	private Image currentImage;
 
-	public Frogger(Main_Menu game, Game_UI gui, Player player) {
+	public Frogger(Main_Menu game, Game_UI gui, Player player) throws IOException {
 		this.setGame(game);
 		this.setPlayer(player);
-		this.getPlayer().setxLoc(game.getMainScreen().getWidth() / 2 - 5);
-		this.getPlayer().setyLoc(game.getMainScreen().getHeight() / 2 + 500);
-		this.getPlayer().setWidth(width);
-		this.getPlayer().setHeight(height);
-		this.getPlayer().setxVel(xVel);
-		this.getPlayer().setyVel(yVel);
+		this.getPlayer().setxLoc(game.getMainPanel().getWidth() / 2);
+		this.getPlayer().setyLoc(game.getMainPanel().getHeight() / 2);
+		this.getPlayer().setWidth(this.getGame().getMainPanel().getHeight() / 10);
+		this.getPlayer().setHeight(this.getGame().getMainPanel().getHeight() / 10);
+		this.getPlayer().setxVel(this.getGame().getMainPanel().getHeight() / 10);
+		this.getPlayer().setyVel(this.getGame().getMainPanel().getHeight() / 10);
 		
 		finish = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10,
-				this.getGame().getMainPanel().getWidth(), 0, 0, 0, 0, "GetDown/platform.png");
+				this.getGame().getMainPanel().getWidth(), 0, 0, 0, 0, Color.GREEN);
 		thirdRoad = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10 * 2,
 				this.getGame().getMainPanel().getWidth(), 0, finish.getHeight(), 0, 0, Color.GRAY);
 		secondGrass = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10,
@@ -46,8 +52,9 @@ public class Frogger extends Base_Game {
 		Car2 = new Object_Creator(100, 200, 2360, 600, 25, 0, Color.MAGENTA);
 		Car3 = new Object_Creator(100, 200, 0, this.thirdRoad.getHeight(), 25, 0, Color.RED);
 		
+		currentImage = ImageIO.read(new File("Frogger/frogUp.png"));
+		
 
-		this.setBackground(Color.BLACK);
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.addKeyListener(this);
@@ -59,11 +66,7 @@ public class Frogger extends Base_Game {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		/*g.drawImage(finish.getImg_URL(), finish.getX_Location(), finish.getY_Location(),
-				finish.getX_Location() + this.getGame().getMainPanel().getWidth(), finish.getY_Location() + this.getGame().getMainPanel().getHeight(),
-				finish.getX_Location(), finish.getY_Location(),
-				finish.getX_Location() + this.getGame().getMainPanel().getWidth(), finish.getY_Location() + this.getGame().getMainPanel().getHeight()
-				, ImageObserver.);*/
+		g.setColor(finish.getColor());
 		g.fillRect(finish.getX_Location(), finish.getY_Location(), finish.getWidth(), finish.getHeight());
 
 		g.setColor(thirdRoad.getColor());
@@ -95,8 +98,8 @@ public class Frogger extends Base_Game {
 		g.fillRect(Car1.getX_Location(), Car1.getY_Location(), Car1.getWidth(), Car1.getHeight());
 
 		g.setColor(Color.WHITE);
-		g.fillOval(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), this.getPlayer().getWidth(),
-				this.getPlayer().getHeight());
+		g.drawImage(currentImage, this.getPlayer().getxLoc(),
+				this.getPlayer().getyLoc(), this.getPlayer().getWidth(), this.getPlayer().getHeight(), this);
 	}
 
 	/**
@@ -106,20 +109,57 @@ public class Frogger extends Base_Game {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			try {
+				currentImage = ImageIO.read(new File("Frogger/frogUp.png"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			try {
+				currentImage = ImageIO.read(new File("Frogger/frogDown.png"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			try {
+				currentImage = ImageIO.read(new File("Frogger/frogLeft.png"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			try {
+				currentImage = ImageIO.read(new File("Frogger/frogRight.png"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
+		}
+		this.repaint();
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		keyPressed(e);
 	}
 
 	@Override
