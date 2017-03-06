@@ -20,7 +20,7 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Collect_The_Coins extends Base_Game {
 
-	private int width = 60, height = 60, xVel = 6, yVel = 6;
+	private final int WIDTH = 60, HEIGHT = 60, xVEL = 15, yVEL = 15;
 
 	private int coinCount = 3;
 
@@ -32,10 +32,10 @@ public class Collect_The_Coins extends Base_Game {
 		this.setPlayer(player);
 		this.getPlayer().setxLoc(game.getMainScreen().getWidth() / 2 - 25);
 		this.getPlayer().setyLoc(game.getMainScreen().getHeight() / 2 + 100);
-		this.getPlayer().setWidth(width);
-		this.getPlayer().setHeight(height);
-		this.getPlayer().setxVel(xVel);
-		this.getPlayer().setyVel(yVel);
+		this.getPlayer().setWidth(WIDTH);
+		this.getPlayer().setHeight(HEIGHT);
+		this.getPlayer().setxVel(xVEL);
+		this.getPlayer().setyVel(yVEL);
 
 		center = new Object_Creator(100, 100, game.getMainScreen().getWidth() / 2 - 50,
 				game.getMainScreen().getHeight() / 2 - 50, 0, 0, Color.WHITE);
@@ -80,7 +80,7 @@ public class Collect_The_Coins extends Base_Game {
 		// width, height);
 		try {
 			g.drawImage(ImageIO.read(new File("Collect the coin/pot of gold.gif")), this.getPlayer().getxLoc(),
-					this.getPlayer().getyLoc(), width, height, this);
+					this.getPlayer().getyLoc(), WIDTH, HEIGHT, this);
 		} catch (IOException e) {
 		}
 		Graphics2D g2 = (Graphics2D) g;

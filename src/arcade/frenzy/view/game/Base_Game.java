@@ -17,7 +17,7 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	private Main_Menu game;
 
-	private Timer timer = new Timer(5, this);
+	private Timer timer = new Timer(50 / 3, this);
 	/**
 	 * 
 	 */
@@ -77,13 +77,13 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	@Override
 	public boolean detectCollisionPlayerOutsideBottomWall(Object_Creator object) {
-		if (this.getPlayer().getyLoc() < object.getY_Location() + object.getHeight())
-			return false;
-		if (object.getY_Location() + object.getHeight() >= this.getPlayer().getyLoc()
-				&& this.getPlayer().getyLoc() - this.getPlayer().getyVel() < object.getY_Location() + object.getHeight()
-				&& object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
+		if (object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
 				&& object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc())
-			return true;
+			if (this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight()
+					&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location())
+				return true;
+			else
+				return false;
 		else
 			return false;
 	}
@@ -118,13 +118,14 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	@Override
 	public boolean detectCollisionPlayerOutsideLeftWall(Object_Creator object) {
-		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= object.getX_Location()
-				&& this.getPlayer().getxLoc() + this.getPlayer().getWidth() + this.getPlayer().getxVel() > object
-						.getX_Location()
-				&& this.getPlayer().getxLoc() + this.getPlayer().getWidth() <= object.getX_Location()
-				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
 				&& this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight())
-			return true;
+			if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= object.getX_Location()
+					&& this.getPlayer().getxLoc() + this.getPlayer().getWidth() <= object.getX_Location()
+							+ object.getWidth())
+				return true;
+			else
+				return false;
 		else
 			return false;
 	}
