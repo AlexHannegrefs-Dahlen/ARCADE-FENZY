@@ -59,6 +59,8 @@ public class Main_Controller {
 			break;
 		case Tree_Climber:
 			this.climber = new Tree_Climber(game, player, gui);
+			climber.setFocusable(true);
+			climber.requestFocusInWindow();
 			break;
 		case Frogger:
 			this.frogger = new Frogger(game, gui, player);
@@ -66,10 +68,14 @@ public class Main_Controller {
 			frogger.requestFocusInWindow();
 			break;
 		case Get_Down:
-			this.down = new Get_Down(game, gui, player);
+			this.down = new Get_Down(game, gui, player, ImageIO.read(new File("GetDown/background.png")));
+			down.setFocusable(true);
+			down.requestFocusInWindow();
 			break;
 		case Jump_The_Car:
 			this.carJumper = new Jump_The_Car(game, player, gui);
+			coins.setFocusable(true);
+			coins.requestFocusInWindow();
 			break;
 		case Frenzy_Mode:
 			this.frenzy = new Frenzy_Mode(this, game);

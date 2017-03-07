@@ -85,15 +85,17 @@ public class Object_Creator {
 	 *            of the object
 	 * @param img_url
 	 *            String of the location of the file
+	 * @throws IOException
 	 */
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
-			String img_url) {
+			String img_url) throws IOException {
 		this.setHight(height);
 		this.setWidth(width);
 		this.setX_Location(x_location);
 		this.setY_Location(y_location);
 		this.setX_Velocity(x_velocity);
 		this.setY_Velocity(y_velocity);
+		this.setPicture(ImageIO.read(new File(img_url)));
 		this.setImg_URL(img_url);
 
 	}
