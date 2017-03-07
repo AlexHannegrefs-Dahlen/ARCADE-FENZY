@@ -58,11 +58,11 @@ public class Collect_The_Coins extends Base_Game {
 		right = new Object_Creator(500, 75, game.getMainScreen().getWidth() / 2 + 350,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, Color.WHITE);
 
-		Coin1 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 - 312,
+		Coin1 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 - 325,
 				game.getMainScreen().getHeight() / 2 - 250, 0, 0, "Collect the coin/coin.gif", false);
-		Coin2 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 - 100,
+		Coin2 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 - 125,
 				game.getMainScreen().getHeight() / 2 - 125, 0, 0, "Collect the coin/coin.gif", false);
-		Coin3 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 + 250,
+		Coin3 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 + 275,
 				game.getMainScreen().getHeight() / 2 + 285, 0, 0, "Collect the coin/coin.gif", false);
 
 		this.setBackground(Color.BLACK);
