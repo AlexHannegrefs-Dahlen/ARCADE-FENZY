@@ -33,13 +33,15 @@ public class Get_Down extends Base_Game {
 
 	private final int MidLeftHight = 45, MidLeftWidth = 1500, MidLeftXloc = 0, MidLeftYloc = 500;
 
-	private final int MidRightHight = 45, MidRightWidth = 850, MidRightXloc = 1735, MidRightYloc = 500;
+	private final int MidRightHight = 45, MidRightWidth = 850, MidRightXloc = 1750, MidRightYloc = 500;
 
 	private final int BotRightHight = 45, BotRightWidth = 150, BotRightXloc = 0, BotRightYloc = 820;
 
 	private final int BotLeftHight = 45, BotLeftWidth = 2200, BotLeftXloc = 400, BotLeftYloc = 820;
 
-	public Get_Down(Main_Menu game, Game_UI gui, Player player, Image Image) {
+	private Image playerImage = ImageIO.read(new File("GetDown/blobeLeft.gif"));
+
+	public Get_Down(Main_Menu game, Game_UI gui, Player player, Image Image) throws IOException {
 		super(Image);
 		this.setGame(game);
 		this.setPlayer(player);
@@ -51,22 +53,24 @@ public class Get_Down extends Base_Game {
 		this.getPlayer().setyVel(yvel);
 
 		TopPlatFormLeft = new Object_Creator(TopLeftPlatFormHight, TopLeftPlatFormWidth, TopLeftPlatFrom_Xloc,
-				TopLeftPlatForm_Yloc, 0, 0, Color.GREEN);
+				TopLeftPlatForm_Yloc, 0, 0, "GetDown/platform.png");
 
 		TopPlatFormRight = new Object_Creator(TopRightPlatFormHight, TopRightPlatFormWidth, TopRightPlatFrom_Xloc,
-				TopRightPlatForm_Yloc, 0, 0, Color.GREEN);
+				TopRightPlatForm_Yloc, 0, 0, "GetDown/platform.png");
 
-		MidPlatFormLeft = new Object_Creator(MidLeftHight, MidLeftWidth, MidLeftXloc, MidLeftYloc, 0, 0, Color.GREEN);
+		MidPlatFormLeft = new Object_Creator(MidLeftHight, MidLeftWidth, MidLeftXloc, MidLeftYloc, 0, 0,
+				"GetDown/platform.png");
 
 		MidPlatFormRight = new Object_Creator(MidRightHight, MidRightWidth, MidRightXloc, MidRightYloc, 0, 0,
-				Color.GREEN);
+				"GetDown/platform.png");
 
 		BotPlatFormRight = new Object_Creator(BotRightHight, BotRightWidth, BotRightXloc, BotRightYloc, 0, 0,
-				Color.GREEN);
+				"GetDown/platform.png");
 
-		BotPlatFormLeft = new Object_Creator(BotLeftHight, BotLeftWidth, BotLeftXloc, BotLeftYloc, 0, 0, Color.GREEN);
+		BotPlatFormLeft = new Object_Creator(BotLeftHight, BotLeftWidth, BotLeftXloc, BotLeftYloc, 0, 0,
+				"GetDown/platform.png");
 
-		FinishLine = new Object_Creator(45, 3000, 0, 1245, 0, 0, Color.WHITE, false);
+		FinishLine = new Object_Creator(150, 3000, 0, game.getMainPanel().getHeight() - 150, 0, 0, "GetDown/water1.jpg");
 
 		this.setBackground(Color.BLUE);
 		game.getMainScreen().add(this);
@@ -91,54 +95,48 @@ public class Get_Down extends Base_Game {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		// g.setColor(Color.WHITE);
-		// g.fillRect(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(),
-		// width, height);
 
-		try {
-			g.drawImage(ImageIO.read(new File("GetDown/blobe.gif")), this.getPlayer().getxLoc(),
-					this.getPlayer().getyLoc(), width, height, this);
-		} catch (IOException e) {
-		}
+		g.drawImage(playerImage, this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), width, height, this);
 
-		g.setColor(TopPlatFormLeft.getColor());
-		g.fillRect(TopPlatFormLeft.getX_Location(), TopPlatFormLeft.getY_Location(), TopPlatFormLeft.getWidth(),
-				TopPlatFormLeft.getHeight());
+		g.drawImage(TopPlatFormLeft.getPicture(), TopPlatFormLeft.getX_Location(), TopPlatFormLeft.getY_Location(),
+				TopPlatFormLeft.getWidth(), TopPlatFormLeft.getHeight(), this);
 
-		g.setColor(TopPlatFormRight.getColor());
-		g.fillRect(TopPlatFormRight.getX_Location(), TopPlatFormRight.getY_Location(), TopPlatFormRight.getWidth(),
-				TopPlatFormRight.getHeight());
+		g.drawImage(TopPlatFormRight.getPicture(), TopPlatFormRight.getX_Location(), TopPlatFormRight.getY_Location(),
+				TopPlatFormRight.getWidth(), TopPlatFormRight.getHeight(), this);
 
-		g.setColor(MidPlatFormLeft.getColor());
-		g.fillRect(MidPlatFormLeft.getX_Location(), MidPlatFormLeft.getY_Location(), MidPlatFormLeft.getWidth(),
-				MidPlatFormLeft.getHeight());
+		g.drawImage(MidPlatFormLeft.getPicture(), MidPlatFormLeft.getX_Location(), MidPlatFormLeft.getY_Location(),
+				MidPlatFormLeft.getWidth(), MidPlatFormLeft.getHeight(), this);
 
-		g.setColor(MidPlatFormRight.getColor());
-		g.fillRect(MidPlatFormRight.getX_Location(), MidPlatFormRight.getY_Location(), MidPlatFormRight.getWidth(),
-				MidPlatFormRight.getHeight());
+		g.drawImage(MidPlatFormRight.getPicture(), MidPlatFormRight.getX_Location(), MidPlatFormRight.getY_Location(),
+				MidPlatFormRight.getWidth(), MidPlatFormRight.getHeight(), this);
 
-		g.setColor(BotPlatFormRight.getColor());
-		g.fillRect(BotPlatFormRight.getX_Location(), BotPlatFormRight.getY_Location(), BotPlatFormRight.getWidth(),
-				BotPlatFormRight.getHeight());
+		g.drawImage(BotPlatFormRight.getPicture(), BotPlatFormRight.getX_Location(), BotPlatFormRight.getY_Location(),
+				BotPlatFormRight.getWidth(), BotPlatFormRight.getHeight(), this);
 
-		g.setColor(BotPlatFormLeft.getColor());
-		g.fillRect(BotPlatFormLeft.getX_Location(), BotPlatFormLeft.getY_Location(), BotPlatFormLeft.getWidth(),
-				BotPlatFormLeft.getHeight());
+		g.drawImage(BotPlatFormLeft.getPicture(), BotPlatFormLeft.getX_Location(), BotPlatFormLeft.getY_Location(),
+				BotPlatFormLeft.getWidth(), BotPlatFormLeft.getHeight(), this);
 
-		g.setColor(FinishLine.getColor());
-		g.fillRect(FinishLine.getX_Location(), FinishLine.getY_Location(), FinishLine.getWidth(),
-				FinishLine.getHeight());
+		g.drawImage(FinishLine.getPicture(), FinishLine.getX_Location(), FinishLine.getY_Location(),
+				FinishLine.getWidth(), FinishLine.getHeight(), this);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			try {
+				playerImage = ImageIO.read(new File("GetDown/blobeLeft.gif"));
+			} catch (IOException e1) {
+			}
 			if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			try {
+				playerImage = ImageIO.read(new File("GetDown/blobeRight.gif"));
+			} catch (IOException e1) {
+			}
 			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {

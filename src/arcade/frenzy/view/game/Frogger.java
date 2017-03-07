@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 
@@ -27,7 +26,7 @@ public class Frogger extends Base_Game {
 		this.setGame(game);
 		this.setPlayer(player);
 		this.getPlayer().setxLoc(game.getMainPanel().getWidth() / 2);
-		this.getPlayer().setyLoc(game.getMainPanel().getHeight() / 2);
+		this.getPlayer().setyLoc(game.getMainPanel().getHeight() / 10 * 9);
 		this.getPlayer().setWidth(this.getGame().getMainPanel().getHeight() / 10);
 		this.getPlayer().setHeight(this.getGame().getMainPanel().getHeight() / 10);
 		this.getPlayer().setxVel(this.getGame().getMainPanel().getHeight() / 10);
@@ -48,16 +47,21 @@ public class Frogger extends Base_Game {
 		start = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10,
 				this.getGame().getMainPanel().getWidth(), 0, finish.getHeight() * 9, 0, 0, Color.GREEN);
 
-		Car1 = new Object_Creator(100, 200, 0, 975, 25, 0, Color.CYAN);
-		Car2 = new Object_Creator(100, 200, 2360, 600, 25, 0, Color.MAGENTA);
-		Car3 = new Object_Creator(100, 200, 0, this.thirdRoad.getHeight(), 25, 0, Color.RED);
+		Car3 = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10, 200, 0,
+				this.finish.getHeight() * 3 / 2, 25, 0, Color.RED);
+		Car2 = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10, 200, this.getGame().getMainPanel().getWidth() - 200,
+				this.finish.getHeight() * 9 / 2, 25, 0, Color.MAGENTA);
+		Car1 = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10, 200, 0,
+				this.finish.getHeight() * 15 / 2, 25, 0, Color.CYAN);
+
+
 		
 		currentImage = ImageIO.read(new File("Frogger/frogUp.png"));
-		
 
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.addKeyListener(this);
+		this.getTimer().start();
 	}
 
 	public void Winner() {
@@ -109,12 +113,15 @@ public class Frogger extends Base_Game {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			try {
 				currentImage = ImageIO.read(new File("Frogger/frogUp.png"));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 			this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 		}
@@ -123,8 +130,6 @@ public class Frogger extends Base_Game {
 			try {
 				currentImage = ImageIO.read(new File("Frogger/frogDown.png"));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 			this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
 		}
@@ -133,8 +138,6 @@ public class Frogger extends Base_Game {
 			try {
 				currentImage = ImageIO.read(new File("Frogger/frogLeft.png"));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 			this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
 		}
@@ -143,28 +146,24 @@ public class Frogger extends Base_Game {
 			try {
 				currentImage = ImageIO.read(new File("Frogger/frogRight.png"));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 			this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
 		}
 		this.repaint();
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		keyPressed(e);
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		this.Car1.setX_Location(this.Car1.getX_Location() + this.Car1.getX_Velocity());
+		this.Car2.setX_Location(this.Car2.getX_Location() - this.Car2.getX_Velocity());
+		this.Car3.setX_Location(this.Car3.getX_Location() + this.Car3.getX_Velocity());
+		this.repaint();
+		
 
 	}
 
