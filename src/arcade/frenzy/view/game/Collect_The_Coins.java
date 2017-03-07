@@ -85,8 +85,8 @@ public class Collect_The_Coins extends Base_Game {
 		}
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(8));
-		g2.setColor(center.getColor());
-		g2.drawRect(center.getX_Location(), center.getY_Location(), center.getWidth(), center.getHeight());
+		g.setColor(center.getColor());
+		g.drawRect(center.getX_Location(), center.getY_Location(), center.getWidth(), center.getHeight());
 
 		g.setColor(topLeft.getColor());
 		g.drawRect(topLeft.getX_Location(), topLeft.getY_Location(), topLeft.getWidth(), topLeft.getHeight());
