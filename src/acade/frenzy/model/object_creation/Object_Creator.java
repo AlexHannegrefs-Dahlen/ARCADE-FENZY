@@ -85,7 +85,11 @@ public class Object_Creator {
 	 *            of the object
 	 * @param img_url
 	 *            String of the location of the file
+<<<<<<< HEAD
+	 * @throws IOException 
+=======
 	 * @throws IOException
+>>>>>>> 3eb6081514a112dc7944e3ca360edc9e937c710f
 	 */
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			String img_url) throws IOException {
