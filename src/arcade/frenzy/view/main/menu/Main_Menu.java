@@ -185,6 +185,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelRight.add(jumpTheCar);
 
 		treeClimber = new JButton("Tree Climber");
+		treeClimber.setIcon(new ImageIcon("MainScreen/whiteButton.png"));
+		treeClimber.setHorizontalTextPosition(JButton.CENTER);
+		treeClimber.setVerticalAlignment(JButton.CENTER);
+		treeClimber.setBackground(Color.white);
 		treeClimber.setFont(font2);
 		treeClimber.addActionListener(this);
 		treeClimber.setMinimumSize(minSize);
@@ -194,6 +198,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelRight.add(treeClimber);
 
 		frenzyMode = new JButton("Frenzy Mode");
+		frenzyMode.setIcon(new ImageIcon("MainScreen/yellowButton.png"));
+		frenzyMode.setHorizontalTextPosition(JButton.CENTER);
+		frenzyMode.setVerticalAlignment(JButton.CENTER);
+		frenzyMode.setBackground(Color.white);
 		frenzyMode.setFont(font2);
 		frenzyMode.addActionListener(this);
 		frenzyMode.setMinimumSize(minSize);
@@ -210,8 +218,6 @@ public class Main_Menu implements ActionListener {
 		mainScreen.setLocationRelativeTo(null);
 		mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainScreen.setVisible(true);
-
-		System.out.println(mainScreen.getHeight());
 	}
 
 	@Override

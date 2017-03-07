@@ -72,12 +72,9 @@ public class Collect_The_Coins extends Base_Game {
 
 	}
 
-	// move to game_UI eventually
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.WHITE);
-		// g.fillOval(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(),
-		// width, height);
 		try {
 			g.drawImage(ImageIO.read(new File("Collect the coin/pot of gold.gif")), this.getPlayer().getxLoc(),
 					this.getPlayer().getyLoc(), WIDTH, HEIGHT, this);

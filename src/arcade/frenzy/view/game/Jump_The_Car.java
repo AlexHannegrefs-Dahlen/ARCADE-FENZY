@@ -134,8 +134,8 @@ public class Jump_The_Car extends Base_Game {
 			gravityTimer.stop();
 			carTimer.stop();
 			this.GotHit();
-		} else if (!super.detectCollisionPlayerInsideLeftWall(Car.getX_Location() + Car.getWidth()+230, Car.getY_Location(),
-				Car.getWidth(), Car.getHeight())) {
+		} else if (!super.detectCollisionPlayerInsideLeftWall(Car.getX_Location() + Car.getWidth() + 230,
+				Car.getY_Location(), Car.getWidth(), Car.getHeight())) {
 			gravityTimer.stop();
 			carTimer.stop();
 			this.Winner();

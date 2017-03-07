@@ -33,8 +33,10 @@ public class Frenzy_Mode implements ActionListener {
 	private void playNextGame(Main_Controller main_Controller) throws InterruptedException, IOException {
 		if (games.size() != 0)
 			main_Controller.handleButtonClicked(games.get(0));
-		else
+		else {
 			this.returnMainMenu();
+			this.highscore.stop();
+		}
 	}
 
 	private void returnMainMenu() {
@@ -46,7 +48,7 @@ public class Frenzy_Mode implements ActionListener {
 	}
 
 	public void gameOver(Base_Game gamePlayed) throws InterruptedException, IOException {
-		games.remove(0);
+		this.games.remove(0);
 		this.getCon().getGame().getMainScreen().remove(gamePlayed);
 		this.playNextGame(gamePlayed.getGame().getCon());
 	}
