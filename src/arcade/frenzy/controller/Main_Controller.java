@@ -6,12 +6,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import arcade.frenzy.UI.Games.Game_UI;
+import arcade.frenzy.model.load_save.Highscores;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.game.Collect_The_Coins;
 import arcade.frenzy.view.game.Frenzy_Mode;
 import arcade.frenzy.view.game.Frogger;
 import arcade.frenzy.view.game.Get_Down;
-import arcade.frenzy.view.game.Highscores;
 import arcade.frenzy.view.game.Jump_The_Car;
 import arcade.frenzy.view.game.Tree_Climber;
 import arcade.frenzy.view.main.menu.Main_Menu;
@@ -82,6 +82,8 @@ public class Main_Controller {
 			break;
 		case Highscores:
 			this.highscore = new Highscores(game);
+			highscore.setFocusable(true);
+			highscore.requestFocusInWindow();
 		default:
 			break;
 		}

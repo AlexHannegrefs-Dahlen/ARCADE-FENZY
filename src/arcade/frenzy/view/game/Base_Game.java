@@ -43,7 +43,7 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	@Override
 	public boolean detectCollisionPlayerInsideLeftWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
-		if (OxLoc >= this.getPlayer().getxLoc())
+		if (OxLoc >= this.getPlayer().getxLoc() - this.getPlayer().getxVel())
 			return true;
 		else
 			return false;
@@ -52,7 +52,7 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	@Override
 	public boolean detectCollisionPlayerInsideRightWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
-		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= OxLoc + Owidth)
+		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth()  + this.getPlayer().getxVel() >= OxLoc + Owidth)
 			return true;
 		else
 			return false;
@@ -60,7 +60,7 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	@Override
 	public boolean detectCollisionPlayerInsideTopWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
-		if (this.getPlayer().getyLoc() <= OyLoc)
+		if (this.getPlayer().getyLoc() - this.getPlayer().getyVel() <= OyLoc)
 			return true;
 		else
 			return false;
@@ -69,7 +69,7 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	@Override
 	public boolean detectCollisionPlayerInsideBottomWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
-		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= OyLoc + Oheight)
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() + this.getPlayer().getyVel() >= OyLoc + Oheight)
 			return true;
 		else
 			return false;

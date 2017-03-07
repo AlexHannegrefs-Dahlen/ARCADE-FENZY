@@ -11,10 +11,11 @@ import arcade.frenzy.UI.Games.Game_UI;
 import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.model.player.Player;
 
-public class Tree_Climber extends Base_Game {	
-	private int width = 50, height = 50, xVel = 50, yVel = 50;
-	
-	private Object_Creator test;
+public class Tree_Climber extends Base_Game {
+	private int width = 100, height = 50, xVel = 50, yVel = 50;
+
+	// private Object_Creator Branch,Hole,Finish;
+	// private final int Lane1=0,Lane2=10,Lane3=20;
 	/**
 	 * 
 	 * @param game
@@ -26,24 +27,39 @@ public class Tree_Climber extends Base_Game {
 	public Tree_Climber(Main_Menu game, Player player, Game_UI gui) {
 		this.setGame(game);
 		this.setPlayer(player);
-		this.getPlayer().setxLoc(game.getMainScreen().getWidth() / 2 - 25);
-		this.getPlayer().setyLoc(game.getMainScreen().getHeight() / 2 + 100);
+		this.getPlayer().setxLoc(game.getMainPanel().getWidth() / 2);
+		this.getPlayer().setyLoc(game.getMainPanel().getHeight());
 		this.getPlayer().setWidth(width);
 		this.getPlayer().setHeight(height);
 		this.getPlayer().setxVel(xVel);
 		this.getPlayer().setyVel(yVel);
-		
-		//gui.setGameBackGround(GameNames.Tree_Climber);
+
+		// gui.setGameBackGround(GameNames.Tree_Climber);
 		this.setBackground(Color.BLACK);
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
+		this.addKeyListener(this);
 	}
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		
+		g.setColor(Color.GRAY);
+		g.fillRect(0, 0, this.getGame().getMainPanel().getWidth() / 11, this.getGame().getMainPanel().getHeight());
+
+		g.setColor(Color.RED);
+		g.fillRect(this.getGame().getMainPanel().getWidth() / 11, 0, this.getGame().getMainPanel().getWidth() / 11,
+				this.getGame().getMainPanel().getHeight());
+
+		g.setColor(Color.ORANGE);
+		g.fillRect(this.getGame().getMainPanel().getWidth(), 0, this.getGame().getMainPanel().getWidth() / 11,
+				this.getGame().getMainPanel().getHeight());
+
+		// g.setColor(Color.WHITE);
+		// g.fillRect(this.getPlayer().getxLoc(), this.getPlayer().getyLoc(),
+		// this.getPlayer().getWidth(), this.getPlayer().getHeight());
+
 	}
-	
+
 	/**
 	 * 
 	 */
