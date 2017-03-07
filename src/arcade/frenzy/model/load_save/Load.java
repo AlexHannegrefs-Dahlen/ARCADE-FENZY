@@ -18,9 +18,8 @@ public class Load {
 
 	public String loadScores() throws IOException {
 		in = new BufferedReader(new InputStreamReader(new FileInputStream("scores.txt")));
-		String load = null;
-		if (in.readLine() != null) {
-			load = in.readLine();
+		String load = in.readLine();
+		if (load != null) {
 			while (in.ready()) {
 				load += "\n" + in.readLine();
 			}

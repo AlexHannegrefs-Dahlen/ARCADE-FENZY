@@ -1,6 +1,7 @@
 package arcade.frenzy.view.main.menu;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -18,7 +19,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -54,6 +54,8 @@ public class Main_Menu implements ActionListener {
 	private File backgroundImgFile;
 
 	private boolean frenzy;
+	
+	private int buttonWidth = 500;
 
 	/**
 	 * Makes the Main Screen JFrame and JPanel, sets the JFrame to visible
@@ -64,6 +66,7 @@ public class Main_Menu implements ActionListener {
 	public void init(Main_Controller controller) {
 		this.con = controller;
 		Font font = new Font("sans-serif", Font.PLAIN, 20);
+		Font font2 = new Font("sans-serif", Font.PLAIN, 60);
 		UIManager.put("Menu.font", font);
 		UIManager.put("MenuItem.font", font);
 
@@ -97,39 +100,84 @@ public class Main_Menu implements ActionListener {
 		buttonPanelLeft = new JPanel();
 		buttonPanelLeft.setLayout(new BoxLayout(buttonPanelLeft, BoxLayout.Y_AXIS));
 
+		Dimension minSize = new Dimension(buttonWidth, 250);
+		Dimension prefSize = new Dimension(buttonWidth, 250);
+		Dimension maxSize = new Dimension(buttonWidth, 460);
+
 		collectTheCoins = new JButton("Collect the Coins");
+		collectTheCoins.setFont(font2);
 		collectTheCoins.addActionListener(this);
+		collectTheCoins.setMinimumSize(minSize);
+		collectTheCoins.setPreferredSize(prefSize);
+		collectTheCoins.setMaximumSize(maxSize);
+		collectTheCoins.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelLeft.add(collectTheCoins);
 
-		nameEntry = new JTextField("Enter Text");
-		nameEntry.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 150));
+		frogger = new JButton("Frogger");
+		frogger.setFont(font2);
+		frogger.addActionListener(this);
+		frogger.setMinimumSize(minSize);
+		frogger.setPreferredSize(prefSize);
+		frogger.setMaximumSize(maxSize);
+		frogger.setAlignmentX(Component.BOTTOM_ALIGNMENT);
+		buttonPanelLeft.add(frogger);
+
+		nameEntry = new JTextField("");
+		nameEntry.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 40));
+		nameEntry.setMinimumSize(minSize);
+		nameEntry.setPreferredSize(prefSize);
+		nameEntry.setMaximumSize(maxSize);
+		nameEntry.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelLeft.add(nameEntry);
 
-		getName = new JButton("Update name");
+		getName = new JButton("Update Name");
+		getName.setFont(font2);
 		getName.addActionListener(this);
+		getName.setMinimumSize(minSize);
+		getName.setPreferredSize(prefSize);
+		getName.setMaximumSize(maxSize);
+		getName.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelLeft.add(getName);
 
 		buttonPanelRight = new JPanel();
 		buttonPanelRight.setLayout(new BoxLayout(buttonPanelRight, BoxLayout.Y_AXIS));
 
-		frogger = new JButton("Frogger");
-		frogger.addActionListener(this);
-		buttonPanelRight.add(frogger);
+		Dimension maxSizeRight = new Dimension(buttonWidth, 460);
 
 		getDown = new JButton("Get Down");
+		getDown.setFont(font2);
 		getDown.addActionListener(this);
+		getDown.setMinimumSize(minSize);
+		getDown.setPreferredSize(prefSize);
+		getDown.setMaximumSize(maxSizeRight);
+		getDown.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelRight.add(getDown);
 
 		jumpTheCar = new JButton("Jump the Car");
+		jumpTheCar.setFont(font2);
 		jumpTheCar.addActionListener(this);
+		jumpTheCar.setMinimumSize(minSize);
+		jumpTheCar.setPreferredSize(prefSize);
+		jumpTheCar.setMaximumSize(maxSizeRight);
+		jumpTheCar.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelRight.add(jumpTheCar);
 
 		treeClimber = new JButton("Tree Climber");
+		treeClimber.setFont(font2);
 		treeClimber.addActionListener(this);
+		treeClimber.setMinimumSize(minSize);
+		treeClimber.setPreferredSize(prefSize);
+		treeClimber.setMaximumSize(maxSizeRight);
+		treeClimber.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelRight.add(treeClimber);
 
 		frenzyMode = new JButton("Frenzy Mode");
+		frenzyMode.setFont(font2);
 		frenzyMode.addActionListener(this);
+		frenzyMode.setMinimumSize(minSize);
+		frenzyMode.setPreferredSize(prefSize);
+		frenzyMode.setMaximumSize(maxSizeRight);
+		frenzyMode.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelRight.add(frenzyMode);
 
 		mainPanel.add(buttonPanelLeft, BorderLayout.WEST);
@@ -141,6 +189,7 @@ public class Main_Menu implements ActionListener {
 		mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainScreen.setVisible(true);
 
+		System.out.println(mainScreen.getHeight());
 	}
 
 	@Override
@@ -184,6 +233,8 @@ public class Main_Menu implements ActionListener {
 			}
 		else if (e.getSource() == getName) {
 			this.con.setPlayersName(nameEntry.getText());
+			nameEntry.setText("");
+			System.out.println(this.con.getPlayersName());
 		}
 
 		if (e.getSource() == viewScores) {
