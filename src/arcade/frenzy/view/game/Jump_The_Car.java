@@ -20,8 +20,8 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Jump_The_Car extends Base_Game {
 	private Player player;
-	private final int width = 100, height = 225, Xloc = 550, Yloc = 880, Xvel = 0, Yvel = 20;
-	private Timer gravityTimer = new Timer(50, this), carTimer = new Timer(50, this);
+	private final int width = 100, height = 225, Xloc = 650, Yloc = 880, Xvel = 0, Yvel = 25;
+	private Timer gravityTimer = new Timer(30, this), carTimer = new Timer(50, this);
 	private Object_Creator Car, floor, celing;
 
 	/**
@@ -44,9 +44,9 @@ public class Jump_The_Car extends Base_Game {
 		this.getPlayer().setxVel(Xvel);
 		this.getPlayer().setyVel(Yvel);
 
-		Car = new Object_Creator(200, 375, 2200, 895, 40, 0, "Jump The car/Car.gif");
-		floor = new Object_Creator(1, 600, 0, Yloc + height, 0, 0, Color.BLACK);
-		celing = new Object_Creator(25, 600, 0, floor.getY_Location() - 700, 0, 0, Color.BLACK);
+		Car = new Object_Creator(200, 375, 2200, 895, 35, 0, "Jump The car/Car.gif");
+		floor = new Object_Creator(1, 1000, 0, Yloc + height, 0, 0, Color.BLACK);
+		celing = new Object_Creator(25, 1000, 0, floor.getY_Location() - 650, 0, 0, Color.BLACK);
 		this.setBackground(Color.cyan);
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
@@ -134,8 +134,8 @@ public class Jump_The_Car extends Base_Game {
 			gravityTimer.stop();
 			carTimer.stop();
 			this.GotHit();
-		} else if (!super.detectCollisionPlayerInsideLeftWall(Car.getX_Location(), Car.getY_Location(), Car.getWidth(),
-				Car.getHeight())) {
+		} else if (!super.detectCollisionPlayerInsideLeftWall(Car.getX_Location() + Car.getWidth()+230, Car.getY_Location(),
+				Car.getWidth(), Car.getHeight())) {
 			gravityTimer.stop();
 			carTimer.stop();
 			this.Winner();
