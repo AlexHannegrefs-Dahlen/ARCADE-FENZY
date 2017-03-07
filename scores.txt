@@ -1,4 +1,0 @@
-
-Max: 8
-Alex: 10
-Parker: 9
