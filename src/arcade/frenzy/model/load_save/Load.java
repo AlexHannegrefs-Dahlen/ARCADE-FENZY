@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Load {
-	BufferedReader in;
+	private BufferedReader in;
 
 	public Load() {
 		try {
@@ -17,13 +17,18 @@ public class Load {
 	}
 
 	public String loadScores() throws IOException {
+		in = new BufferedReader(new InputStreamReader(new FileInputStream("scores.txt")));
+		String load = null;
 		if (in.readLine() != null) {
-			String load = in.readLine();
+			load = in.readLine();
 			while (in.ready()) {
-				load += "\n " + in.readLine();
+				load += "\n" + in.readLine();
 			}
+			in.close();
 			return load;
-		} else
+		} else {
+			in.close();
 			return "No scores";
+		}
 	}
 }
