@@ -73,9 +73,9 @@ public class Main_Controller {
 			down.requestFocusInWindow();
 			break;
 		case Jump_The_Car:
-			this.carJumper = new Jump_The_Car(game, player, gui);
-			coins.setFocusable(true);
-			coins.requestFocusInWindow();
+			this.carJumper = new Jump_The_Car(game, player, gui,ImageIO.read(new File("Jump The car/road2big.gif")));
+			carJumper.setFocusable(true);
+			carJumper.requestFocusInWindow();
 			break;
 		case Frenzy_Mode:
 			this.frenzy = new Frenzy_Mode(this, game);

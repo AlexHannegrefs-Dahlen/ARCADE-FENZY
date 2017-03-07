@@ -18,7 +18,7 @@ import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Get_Down extends Base_Game {
-	private Timer gravityTimer = new Timer(50 / 1, this);
+	private Timer gravityTimer = new Timer(50, this);
 
 	private Object_Creator TopPlatFormLeft, TopPlatFormRight, MidPlatFormLeft, MidPlatFormRight, BotPlatFormLeft,
 			BotPlatFormRight, FinishLine;
