@@ -74,8 +74,8 @@ public class Main_Controller {
 			break;
 		case Jump_The_Car:
 			this.carJumper = new Jump_The_Car(game, player, gui);
-			coins.setFocusable(true);
-			coins.requestFocusInWindow();
+			carJumper.setFocusable(true);
+			carJumper.requestFocusInWindow();
 			break;
 		case Frenzy_Mode:
 			this.frenzy = new Frenzy_Mode(this, game);
