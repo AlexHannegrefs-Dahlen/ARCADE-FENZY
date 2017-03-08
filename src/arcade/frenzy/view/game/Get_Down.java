@@ -1,6 +1,5 @@
 package arcade.frenzy.view.game;
 
-import arcade.frenzy.UI.Games.Game_UI;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -41,7 +40,7 @@ public class Get_Down extends Base_Game {
 
 	private Image playerImage = ImageIO.read(new File("GetDown/blobeLeft.gif"));
 
-	public Get_Down(Main_Menu game, Game_UI gui, Player player, Image Image) throws IOException {
+	public Get_Down(Main_Menu game, Player player, Image Image) throws IOException {
 		super(Image);
 		this.setGame(game);
 		this.setPlayer(player);
@@ -70,7 +69,8 @@ public class Get_Down extends Base_Game {
 		BotPlatFormLeft = new Object_Creator(BotLeftHight, BotLeftWidth, BotLeftXloc, BotLeftYloc, 0, 0,
 				"GetDown/platform.png");
 
-		FinishLine = new Object_Creator(150, 3000, 0, game.getMainPanel().getHeight() - 150, 0, 0, "GetDown/water1.jpg");
+		FinishLine = new Object_Creator(150, 3000, 0, game.getMainPanel().getHeight() - 150, 0, 0,
+				"GetDown/water1.jpg");
 
 		this.setBackground(Color.BLUE);
 		game.getMainScreen().add(this);
@@ -79,11 +79,12 @@ public class Get_Down extends Base_Game {
 		gravityTimer.start();
 	}
 
-	public void Winner() {
+	public boolean Winner() {
 		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= this.FinishLine.getY_Location()) {
 			gravityTimer.stop();
-			gameOver();
-		}
+			return true;
+		} else
+			return false;
 	}
 
 	/**
@@ -176,7 +177,9 @@ public class Get_Down extends Base_Game {
 			this.getPlayer().setyLoc(BotLeftYloc - this.getPlayer().getHeight());
 
 		repaint();
-		Winner();
+		if (Winner()) {
+			this.gameOver();
+		}
 	}
 
 	private void gameOver() {

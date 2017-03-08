@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import arcade.frenzy.UI.Games.Game_UI;
 import arcade.frenzy.model.load_save.Highscores;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.game.Collect_The_Coins;
@@ -37,14 +36,10 @@ public class Main_Controller {
 
 	private Highscores highscore;
 
-	private Game_UI gui;
-
 	public void start() {
 		game = new Main_Menu();
 		game.init(this);
 		player = new Player();
-		gui = new Game_UI(game);
-
 	}
 
 	public void handleButtonClicked(GameNames buttonClicked) throws InterruptedException, IOException {
@@ -52,28 +47,27 @@ public class Main_Controller {
 			game.getMainPanel().setVisible(false);
 		switch (buttonClicked) {
 		case Collect_The_Coins:
-			this.coins = new Collect_The_Coins(game, player, gui,
-					ImageIO.read(new File("Collect the coin/background.jpg")));
+			this.coins = new Collect_The_Coins(game, player, ImageIO.read(new File("Collect the coin/background.jpg")));
 			coins.setFocusable(true);
 			coins.requestFocusInWindow();
 			break;
 		case Tree_Climber:
-			this.climber = new Tree_Climber(game, player, gui);
+			this.climber = new Tree_Climber(game, player);
 			climber.setFocusable(true);
 			climber.requestFocusInWindow();
 			break;
 		case Frogger:
-			this.frogger = new Frogger(game, gui, player);
+			this.frogger = new Frogger(game, player);
 			frogger.setFocusable(true);
 			frogger.requestFocusInWindow();
 			break;
 		case Get_Down:
-			this.down = new Get_Down(game, gui, player, ImageIO.read(new File("GetDown/background.png")));
+			this.down = new Get_Down(game, player, ImageIO.read(new File("GetDown/background.png")));
 			down.setFocusable(true);
 			down.requestFocusInWindow();
 			break;
 		case Jump_The_Car:
-			this.carJumper = new Jump_The_Car(game, player, gui, ImageIO.read(new File("Jump The car/road2big.gif")));
+			this.carJumper = new Jump_The_Car(game, player, ImageIO.read(new File("Jump The car/road2big.gif")));
 			carJumper.setFocusable(true);
 			carJumper.requestFocusInWindow();
 			break;

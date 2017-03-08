@@ -1,6 +1,7 @@
 package arcade.frenzy.view.main.menu;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -8,10 +9,12 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -24,6 +27,7 @@ import javax.swing.UIManager;
 
 import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.controller.Main_Controller;
+import arcade.frenzy.model.load_save.Save;
 
 /**
  * 
@@ -54,7 +58,7 @@ public class Main_Menu implements ActionListener {
 	private File backgroundImgFile;
 
 	private boolean frenzy;
-	
+
 	private int buttonWidth = 500;
 
 	/**
@@ -72,7 +76,7 @@ public class Main_Menu implements ActionListener {
 
 		mainScreen = new JFrame("Arcade Frenzy");
 
-		backgroundImgFile = new File("Background.jpg");
+		backgroundImgFile = new File("MainScreen/Background.jpg");
 		try {
 			backgroundImg = ImageIO.read(backgroundImgFile);
 		} catch (IOException e) {
@@ -105,6 +109,10 @@ public class Main_Menu implements ActionListener {
 		Dimension maxSize = new Dimension(buttonWidth, 460);
 
 		collectTheCoins = new JButton("Collect the Coins");
+		collectTheCoins.setIcon(new ImageIcon("MainScreen/redButton.png"));
+		collectTheCoins.setHorizontalTextPosition(JButton.CENTER);
+		collectTheCoins.setVerticalAlignment(JButton.CENTER);
+		collectTheCoins.setBackground(Color.white);
 		collectTheCoins.setFont(font2);
 		collectTheCoins.addActionListener(this);
 		collectTheCoins.setMinimumSize(minSize);
@@ -114,6 +122,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelLeft.add(collectTheCoins);
 
 		frogger = new JButton("Frogger");
+		frogger.setIcon(new ImageIcon("MainScreen/blueButton.png"));
+		frogger.setHorizontalTextPosition(JButton.CENTER);
+		frogger.setVerticalAlignment(JButton.CENTER);
+		frogger.setBackground(Color.white);
 		frogger.setFont(font2);
 		frogger.addActionListener(this);
 		frogger.setMinimumSize(minSize);
@@ -131,6 +143,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelLeft.add(nameEntry);
 
 		getName = new JButton("Update Name");
+		getName.setIcon(new ImageIcon("MainScreen/orangeButton.png"));
+		getName.setHorizontalTextPosition(JButton.CENTER);
+		getName.setVerticalAlignment(JButton.CENTER);
+		getName.setBackground(Color.white);
 		getName.setFont(font2);
 		getName.addActionListener(this);
 		getName.setMinimumSize(minSize);
@@ -145,6 +161,10 @@ public class Main_Menu implements ActionListener {
 		Dimension maxSizeRight = new Dimension(buttonWidth, 460);
 
 		getDown = new JButton("Get Down");
+		getDown.setIcon(new ImageIcon("MainScreen/greenButton.png"));
+		getDown.setHorizontalTextPosition(JButton.CENTER);
+		getDown.setVerticalAlignment(JButton.CENTER);
+		getDown.setBackground(Color.white);
 		getDown.setFont(font2);
 		getDown.addActionListener(this);
 		getDown.setMinimumSize(minSize);
@@ -154,6 +174,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelRight.add(getDown);
 
 		jumpTheCar = new JButton("Jump the Car");
+		jumpTheCar.setIcon(new ImageIcon("MainScreen/pinkButton.png"));
+		jumpTheCar.setHorizontalTextPosition(JButton.CENTER);
+		jumpTheCar.setVerticalAlignment(JButton.CENTER);
+		jumpTheCar.setBackground(Color.white);
 		jumpTheCar.setFont(font2);
 		jumpTheCar.addActionListener(this);
 		jumpTheCar.setMinimumSize(minSize);
@@ -163,6 +187,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelRight.add(jumpTheCar);
 
 		treeClimber = new JButton("Tree Climber");
+		treeClimber.setIcon(new ImageIcon("MainScreen/whiteButton.png"));
+		treeClimber.setHorizontalTextPosition(JButton.CENTER);
+		treeClimber.setVerticalAlignment(JButton.CENTER);
+		treeClimber.setBackground(Color.white);
 		treeClimber.setFont(font2);
 		treeClimber.addActionListener(this);
 		treeClimber.setMinimumSize(minSize);
@@ -172,6 +200,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelRight.add(treeClimber);
 
 		frenzyMode = new JButton("Frenzy Mode");
+		frenzyMode.setIcon(new ImageIcon("MainScreen/yellowButton.png"));
+		frenzyMode.setHorizontalTextPosition(JButton.CENTER);
+		frenzyMode.setVerticalAlignment(JButton.CENTER);
+		frenzyMode.setBackground(Color.white);
 		frenzyMode.setFont(font2);
 		frenzyMode.addActionListener(this);
 		frenzyMode.setMinimumSize(minSize);
@@ -232,7 +264,6 @@ public class Main_Menu implements ActionListener {
 		else if (e.getSource() == getName) {
 			this.con.setPlayersName(nameEntry.getText());
 			nameEntry.setText("");
-			System.out.println(this.con.getPlayersName());
 		}
 
 		if (e.getSource() == viewScores) {
@@ -242,7 +273,12 @@ public class Main_Menu implements ActionListener {
 				e1.printStackTrace();
 			}
 		} else if (e.getSource() == resetScores) {
-			JOptionPane.showConfirmDialog(mainScreen, "Are you sure you want to reset the Highscores?");
+			if (JOptionPane.showConfirmDialog(mainScreen, "Are you sure you want to reset the Highscores?",
+					"Reset Scores", JOptionPane.OK_CANCEL_OPTION) == 0)
+				try {
+					Save.reset();
+				} catch (FileNotFoundException e1) {
+				}
 		}
 	}
 
