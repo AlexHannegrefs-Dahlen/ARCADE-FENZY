@@ -1,7 +1,5 @@
 package arcade.frenzy.view.game;
 
-import arcade.frenzy.UI.Games.Game_UI;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -33,7 +31,7 @@ public class Jump_The_Car extends Base_Game {
 	 * @param gui
 	 * @throws IOException
 	 */
-	public Jump_The_Car(Main_Menu game, Player player, Game_UI gui, Image img) throws IOException {
+	public Jump_The_Car(Main_Menu game, Player player, Image img) throws IOException {
 		super(img);
 		this.setGame(game);
 		this.setPlayer(player);

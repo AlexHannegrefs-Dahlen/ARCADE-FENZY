@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import acade.frenzy.model.object_creation.Object_Creator;
-import arcade.frenzy.UI.Games.Game_UI;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
@@ -26,7 +25,7 @@ public class Collect_The_Coins extends Base_Game {
 
 	private Object_Creator center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
 
-	public Collect_The_Coins(Main_Menu game, Player player, Game_UI gui, Image image) throws IOException {
+	public Collect_The_Coins(Main_Menu game, Player player, Image image) throws IOException {
 		super(image);
 		this.setGame(game);
 		this.setPlayer(player);

@@ -5,10 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.view.main.menu.Main_Menu;
-import arcade.frenzy.UI.Games.Game_UI;
-import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.model.player.Player;
 
 public class Tree_Climber extends Base_Game {
@@ -24,7 +21,7 @@ public class Tree_Climber extends Base_Game {
 	 *            - The Player instance
 	 * @param gui
 	 */
-	public Tree_Climber(Main_Menu game, Player player, Game_UI gui) {
+	public Tree_Climber(Main_Menu game, Player player) {
 		this.setGame(game);
 		this.setPlayer(player);
 		this.getPlayer().setxLoc(game.getMainPanel().getWidth() / 2);

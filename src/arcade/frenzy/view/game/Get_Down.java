@@ -1,6 +1,5 @@
 package arcade.frenzy.view.game;
 
-import arcade.frenzy.UI.Games.Game_UI;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -41,7 +40,7 @@ public class Get_Down extends Base_Game {
 
 	private Image playerImage = ImageIO.read(new File("GetDown/blobeLeft.gif"));
 
-	public Get_Down(Main_Menu game, Game_UI gui, Player player, Image Image) throws IOException {
+	public Get_Down(Main_Menu game, Player player, Image Image) throws IOException {
 		super(Image);
 		this.setGame(game);
 		this.setPlayer(player);

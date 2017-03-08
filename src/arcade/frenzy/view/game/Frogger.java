@@ -1,7 +1,5 @@
 package arcade.frenzy.view.game;
 
-import arcade.frenzy.UI.Games.Game_UI;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -27,7 +25,7 @@ public class Frogger extends Base_Game {
 
 	private Timer carTimer = new Timer(50 / 3, this);
 
-	public Frogger(Main_Menu game, Game_UI gui, Player player) throws IOException {
+	public Frogger(Main_Menu game, Player player) throws IOException {
 		this.setGame(game);
 		this.setPlayer(player);
 		this.getPlayer().setxLoc(game.getMainPanel().getWidth() / 2);

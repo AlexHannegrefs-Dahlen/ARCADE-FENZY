@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -26,6 +27,7 @@ import javax.swing.UIManager;
 
 import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.controller.Main_Controller;
+import arcade.frenzy.model.load_save.Save;
 
 /**
  * 
@@ -271,7 +273,12 @@ public class Main_Menu implements ActionListener {
 				e1.printStackTrace();
 			}
 		} else if (e.getSource() == resetScores) {
-			JOptionPane.showConfirmDialog(mainScreen, "Are you sure you want to reset the Highscores?");
+			if (JOptionPane.showConfirmDialog(mainScreen, "Are you sure you want to reset the Highscores?",
+					"Reset Scores", JOptionPane.OK_CANCEL_OPTION) == 0)
+				try {
+					Save.reset();
+				} catch (FileNotFoundException e1) {
+				}
 		}
 	}
 
