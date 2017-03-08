@@ -55,6 +55,7 @@ public class Frenzy_Mode implements ActionListener {
 		try {
 			Save.save(this.getCon().getPlayersName() + " " + String.valueOf(score));
 		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 		}
 		this.getCon().frenzyOver();
 	}

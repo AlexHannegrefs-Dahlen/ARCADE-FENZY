@@ -178,6 +178,11 @@ public class Get_Down extends Base_Game {
 
 		repaint();
 		if (Winner()) {
+			try {
+				playerImage = ImageIO.read(new File("GetDown/Happy.gif"));
+			} catch (IOException e1) {
+			}
+			repaint();
 			this.gameOver();
 		}
 	}

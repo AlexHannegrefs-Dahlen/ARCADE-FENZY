@@ -114,10 +114,10 @@ public class Main_Menu implements ActionListener {
 		collectTheCoins.setVerticalAlignment(JButton.CENTER);
 		collectTheCoins.setBackground(Color.white);
 		collectTheCoins.setFont(font2);
-		collectTheCoins.addActionListener(this);
 		collectTheCoins.setMinimumSize(minSize);
 		collectTheCoins.setPreferredSize(prefSize);
 		collectTheCoins.setMaximumSize(maxSize);
+		collectTheCoins.addActionListener(this);
 		collectTheCoins.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelLeft.add(collectTheCoins);
 

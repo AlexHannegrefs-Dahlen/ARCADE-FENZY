@@ -1,10 +1,13 @@
 package arcade.frenzy.model.load_save;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -20,14 +23,40 @@ public class Highscores extends JPanel implements ActionListener {
 
 	private Load scoreLoader;
 
+	private int buttonWidth = 500;
+
 	public Highscores(Main_Menu game) {
 		this.setGame(game);
 		this.setBackground(Color.WHITE);
 
+		Font font2 = new Font("sans-serif", Font.PLAIN, 60);
+
+		Dimension minSize = new Dimension(buttonWidth, 250);
+		Dimension prefSize = new Dimension(buttonWidth, 250);
+		Dimension maxSize = new Dimension(buttonWidth, 460);
+
 		load = new JButton("Load Scores");
+		load.setIcon(new ImageIcon("MainScreen/redButton.png"));
+		load.setHorizontalTextPosition(JButton.CENTER);
+		load.setVerticalAlignment(JButton.CENTER);
+		load.setBackground(Color.white);
+		load.setFont(font2);
+		load.setMinimumSize(minSize);
+		load.setPreferredSize(prefSize);
+		load.setMaximumSize(maxSize);
 		load.addActionListener(this);
+
 		mainMenu = new JButton("Go to Main Menu");
+		mainMenu.setIcon(new ImageIcon("MainScreen/redButton.png"));
+		mainMenu.setHorizontalTextPosition(JButton.CENTER);
+		mainMenu.setVerticalAlignment(JButton.CENTER);
+		mainMenu.setBackground(Color.white);
+		mainMenu.setFont(font2);
+		mainMenu.setMinimumSize(minSize);
+		mainMenu.setPreferredSize(prefSize);
+		mainMenu.setMaximumSize(maxSize);
 		mainMenu.addActionListener(this);
+
 		this.add(load);
 		this.add(mainMenu);
 
