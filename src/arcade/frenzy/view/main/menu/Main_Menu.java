@@ -109,7 +109,7 @@ public class Main_Menu implements ActionListener {
 		buttonPanelLeft.add(frogger);
 
 		viewScores = new JButton("View Highscores");
-		viewScores.setIcon(new ImageIcon("MainScreen/blueButton.png"));
+		viewScores.setIcon(new ImageIcon("MainScreen/darkBlueButton.png"));
 		viewScores.setHorizontalTextPosition(JButton.CENTER);
 		viewScores.setVerticalAlignment(JButton.CENTER);
 		viewScores.setBackground(Color.WHITE);
