@@ -16,8 +16,8 @@ import arcade.frenzy.model.load_save.Save;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
 public class Frenzy_Mode implements ActionListener {
-	private ArrayList<GameNames> games = new ArrayList<GameNames>(Arrays.asList(GameNames.Collect_The_Coins,
-			GameNames.Frogger, GameNames.Get_Down, GameNames.Jump_The_Car));
+	private ArrayList<GameNames> games = new ArrayList<GameNames>(
+			Arrays.asList(GameNames.Collect_The_Coins, GameNames.Frogger, GameNames.Get_Down, GameNames.Jump_The_Car));
 
 	private Main_Controller con;
 
