@@ -188,8 +188,6 @@ public class Main_Menu implements ActionListener {
 		mainScreen.setLocationRelativeTo(null);
 		mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainScreen.setVisible(true);
-
-		System.out.println(mainScreen.getHeight());
 	}
 
 	@Override
