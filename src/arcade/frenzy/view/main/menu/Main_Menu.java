@@ -9,7 +9,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -17,17 +16,12 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.controller.Main_Controller;
-import arcade.frenzy.model.load_save.Save;
 
 /**
  * 
@@ -44,12 +38,6 @@ public class Main_Menu implements ActionListener {
 	private JPanel mainPanel, buttonPanelLeft, buttonPanelRight;
 
 	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode, getName, viewScores;
-
-	// private JMenuBar menuBar;
-
-	// private JMenu menu;
-
-	// private JMenuItem viewScores, resetScores;
 
 	private Image backgroundImg;
 
@@ -87,16 +75,6 @@ public class Main_Menu implements ActionListener {
 		centerPanel = new BackgroundPanel(backgroundImg);
 		mainPanel.add(centerPanel, BorderLayout.CENTER);
 
-		/*
-		 * viewScores = new JMenuItem("View Highscores");
-		 * viewScores.addActionListener(this); resetScores = new
-		 * JMenuItem("Reset Highscores"); resetScores.addActionListener(this);
-		 * 
-		 * menu = new JMenu("Options"); menuBar = new JMenuBar();
-		 * menu.add(viewScores); menu.add(resetScores); menuBar.add(menu);
-		 * mainScreen.setJMenuBar(menuBar);
-		 */
-
 		buttonPanelLeft = new JPanel();
 		buttonPanelLeft.setLayout(new BoxLayout(buttonPanelLeft, BoxLayout.Y_AXIS));
 
@@ -131,7 +109,7 @@ public class Main_Menu implements ActionListener {
 		buttonPanelLeft.add(frogger);
 
 		viewScores = new JButton("View Highscores");
-		// viewScores.setIcon(defaultIcon);
+		viewScores.setIcon(new ImageIcon("MainScreen/blueButton.png"));
 		viewScores.setHorizontalTextPosition(JButton.CENTER);
 		viewScores.setVerticalAlignment(JButton.CENTER);
 		viewScores.setBackground(Color.WHITE);
@@ -273,9 +251,11 @@ public class Main_Menu implements ActionListener {
 
 		else if (e.getSource() == getName) {
 			this.con.setPlayersName(JOptionPane.showInputDialog("Please enter your username"));
-			
-			/*this.con.setPlayersName(viewScores.getText());
-			viewScores.setText("");*/
+
+			/*
+			 * this.con.setPlayersName(viewScores.getText());
+			 * viewScores.setText("");
+			 */
 		}
 	}
 
