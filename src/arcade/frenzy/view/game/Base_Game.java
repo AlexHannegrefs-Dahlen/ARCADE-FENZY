@@ -18,29 +18,50 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	private Main_Menu game;
 
 	private Timer timer = new Timer(50 / 3, this);
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Base Contruter
+	 */
 	public Base_Game() {
 
 	}
 
+	/**
+	 * Background Image Construter
+	 * 
+	 * @param image
+	 *            background image
+	 */
 	public Base_Game(Image image) {
 		super(image);
 	}
 
+	/**
+	 * Background Image Construter + Player Object
+	 * 
+	 * @param player
+	 *            the player
+	 * @param image
+	 *            the background
+	 */
 	public Base_Game(Player player, Image image) {
 		super(image);
 		this.player = player;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 	}
 
+	/**
+	 * detects if the player has hit the inside left wall return true if hit
+	 */
 	@Override
 	public boolean detectCollisionPlayerInsideLeftWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
 		if (OxLoc >= this.getPlayer().getxLoc() - this.getPlayer().getxVel())
@@ -50,14 +71,20 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	}
 
+	/**
+	 * dercts if th player has it the inside right wall returns true if hit
+	 */
 	@Override
 	public boolean detectCollisionPlayerInsideRightWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
-		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth()  + this.getPlayer().getxVel() >= OxLoc + Owidth)
+		if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() + this.getPlayer().getxVel() >= OxLoc + Owidth)
 			return true;
 		else
 			return false;
 	}
 
+	/**
+	 * detects if the player hits the inside top wall returns true if hit
+	 */
 	@Override
 	public boolean detectCollisionPlayerInsideTopWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
 		if (this.getPlayer().getyLoc() - this.getPlayer().getyVel() <= OyLoc)
@@ -67,6 +94,10 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 
 	}
 
+	/**
+	 * detects player hits inside bottem wall returns true if hit
+	 */
+
 	@Override
 	public boolean detectCollisionPlayerInsideBottomWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
 		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() + this.getPlayer().getyVel() >= OyLoc + Oheight)
@@ -75,6 +106,9 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 			return false;
 	}
 
+	/**
+	 * detects Player outside bottem wall returns true if hit
+	 */
 	@Override
 	public boolean detectCollisionPlayerOutsideBottomWall(Object_Creator object) {
 		if (object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
@@ -88,6 +122,9 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 			return false;
 	}
 
+	/**
+	 * detects if player hits outside top wall returns true if hit
+	 */
 	@Override
 	public boolean detectCollisionPlayerOutsideTopWall(Object_Creator object) {
 		if (this.getPlayer().getyLoc() > object.getY_Location())
@@ -102,6 +139,9 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 			return false;
 	}
 
+	/**
+	 * detects if player hits outside right wall returns true if hot
+	 */
 	@Override
 	public boolean detectCollisionPlayerOutsideRightWall(Object_Creator object) {
 		if (this.getPlayer().getxLoc() < object.getX_Location())
@@ -116,6 +156,9 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 			return false;
 	}
 
+	/**
+	 * detects if player hits outside left wall returns true if hit
+	 */
 	@Override
 	public boolean detectCollisionPlayerOutsideLeftWall(Object_Creator object) {
 		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
@@ -130,10 +173,20 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 			return false;
 	}
 
+	/**
+	 * 
+	 * @return the game
+	 */
+
 	public Main_Menu getGame() {
 		return game;
 	}
 
+	/**
+	 * 
+	 * @param game
+	 *            refrence to the main menu
+	 */
 	public void setGame(Main_Menu game) {
 		this.game = game;
 	}
@@ -168,6 +221,12 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 		this.timer = timer;
 	}
 
+	/**
+	 * changes Panel back to the main Panel
+	 * 
+	 * @param gamePlayed
+	 *            active game
+	 */
 	public void gameOver(Base_Game gamePlayed) {
 		this.getGame().getMainScreen().remove(gamePlayed);
 		this.getGame().getMainPanel().setVisible(true);

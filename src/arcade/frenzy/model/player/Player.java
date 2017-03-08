@@ -46,7 +46,7 @@ public class Player {
 
 	/**
 	 * 
-	 * @return
+	 * @return the players name 
 	 */
 	public String getName() {
 		return this.name;

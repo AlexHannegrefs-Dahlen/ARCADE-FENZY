@@ -26,6 +26,20 @@ public class Collect_The_Coins extends Base_Game {
 
 	private Object_Creator center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
 
+	/**
+	 * construter that sets the peramiters builds the objects that are used sets
+	 * the game as the background to the main frame
+	 * 
+	 * @param game
+	 *            refrence to the main menu
+	 * @param player
+	 *            the player
+	 * @param gui
+	 *            refrence to the game ui
+	 * @param image
+	 *            the background image
+	 * @throws IOException
+	 */
 	public Collect_The_Coins(Main_Menu game, Player player, Game_UI gui, Image image) throws IOException {
 		super(image);
 		this.setGame(game);
@@ -72,7 +86,9 @@ public class Collect_The_Coins extends Base_Game {
 
 	}
 
-	// move to game_UI eventually
+	/**
+	 * draws the player image draws the Object images removes object if taken
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.WHITE);
@@ -125,6 +141,9 @@ public class Collect_The_Coins extends Base_Game {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * detects if the player has hit an object when pressing the arrow keys
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -326,6 +345,11 @@ public class Collect_The_Coins extends Base_Game {
 
 	}
 
+	/**
+	 * checks to see if the player has won the game
+	 * 
+	 * @return true if there are no coins on the board
+	 */
 	private boolean checkForWin() {
 		if (coinCount == 0) {
 			return true;

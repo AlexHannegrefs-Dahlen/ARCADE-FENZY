@@ -22,7 +22,10 @@ public class Game_UI {
 		this.setGame(game);
 		panel = new JPanel();
 	}
-
+/**
+ * 
+ * @param gamePlaying
+ */
 	public void setGameBackGround(GameNames gamePlaying) {
 		switch (gamePlaying) {
 		case Collect_The_Coins:

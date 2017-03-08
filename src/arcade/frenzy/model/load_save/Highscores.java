@@ -20,6 +20,14 @@ public class Highscores extends JPanel implements ActionListener {
 
 	private Load scoreLoader;
 
+	/**
+	 * changes panel to that of te high score screen sets buttens to load the
+	 * high scores || go back to the main menu sets the high score to the text
+	 * Pane
+	 * 
+	 * @param game
+	 *            refrence to the main menu
+	 */
 	public Highscores(Main_Menu game) {
 		this.setGame(game);
 		this.setBackground(Color.WHITE);
@@ -59,7 +67,7 @@ public class Highscores extends JPanel implements ActionListener {
 	}
 
 	/**
-	 * 
+	 * changes the Pane if main menu is pressed to that if the main menus Pane
 	 */
 	private static final long serialVersionUID = 1L;
 

@@ -26,13 +26,21 @@ public class Object_Creator {
 	/**
 	 * 
 	 * @param height
+	 *            of the object
 	 * @param width
+	 *            of the object
 	 * @param x_location
+	 *            of the object
 	 * @param y_location
+	 *            of the object
 	 * @param x_velocity
+	 *            of the object
 	 * @param y_velocity
+	 *            of the object
 	 * @param color
+	 *            of the object
 	 * @param taken
+	 *            is the object visible
 	 */
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			Color color, boolean taken) {
@@ -48,14 +56,14 @@ public class Object_Creator {
 
 	/**
 	 * 
-	 * @param height
-	 * @param width
-	 * @param x_location
-	 * @param y_location
-	 * @param x_velocity
-	 * @param y_velocity
-	 * @param img_url
-	 * @param taken
+	 * @param height of the object 
+	 * @param width of the object 
+	 * @param x_location of the object 
+	 * @param y_location of the object 
+	 * @param x_velocity of the object 
+	 * @param y_velocity of the object 
+	 * @param img_url of the object 
+	 * @param taken is the object visible 
 	 * @throws IOException
 	 */
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
@@ -84,12 +92,11 @@ public class Object_Creator {
 	 * @param y_velocity
 	 *            of the object
 	 * @param img_url
-	 *            String of the location of the file
-<<<<<<< HEAD
-	 * @throws IOException 
-=======
+	 *            String of the location of the file 
 	 * @throws IOException
->>>>>>> 3eb6081514a112dc7944e3ca360edc9e937c710f
+	 *            
+	 * @throws IOException
+	 *             
 	 */
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			String img_url) throws IOException {
