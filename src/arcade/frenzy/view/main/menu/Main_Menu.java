@@ -43,15 +43,13 @@ public class Main_Menu implements ActionListener {
 
 	private JPanel mainPanel, buttonPanelLeft, buttonPanelRight;
 
-	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode, getName;
+	private JButton collectTheCoins, frogger, getDown, jumpTheCar, treeClimber, frenzyMode, getName, viewScores;
 
-	private JTextField nameEntry;
+	// private JMenuBar menuBar;
 
-	private JMenuBar menuBar;
+	// private JMenu menu;
 
-	private JMenu menu;
-
-	private JMenuItem viewScores, resetScores;
+	// private JMenuItem viewScores, resetScores;
 
 	private Image backgroundImg;
 
@@ -89,17 +87,15 @@ public class Main_Menu implements ActionListener {
 		centerPanel = new BackgroundPanel(backgroundImg);
 		mainPanel.add(centerPanel, BorderLayout.CENTER);
 
-		viewScores = new JMenuItem("View Highscores");
-		viewScores.addActionListener(this);
-		resetScores = new JMenuItem("Reset Highscores");
-		resetScores.addActionListener(this);
-
-		menu = new JMenu("Options");
-		menuBar = new JMenuBar();
-		menu.add(viewScores);
-		menu.add(resetScores);
-		menuBar.add(menu);
-		mainScreen.setJMenuBar(menuBar);
+		/*
+		 * viewScores = new JMenuItem("View Highscores");
+		 * viewScores.addActionListener(this); resetScores = new
+		 * JMenuItem("Reset Highscores"); resetScores.addActionListener(this);
+		 * 
+		 * menu = new JMenu("Options"); menuBar = new JMenuBar();
+		 * menu.add(viewScores); menu.add(resetScores); menuBar.add(menu);
+		 * mainScreen.setJMenuBar(menuBar);
+		 */
 
 		buttonPanelLeft = new JPanel();
 		buttonPanelLeft.setLayout(new BoxLayout(buttonPanelLeft, BoxLayout.Y_AXIS));
@@ -134,13 +130,18 @@ public class Main_Menu implements ActionListener {
 		frogger.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		buttonPanelLeft.add(frogger);
 
-		nameEntry = new JTextField("");
-		nameEntry.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 40));
-		nameEntry.setMinimumSize(minSize);
-		nameEntry.setPreferredSize(prefSize);
-		nameEntry.setMaximumSize(maxSize);
-		nameEntry.setAlignmentX(Component.BOTTOM_ALIGNMENT);
-		buttonPanelLeft.add(nameEntry);
+		viewScores = new JButton("View Highscores");
+		// viewScores.setIcon(defaultIcon);
+		viewScores.setHorizontalTextPosition(JButton.CENTER);
+		viewScores.setVerticalAlignment(JButton.CENTER);
+		viewScores.setBackground(Color.WHITE);
+		viewScores.setFont(font2);
+		viewScores.addActionListener(this);
+		viewScores.setMinimumSize(minSize);
+		viewScores.setPreferredSize(prefSize);
+		viewScores.setMaximumSize(maxSize);
+		viewScores.setAlignmentX(Component.BOTTOM_ALIGNMENT);
+		buttonPanelLeft.add(viewScores);
 
 		getName = new JButton("Update Name");
 		getName.setIcon(new ImageIcon("MainScreen/orangeButton.png"));
@@ -261,24 +262,20 @@ public class Main_Menu implements ActionListener {
 			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
-		else if (e.getSource() == getName) {
-			this.con.setPlayersName(nameEntry.getText());
-			nameEntry.setText("");
-		}
 
-		if (e.getSource() == viewScores) {
+		else if (e.getSource() == viewScores) {
 			try {
 				this.con.handleButtonClicked(GameNames.Highscores);
 			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
-		} else if (e.getSource() == resetScores) {
-			if (JOptionPane.showConfirmDialog(mainScreen, "Are you sure you want to reset the Highscores?",
-					"Reset Scores", JOptionPane.OK_CANCEL_OPTION) == 0)
-				try {
-					Save.reset();
-				} catch (FileNotFoundException e1) {
-				}
+		}
+
+		else if (e.getSource() == getName) {
+			this.con.setPlayersName(JOptionPane.showInputDialog("Please enter your username"));
+			
+			/*this.con.setPlayersName(viewScores.getText());
+			viewScores.setText("");*/
 		}
 	}
 
