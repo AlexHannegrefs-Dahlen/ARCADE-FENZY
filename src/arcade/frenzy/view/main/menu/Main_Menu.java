@@ -262,7 +262,6 @@ public class Main_Menu implements ActionListener {
 		else if (e.getSource() == getName) {
 			this.con.setPlayersName(nameEntry.getText());
 			nameEntry.setText("");
-			System.out.println(this.con.getPlayersName());
 		}
 
 		if (e.getSource() == viewScores) {

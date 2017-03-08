@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import javax.swing.Timer;
 
@@ -22,12 +23,23 @@ public class Frenzy_Mode implements ActionListener {
 
 	private Timer highscore = new Timer(0, this);
 
+	private Random gen = new Random();
+
 	private double score = 0;
 
 	public Frenzy_Mode(Main_Controller main_Controller, Main_Menu game) throws InterruptedException, IOException {
 		this.setCon(main_Controller);
 		this.highscore.start();
+		this.randomize();
 		this.playNextGame(main_Controller);
+	}
+
+	private void randomize() {
+		for (int i = 0; i < 50; i++) {
+			GameNames hold = games.get(gen.nextInt(games.size()));
+			games.remove(hold);
+			games.add(hold);
+		}
 	}
 
 	private void playNextGame(Main_Controller main_Controller) throws InterruptedException, IOException {
