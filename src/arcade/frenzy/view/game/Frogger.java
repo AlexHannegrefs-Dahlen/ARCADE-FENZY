@@ -97,6 +97,7 @@ public class Frogger extends Base_Game {
 		g.setColor(Color.WHITE);
 		g.drawImage(frogger, this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), this.getPlayer().getWidth(),
 				this.getPlayer().getHeight(), this);
+
 	}
 
 	/**
