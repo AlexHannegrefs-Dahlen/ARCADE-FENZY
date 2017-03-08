@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -26,6 +27,7 @@ import javax.swing.UIManager;
 
 import arcade.frenzy.controller.GameNames;
 import arcade.frenzy.controller.Main_Controller;
+import arcade.frenzy.model.load_save.Save;
 
 /**
  * 
@@ -185,6 +187,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelRight.add(jumpTheCar);
 
 		treeClimber = new JButton("Tree Climber");
+		treeClimber.setIcon(new ImageIcon("MainScreen/whiteButton.png"));
+		treeClimber.setHorizontalTextPosition(JButton.CENTER);
+		treeClimber.setVerticalAlignment(JButton.CENTER);
+		treeClimber.setBackground(Color.white);
 		treeClimber.setFont(font2);
 		treeClimber.addActionListener(this);
 		treeClimber.setMinimumSize(minSize);
@@ -194,6 +200,10 @@ public class Main_Menu implements ActionListener {
 		buttonPanelRight.add(treeClimber);
 
 		frenzyMode = new JButton("Frenzy Mode");
+		frenzyMode.setIcon(new ImageIcon("MainScreen/yellowButton.png"));
+		frenzyMode.setHorizontalTextPosition(JButton.CENTER);
+		frenzyMode.setVerticalAlignment(JButton.CENTER);
+		frenzyMode.setBackground(Color.white);
 		frenzyMode.setFont(font2);
 		frenzyMode.addActionListener(this);
 		frenzyMode.setMinimumSize(minSize);
@@ -210,8 +220,6 @@ public class Main_Menu implements ActionListener {
 		mainScreen.setLocationRelativeTo(null);
 		mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		mainScreen.setVisible(true);
-
-		
 	}
 
 	@Override
@@ -256,7 +264,6 @@ public class Main_Menu implements ActionListener {
 		else if (e.getSource() == getName) {
 			this.con.setPlayersName(nameEntry.getText());
 			nameEntry.setText("");
-			System.out.println(this.con.getPlayersName());
 		}
 
 		if (e.getSource() == viewScores) {
@@ -266,7 +273,12 @@ public class Main_Menu implements ActionListener {
 				e1.printStackTrace();
 			}
 		} else if (e.getSource() == resetScores) {
-			JOptionPane.showConfirmDialog(mainScreen, "Are you sure you want to reset the Highscores?");
+			if (JOptionPane.showConfirmDialog(mainScreen, "Are you sure you want to reset the Highscores?",
+					"Reset Scores", JOptionPane.OK_CANCEL_OPTION) == 0)
+				try {
+					Save.reset();
+				} catch (FileNotFoundException e1) {
+				}
 		}
 	}
 

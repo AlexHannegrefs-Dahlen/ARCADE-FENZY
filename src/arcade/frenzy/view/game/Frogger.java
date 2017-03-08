@@ -1,7 +1,5 @@
 package arcade.frenzy.view.game;
 
-import arcade.frenzy.UI.Games.Game_UI;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -12,7 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.synth.SynthSeparatorUI;
+import javax.swing.Timer;
 
 import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.model.player.Player;
@@ -25,7 +23,9 @@ public class Frogger extends Base_Game {
 
 	private Image frogger;
 
-	public Frogger(Main_Menu game, Game_UI gui, Player player) throws IOException {
+	private Timer carTimer = new Timer(50 / 3, this);
+
+	public Frogger(Main_Menu game, Player player) throws IOException {
 		this.setGame(game);
 		this.setPlayer(player);
 		this.getPlayer().setxLoc(game.getMainPanel().getWidth() / 2);
@@ -63,7 +63,7 @@ public class Frogger extends Base_Game {
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.addKeyListener(this);
-		this.getTimer().start();
+		this.getCarTimer().start();
 	}
 
 	public void Winner() {
@@ -120,10 +120,10 @@ public class Frogger extends Base_Game {
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
-			}
-			else {
+			} else {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 				this.repaint();
+				this.getCarTimer().stop();
 				this.playerWon();
 			}
 		}
@@ -174,71 +174,80 @@ public class Frogger extends Base_Game {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (this.topCar.getX_Location() > this.getGame().getMainPanel().getWidth() - 200) {
-			this.topCar.setX_Velocity(this.topCar.getX_Velocity() * -1);
-			try {
-				topCar.setPicture(ImageIO.read(new File("Frogger/topCarFlipped.gif")));
-			} catch (IOException e1) {
+		if (e.getSource() == carTimer) {
+			if (this.topCar.getX_Location() > this.getGame().getMainPanel().getWidth() - 200) {
+				this.topCar.setX_Velocity(this.topCar.getX_Velocity() * -1);
+				try {
+					topCar.setPicture(ImageIO.read(new File("Frogger/topCarFlipped.gif")));
+				} catch (IOException e1) {
+				}
 			}
-		}
-		if (this.topCar.getX_Location() < 20) {
-			this.topCar.setX_Velocity(this.topCar.getX_Velocity() * -1);
-			try {
-				topCar.setPicture(ImageIO.read(new File("Frogger/topCar.gif")));
-			} catch (IOException e1) {
+			if (this.topCar.getX_Location() < 20) {
+				this.topCar.setX_Velocity(this.topCar.getX_Velocity() * -1);
+				try {
+					topCar.setPicture(ImageIO.read(new File("Frogger/topCar.gif")));
+				} catch (IOException e1) {
+				}
 			}
-		}
-		if (this.midCar.getX_Location() > this.getGame().getMainPanel().getWidth() - 200) {
-			this.midCar.setX_Velocity(this.midCar.getX_Velocity() * -1);
-			try {
-				midCar.setPicture(ImageIO.read(new File("Frogger/midCar.png")));
-			} catch (IOException e1) {
+			if (this.midCar.getX_Location() > this.getGame().getMainPanel().getWidth() - 200) {
+				this.midCar.setX_Velocity(this.midCar.getX_Velocity() * -1);
+				try {
+					midCar.setPicture(ImageIO.read(new File("Frogger/midCar.png")));
+				} catch (IOException e1) {
+				}
 			}
-		}
-		if (this.midCar.getX_Location() < 20) {
-			this.midCar.setX_Velocity(this.midCar.getX_Velocity() * -1);
-			try {
-				midCar.setPicture(ImageIO.read(new File("Frogger/midCarFlipped.png")));
-			} catch (IOException e1) {
+			if (this.midCar.getX_Location() < 20) {
+				this.midCar.setX_Velocity(this.midCar.getX_Velocity() * -1);
+				try {
+					midCar.setPicture(ImageIO.read(new File("Frogger/midCarFlipped.png")));
+				} catch (IOException e1) {
+				}
 			}
-		}
-		if (this.botCar.getX_Location() > this.getGame().getMainPanel().getWidth() - 200) {
-			this.botCar.setX_Velocity(this.botCar.getX_Velocity() * -1);
-			try {
-				botCar.setPicture(ImageIO.read(new File("Frogger/botCarFlipped.gif")));
-			} catch (IOException e1) {
+			if (this.botCar.getX_Location() > this.getGame().getMainPanel().getWidth() - 200) {
+				this.botCar.setX_Velocity(this.botCar.getX_Velocity() * -1);
+				try {
+					botCar.setPicture(ImageIO.read(new File("Frogger/botCarFlipped.gif")));
+				} catch (IOException e1) {
+				}
 			}
-		}
-		if (this.botCar.getX_Location() < 20) {
-			this.botCar.setX_Velocity(this.botCar.getX_Velocity() * -1);
-			try {
-				botCar.setPicture(ImageIO.read(new File("Frogger/botCar.gif")));
-			} catch (IOException e1) {
+			if (this.botCar.getX_Location() < 20) {
+				this.botCar.setX_Velocity(this.botCar.getX_Velocity() * -1);
+				try {
+					botCar.setPicture(ImageIO.read(new File("Frogger/botCar.gif")));
+				} catch (IOException e1) {
+				}
 			}
-		}
-		this.topCar.setX_Location(this.topCar.getX_Location() + this.topCar.getX_Velocity());
-		this.midCar.setX_Location(this.midCar.getX_Location() + this.midCar.getX_Velocity());
-		this.botCar.setX_Location(this.botCar.getX_Location() + this.botCar.getX_Velocity());
+			this.topCar.setX_Location(this.topCar.getX_Location() + this.topCar.getX_Velocity());
+			this.midCar.setX_Location(this.midCar.getX_Location() + this.midCar.getX_Velocity());
+			this.botCar.setX_Location(this.botCar.getX_Location() + this.botCar.getX_Velocity());
 
+			this.repaint();
+
+			if (checkForlose()) {
+				this.getCarTimer().stop();
+				playerLost();
+			}
+		}
+	}
+
+	private boolean checkForlose() {
 		if (super.detectCollisionPlayerOutsideBottomWall(botCar) || super.detectCollisionPlayerOutsideTopWall(botCar)
 				|| super.detectCollisionPlayerOutsideLeftWall(botCar)
 				|| super.detectCollisionPlayerOutsideRightWall(botCar))
-			this.playerLost();
+			return true;
 		if (super.detectCollisionPlayerOutsideBottomWall(midCar) || super.detectCollisionPlayerOutsideTopWall(midCar)
 				|| super.detectCollisionPlayerOutsideLeftWall(midCar)
 				|| super.detectCollisionPlayerOutsideRightWall(midCar))
-			this.playerLost();
+			return true;
 		if (super.detectCollisionPlayerOutsideBottomWall(topCar) || super.detectCollisionPlayerOutsideTopWall(topCar)
 				|| super.detectCollisionPlayerOutsideLeftWall(topCar)
 				|| super.detectCollisionPlayerOutsideRightWall(topCar))
-			this.playerLost();
-		
-		this.repaint();
+			return true;
+		return false;
 	}
 
 	private void playerLost() {
 		if (!this.getGame().isFrenzy()) {
-			this.getTimer().stop();
 			JOptionPane.showMessageDialog(this, "You are dead!");
 			super.gameOver(this);
 		} else
@@ -248,10 +257,9 @@ public class Frogger extends Base_Game {
 			}
 
 	}
-	
+
 	private void playerWon() {
 		if (!this.getGame().isFrenzy()) {
-			this.getTimer().stop();
 			JOptionPane.showMessageDialog(this, "You won!");
 			super.gameOver(this);
 		} else
@@ -259,6 +267,21 @@ public class Frogger extends Base_Game {
 				this.getGame().getCon().getFrenzy().gameOver(this);
 			} catch (InterruptedException | IOException e1) {
 			}
+	}
+
+	/**
+	 * @return the carTimer
+	 */
+	public Timer getCarTimer() {
+		return carTimer;
+	}
+
+	/**
+	 * @param carTimer
+	 *            the carTimer to set
+	 */
+	public void setCarTimer(Timer carTimer) {
+		this.carTimer = carTimer;
 	}
 
 }

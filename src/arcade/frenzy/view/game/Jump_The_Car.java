@@ -1,7 +1,5 @@
 package arcade.frenzy.view.game;
 
-import arcade.frenzy.UI.Games.Game_UI;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -33,7 +31,7 @@ public class Jump_The_Car extends Base_Game {
 	 * @param gui
 	 * @throws IOException
 	 */
-	public Jump_The_Car(Main_Menu game, Player player, Game_UI gui, Image img) throws IOException {
+	public Jump_The_Car(Main_Menu game, Player player, Image img) throws IOException {
 		super(img);
 		this.setGame(game);
 		this.setPlayer(player);
@@ -44,7 +42,7 @@ public class Jump_The_Car extends Base_Game {
 		this.getPlayer().setxVel(Xvel);
 		this.getPlayer().setyVel(Yvel);
 
-		Car = new Object_Creator(200, 375, 2200, 895, 35, 0, "Jump The car/Car.gif");
+		Car = new Object_Creator(200, 375, 2200, 895, 40, 0, "Jump The car/Car.gif");
 		floor = new Object_Creator(1, 1000, 0, Yloc + height, 0, 0, Color.BLACK);
 		celing = new Object_Creator(25, 1000, 0, floor.getY_Location() - 650, 0, 0, Color.BLACK);
 		this.setBackground(Color.cyan);
@@ -99,6 +97,8 @@ public class Jump_The_Car extends Base_Game {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			this.gravityTimer.stop();
 			this.player.setyLoc(this.player.getyLoc() - this.player.getyVel());
+			if (super.detectCollisionPlayerOutsideBottomWall(celing))
+				this.player.setyLoc(celing.getY_Location() + celing.getHeight());
 		}
 		this.repaint();
 
@@ -111,7 +111,6 @@ public class Jump_The_Car extends Base_Game {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -134,8 +133,8 @@ public class Jump_The_Car extends Base_Game {
 			gravityTimer.stop();
 			carTimer.stop();
 			this.GotHit();
-		} else if (!super.detectCollisionPlayerInsideLeftWall(Car.getX_Location() + Car.getWidth()+230, Car.getY_Location(),
-				Car.getWidth(), Car.getHeight())) {
+		} else if (!super.detectCollisionPlayerInsideLeftWall(Car.getX_Location() + Car.getWidth() + 230,
+				Car.getY_Location(), Car.getWidth(), Car.getHeight())) {
 			gravityTimer.stop();
 			carTimer.stop();
 			this.Winner();
