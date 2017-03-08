@@ -52,7 +52,7 @@ public class Main_Controller {
 			coins.requestFocusInWindow();
 			break;
 		case Tree_Climber:
-			this.climber = new Tree_Climber(game, player);
+			this.climber = new Tree_Climber(game, player, ImageIO.read(new File("Tree Climber/background.jpg")));
 			climber.setFocusable(true);
 			climber.requestFocusInWindow();
 			break;

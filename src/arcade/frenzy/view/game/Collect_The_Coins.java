@@ -64,7 +64,6 @@ public class Collect_The_Coins extends Base_Game {
 		Coin3 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 + 275,
 				game.getMainScreen().getHeight() / 2 + 285, 0, 0, "Collect the coin/coin.gif", false);
 
-		this.setBackground(Color.BLACK);
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.addKeyListener(this);
