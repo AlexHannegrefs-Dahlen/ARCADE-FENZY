@@ -36,12 +36,24 @@ public class Main_Controller {
 
 	private Highscores highscore;
 
+	/**
+	 * Starts the programe
+	 */
+
 	public void start() {
 		game = new Main_Menu();
 		game.init(this);
 		player = new Player();
 	}
 
+	/**
+	 * swiches the games based of the butten clicked
+	 * 
+	 * @param buttonClicked
+	 *            The Names Of The Games
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
 	public void handleButtonClicked(GameNames buttonClicked) throws InterruptedException, IOException {
 		if (game.getMainPanel().isVisible())
 			game.getMainPanel().setVisible(false);
@@ -235,6 +247,10 @@ public class Main_Controller {
 		this.highscore = highscore;
 	}
 
+	/**
+	 * Checks to see if its the last game in FranzyMode then resets to the main
+	 * menu
+	 */
 	public void frenzyOver() {
 		this.getGame().getMainPanel().setVisible(true);
 		this.getGame().getMainPanel().setFocusable(true);

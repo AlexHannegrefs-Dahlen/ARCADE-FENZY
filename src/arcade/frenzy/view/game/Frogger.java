@@ -250,11 +250,11 @@ public class Frogger extends Base_Game {
 		if (!this.getGame().isFrenzy()) {
 			JOptionPane.showMessageDialog(this, "You are dead!");
 			super.gameOver(this);
-		} else
-			try {
-				this.getGame().getCon().getFrenzy().gameOver(this);
-			} catch (InterruptedException | IOException e1) {
-			}
+		} else {
+			this.getPlayer().setxLoc(this.getGame().getMainPanel().getWidth() / 2);
+			this.getPlayer().setyLoc(this.getGame().getMainPanel().getHeight() / 10 * 9);
+			this.getCarTimer().start();
+		}
 
 	}
 

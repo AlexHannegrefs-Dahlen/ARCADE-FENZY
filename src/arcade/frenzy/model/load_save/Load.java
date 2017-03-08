@@ -8,14 +8,20 @@ import java.io.InputStreamReader;
 
 public class Load {
 	private BufferedReader in;
-
+/**
+ * loads the scores from a preset text file 
+ */
 	public Load() {
 		try {
 			in = new BufferedReader(new InputStreamReader(new FileInputStream("scores.txt")));
 		} catch (FileNotFoundException e) {
 		}
 	}
-
+/**
+ * 
+ * @return 
+ * @throws IOException
+ */
 	public String loadScores() throws IOException {
 		in = new BufferedReader(new InputStreamReader(new FileInputStream("scores.txt")));
 		String load = in.readLine();
