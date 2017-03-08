@@ -12,6 +12,13 @@ import java.io.PrintStream;
 public class Save {
 	static PrintStream out;
 
+	/**
+	 * Saves the High score to a preset text file
+	 * 
+	 * @param highscore
+	 *            the score of the player
+	 * @throws IOException
+	 */
 	public static void save(String highscore) throws IOException {
 		FileOutputStream fileStream = new FileOutputStream(new File("scores.txt"));
 		PrintStream ps = new PrintStream(fileStream);

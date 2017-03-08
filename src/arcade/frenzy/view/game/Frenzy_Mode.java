@@ -42,6 +42,13 @@ public class Frenzy_Mode implements ActionListener {
 		}
 	}
 
+	/**
+	 * plays the next game in the list
+	 * 
+	 * @param main_Controller
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
 	private void playNextGame(Main_Controller main_Controller) throws InterruptedException, IOException {
 		if (games.size() != 0)
 			main_Controller.handleButtonClicked(games.get(0));
@@ -51,6 +58,9 @@ public class Frenzy_Mode implements ActionListener {
 		}
 	}
 
+	/**
+	 * changes the panel back to the main menus
+	 */
 	private void returnMainMenu() {
 		try {
 			Save.save(this.getCon().getPlayersName() + " " + String.valueOf(score));
@@ -60,6 +70,12 @@ public class Frenzy_Mode implements ActionListener {
 		this.getCon().frenzyOver();
 	}
 
+	/**
+	 * 
+	 * @param gamePlayed
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
 	public void gameOver(Base_Game gamePlayed) throws InterruptedException, IOException {
 		this.games.remove(0);
 		this.getCon().getGame().getMainScreen().remove(gamePlayed);
