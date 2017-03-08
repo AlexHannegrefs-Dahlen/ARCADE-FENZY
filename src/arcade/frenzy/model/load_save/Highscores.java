@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
@@ -17,7 +18,7 @@ import arcade.frenzy.view.main.menu.Main_Menu;
 public class Highscores extends JPanel implements ActionListener {
 	private Main_Menu game;
 
-	private JButton load, mainMenu;
+	private JButton load, reset, mainMenu;
 
 	private JTextPane scores;
 
@@ -53,6 +54,17 @@ public class Highscores extends JPanel implements ActionListener {
 		load.setPreferredSize(prefSize);
 		load.setMaximumSize(maxSize);
 		load.addActionListener(this);
+		
+		reset = new JButton("Reset Scores");
+		reset.setIcon(new ImageIcon("MainScreen/redButton.png"));
+		reset.setHorizontalTextPosition(JButton.CENTER);
+		reset.setVerticalAlignment(JButton.CENTER);
+		reset.setBackground(Color.white);
+		reset.setFont(font2);
+		reset.setMinimumSize(minSize);
+		reset.setPreferredSize(prefSize);
+		reset.setMaximumSize(maxSize);
+		reset.addActionListener(this);
 
 		mainMenu = new JButton("Go to Main Menu");
 		mainMenu.setIcon(new ImageIcon("MainScreen/redButton.png"));
@@ -66,6 +78,7 @@ public class Highscores extends JPanel implements ActionListener {
 		mainMenu.addActionListener(this);
 
 		this.add(load);
+		this.add(reset);
 		this.add(mainMenu);
 
 		setScoreLoader(new Load());
@@ -110,6 +123,15 @@ public class Highscores extends JPanel implements ActionListener {
 		} else if (e.getSource() == load) {
 			try {
 				this.getScores().setText(this.getScoreLoader().loadScores());
+			} catch (IOException e1) {
+			}
+
+		} else if (e.getSource() == reset) {
+		
+		if (JOptionPane.showConfirmDialog(this, "Are you sure you want to reset the Highscores?", "Reset Scores",
+				JOptionPane.OK_CANCEL_OPTION) == 0)
+			try {
+				Save.reset();
 			} catch (IOException e1) {
 			}
 		}

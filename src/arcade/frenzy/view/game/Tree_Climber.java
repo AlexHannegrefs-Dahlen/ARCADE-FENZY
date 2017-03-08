@@ -39,7 +39,7 @@ public class Tree_Climber extends Base_Game {
 		this.getPlayer().setWidth(game.getMainPanel().getWidth() / 11);
 		this.getPlayer().setHeight(game.getMainPanel().getWidth() / 11);
 		this.getPlayer().setxVel(game.getMainPanel().getWidth() / 11);
-		this.getPlayer().setyVel(game.getMainPanel().getWidth() / 550);
+		this.getPlayer().setyVel(game.getMainPanel().getWidth() / 75);
 
 		tree = new Object_Creator(this.getGame().getMainPanel().getHeight(),
 				this.getGame().getMainPanel().getWidth() / 11 * 3 + 1020,
