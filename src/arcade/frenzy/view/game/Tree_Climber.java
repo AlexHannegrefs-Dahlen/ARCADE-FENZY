@@ -108,7 +108,7 @@ public class Tree_Climber extends Base_Game {
 			if (!super.detectCollisionPlayerInsideTopWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
+				this.getPlayer().moveUp();
 			} else {
 				playerWin();
 			}

@@ -1,6 +1,5 @@
 package arcade.frenzy.view.game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -24,6 +23,8 @@ public class Frogger extends Base_Game {
 	private Image frogger;
 
 	private Timer carTimer = new Timer(50 / 3, this);
+
+	private Object_Creator[] objects;
 
 	/**
 	 * 
@@ -61,12 +62,14 @@ public class Frogger extends Base_Game {
 		topCar = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10, 200, 0,
 				this.finish.getHeight() * 3 / 2, 75, 0, "Frogger/topCar.gif");
 		midCar = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10, 200,
-				this.getGame().getMainPanel().getWidth() - 200, this.finish.getHeight() * 9 / 2, -40, 0,
+				this.getGame().getMainPanel().getWidth() - 200, this.finish.getHeight() * 9 / 2, 40, 0,
 				"Frogger/midCar.png");
 		botCar = new Object_Creator(this.getGame().getMainPanel().getHeight() / 10, 200, 0,
 				this.finish.getHeight() * 15 / 2, 25, 0, "Frogger/botCar.gif");
 
 		frogger = ImageIO.read(new File("Frogger/frogUp.png"));
+
+		objects = new Object_Creator[] { start, firstRoad, firstGrass, secondRoad, secondGrass, thirdRoad, finish };
 
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
@@ -80,20 +83,10 @@ public class Frogger extends Base_Game {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.drawImage(finish.getObjectImage(), finish.getxLocation(), finish.getyLocation(), finish.getWidth(),
-				finish.getHeight(), this);
-		g.drawImage(thirdRoad.getObjectImage(), thirdRoad.getxLocation(), thirdRoad.getyLocation(),
-				thirdRoad.getWidth(), thirdRoad.getHeight(), this);
-		g.drawImage(secondGrass.getObjectImage(), secondGrass.getxLocation(), secondGrass.getyLocation(),
-				secondGrass.getWidth(), secondGrass.getHeight(), this);
-		g.drawImage(secondRoad.getObjectImage(), secondRoad.getxLocation(), secondRoad.getyLocation(),
-				secondRoad.getWidth(), secondRoad.getHeight(), this);
-		g.drawImage(firstGrass.getObjectImage(), firstGrass.getxLocation(), firstGrass.getyLocation(),
-				firstGrass.getWidth(), firstGrass.getHeight(), this);
-		g.drawImage(firstRoad.getObjectImage(), firstRoad.getxLocation(), firstRoad.getyLocation(),
-				firstRoad.getWidth(), firstRoad.getHeight(), this);
-		g.drawImage(start.getObjectImage(), start.getxLocation(), start.getyLocation(), start.getWidth(),
-				start.getHeight(), this);
+		for (int i = 0; i < objects.length; i++) {
+			g.drawImage(objects[i].getObjectImage(), objects[i].getxLocation(), objects[i].getyLocation(),
+					objects[i].getWidth(), objects[i].getHeight(), this);
+		}
 
 		g.drawImage(topCar.getObjectImage(), topCar.getxLocation(), topCar.getyLocation(), topCar.getWidth(),
 				topCar.getHeight(), this);
@@ -102,7 +95,6 @@ public class Frogger extends Base_Game {
 		g.drawImage(botCar.getObjectImage(), botCar.getxLocation(), botCar.getyLocation(), botCar.getWidth(),
 				botCar.getHeight(), this);
 
-		g.setColor(Color.WHITE);
 		g.drawImage(frogger, this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), this.getPlayer().getWidth(),
 				this.getPlayer().getHeight(), this);
 
@@ -128,9 +120,9 @@ public class Frogger extends Base_Game {
 			if (!super.detectCollisionPlayerInsideTopWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
+				this.getPlayer().moveUp();
 			} else {
-				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
+				this.getPlayer().moveUp();
 				this.repaint();
 				this.getCarTimer().stop();
 				this.playerWon();
@@ -145,7 +137,7 @@ public class Frogger extends Base_Game {
 			if (!super.detectCollisionPlayerInsideBottomWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
+				this.getPlayer().moveDown();
 			}
 
 		}
@@ -158,7 +150,7 @@ public class Frogger extends Base_Game {
 			if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
+				this.getPlayer().moveLeft();
 			}
 		}
 
@@ -170,7 +162,7 @@ public class Frogger extends Base_Game {
 			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
+				this.getPlayer().moveRight();
 			}
 		}
 		this.repaint();
@@ -194,7 +186,7 @@ public class Frogger extends Base_Game {
 				} catch (IOException e1) {
 				}
 			}
-			if (this.topCar.getxLocation() < 20) {
+			if (this.topCar.getxLocation() < 0) {
 				this.topCar.setxVelocity(this.topCar.getxVelocity() * -1);
 				try {
 					topCar.setObjectImage(ImageIO.read(new File("Frogger/topCar.gif")));
@@ -208,7 +200,7 @@ public class Frogger extends Base_Game {
 				} catch (IOException e1) {
 				}
 			}
-			if (this.midCar.getxLocation() < 20) {
+			if (this.midCar.getxLocation() < 0) {
 				this.midCar.setxVelocity(this.midCar.getxVelocity() * -1);
 				try {
 					midCar.setObjectImage(ImageIO.read(new File("Frogger/midCarFlipped.png")));
@@ -222,7 +214,7 @@ public class Frogger extends Base_Game {
 				} catch (IOException e1) {
 				}
 			}
-			if (this.botCar.getxLocation() < 20) {
+			if (this.botCar.getxLocation() < 0) {
 				this.botCar.setxVelocity(this.botCar.getxVelocity() * -1);
 				try {
 					botCar.setObjectImage(ImageIO.read(new File("Frogger/botCar.gif")));
@@ -271,14 +263,7 @@ public class Frogger extends Base_Game {
 	}
 
 	private void playerWon() {
-		if (!this.getGame().isFrenzy()) {
-			JOptionPane.showMessageDialog(this, "You won!");
-			super.gameOver(this);
-		} else
-			try {
-				this.getGame().getCon().getFrenzy().gameOver(this);
-			} catch (InterruptedException | IOException e1) {
-			}
+		super.gameEndScreen("You Won!");
 	}
 
 	/**

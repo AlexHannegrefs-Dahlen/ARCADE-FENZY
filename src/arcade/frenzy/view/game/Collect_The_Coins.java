@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.model.player.Player;
@@ -28,6 +27,8 @@ public class Collect_The_Coins extends Base_Game {
 	private int coinCount = 3;
 
 	private Object_Creator center, topLeft, topRight, botLeft, botRight, top, left, right, bot, Coin1, Coin2, Coin3;
+
+	private Object_Creator[] objects;
 
 	/**
 	 * Constructor that sets the parameters builds the objects that are used
@@ -80,6 +81,8 @@ public class Collect_The_Coins extends Base_Game {
 		Coin3 = new Object_Creator(60, 60, game.getMainScreen().getWidth() / 2 + 275,
 				game.getMainScreen().getHeight() / 2 + 285, 0, 0, "Collect the coin/coin.gif", false);
 
+		objects = new Object_Creator[] { center, topLeft, topRight, botLeft, botRight, top, left, right, bot };
+
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 		this.addKeyListener(this);
@@ -99,26 +102,13 @@ public class Collect_The_Coins extends Base_Game {
 		}
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(8));
-		g.setColor(center.getColor());
-		g.drawRect(center.getxLocation(), center.getyLocation(), center.getWidth(), center.getHeight());
 
-		g.setColor(topLeft.getColor());
-		g.drawRect(topLeft.getxLocation(), topLeft.getyLocation(), topLeft.getWidth(), topLeft.getHeight());
-		g.setColor(topRight.getColor());
-		g.drawRect(topRight.getxLocation(), topRight.getyLocation(), topRight.getWidth(), topRight.getHeight());
-		g.setColor(botLeft.getColor());
-		g.drawRect(botLeft.getxLocation(), botLeft.getyLocation(), botLeft.getWidth(), botLeft.getHeight());
-		g.setColor(botRight.getColor());
-		g.drawRect(botRight.getxLocation(), botRight.getyLocation(), botRight.getWidth(), botRight.getHeight());
+		for (int i = 0; i < objects.length; i++) {
 
-		g.setColor(top.getColor());
-		g.drawRect(top.getxLocation(), top.getyLocation(), top.getWidth(), top.getHeight());
-		g.setColor(bot.getColor());
-		g.drawRect(bot.getxLocation(), bot.getyLocation(), bot.getWidth(), bot.getHeight());
-		g.setColor(left.getColor());
-		g.drawRect(left.getxLocation(), left.getyLocation(), left.getWidth(), left.getHeight());
-		g.setColor(right.getColor());
-		g.drawRect(right.getxLocation(), right.getyLocation(), right.getWidth(), right.getHeight());
+			g.setColor(objects[i].getColor());
+			g.drawRect(objects[i].getxLocation(), objects[i].getyLocation(), objects[i].getWidth(),
+					objects[i].getHeight());
+		}
 
 		if (!Coin1.isTaken()) {
 			g.drawImage(Coin1.getObjectImage(), Coin1.getxLocation(), Coin1.getyLocation(), Coin1.getWidth(),
@@ -140,6 +130,17 @@ public class Collect_The_Coins extends Base_Game {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * Sets the coin to taken so that it doesn't get printed
+	 * 
+	 * @param coinToTake
+	 *            - the coin the player hit
+	 */
+	private void takeCoin(Object_Creator coinToTake) {
+		coinToTake.setTaken(true);
+		coinCount -= 1;
+	}
+
+	/**
 	 * logic for keyPresses
 	 */
 	@Override
@@ -148,183 +149,86 @@ public class Collect_The_Coins extends Base_Game {
 			if (!super.detectCollisionPlayerInsideTopWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
-				if (super.detectCollisionPlayerOutsideBottomWall(center))
-					this.getPlayer().setyLoc(center.getyLocation() + center.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(topLeft))
-					this.getPlayer().setyLoc(topLeft.getyLocation() + topLeft.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(topRight))
-					this.getPlayer().setyLoc(topRight.getyLocation() + topRight.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(botLeft))
-					this.getPlayer().setyLoc(botLeft.getyLocation() + botLeft.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(botRight))
-					this.getPlayer().setyLoc(botRight.getyLocation() + botRight.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(top))
-					this.getPlayer().setyLoc(top.getyLocation() + top.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(right))
-					this.getPlayer().setyLoc(right.getyLocation() + right.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(left))
-					this.getPlayer().setyLoc(left.getyLocation() + left.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(bot))
-					this.getPlayer().setyLoc(bot.getyLocation() + bot.getHeight() + 5);
-				if (super.detectCollisionPlayerOutsideBottomWall(Coin1)) {
-					if (!Coin1.isTaken()) {
-						Coin1.setTaken(true);
-						coinCount -= 1;
-					}
+				this.getPlayer().moveUp();
+				for (int i = 0; i < objects.length; i++) {
+					if (super.detectCollisionPlayerOutsideBottomWall(objects[i]))
+						this.getPlayer().setyLoc(objects[i].getyLocation() + objects[i].getHeight() + 5);
 				}
-				if (super.detectCollisionPlayerOutsideBottomWall(Coin2)) {
-					if (!Coin2.isTaken()) {
-						Coin2.setTaken(true);
-						coinCount -= 1;
-					}
-				}
-				if (super.detectCollisionPlayerOutsideBottomWall(Coin3)) {
-					if (!Coin3.isTaken()) {
-						Coin3.setTaken(true);
-						coinCount -= 1;
-					}
-				}
+				if (super.detectCollisionPlayerOutsideBottomWall(Coin1))
+					if (!Coin1.isTaken())
+						takeCoin(Coin1);
+				if (super.detectCollisionPlayerOutsideBottomWall(Coin2))
+					if (!Coin2.isTaken())
+						takeCoin(Coin2);
+				if (super.detectCollisionPlayerOutsideBottomWall(Coin3))
+					if (!Coin3.isTaken())
+						takeCoin(Coin3);
 			}
 
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (!super.detectCollisionPlayerInsideBottomWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
-				if (super.detectCollisionPlayerOutsideTopWall(center))
-					this.getPlayer().setyLoc(center.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(topLeft))
-					this.getPlayer().setyLoc(topLeft.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(topRight))
-					this.getPlayer().setyLoc(topRight.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(botLeft))
-					this.getPlayer().setyLoc(botLeft.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(botRight))
-					this.getPlayer().setyLoc(botRight.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(top))
-					this.getPlayer().setyLoc(top.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(right))
-					this.getPlayer().setyLoc(right.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(left))
-					this.getPlayer().setyLoc(left.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(bot))
-					this.getPlayer().setyLoc(bot.getyLocation() - this.getPlayer().getHeight() - 5);
-				if (super.detectCollisionPlayerOutsideTopWall(Coin1)) {
-					if (!Coin1.isTaken()) {
-						Coin1.setTaken(true);
-						coinCount -= 1;
-					}
+				this.getPlayer().moveDown();
+				for (int i = 0; i < objects.length; i++) {
+					if (super.detectCollisionPlayerOutsideTopWall(objects[i]))
+						this.getPlayer().setyLoc(objects[i].getyLocation() - this.getPlayer().getHeight() - 5);
 				}
-				if (super.detectCollisionPlayerOutsideTopWall(Coin2)) {
-					if (!Coin2.isTaken()) {
-						Coin2.setTaken(true);
-						coinCount -= 1;
-					}
-				}
-				if (super.detectCollisionPlayerOutsideTopWall(Coin3)) {
-					if (!Coin3.isTaken()) {
-						Coin3.setTaken(true);
-						coinCount -= 1;
-					}
-				}
+				if (super.detectCollisionPlayerOutsideTopWall(Coin1))
+					if (!Coin1.isTaken())
+						takeCoin(Coin1);
+				if (super.detectCollisionPlayerOutsideTopWall(Coin2))
+					if (!Coin2.isTaken())
+						takeCoin(Coin2);
+				if (super.detectCollisionPlayerOutsideTopWall(Coin3))
+					if (!Coin3.isTaken())
+						takeCoin(Coin3);
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			if (!super.detectCollisionPlayerInsideLeftWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setxLoc(this.getPlayer().getxLoc() - this.getPlayer().getxVel());
-				if (super.detectCollisionPlayerOutsideRightWall(center))
-					this.getPlayer().setxLoc(center.getxLocation() + center.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(topLeft))
-					this.getPlayer().setxLoc(topLeft.getxLocation() + topLeft.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(botRight))
-					this.getPlayer().setxLoc(botRight.getxLocation() + botRight.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(topRight))
-					this.getPlayer().setxLoc(topRight.getxLocation() + topRight.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(botLeft))
-					this.getPlayer().setxLoc(botLeft.getxLocation() + botLeft.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(top))
-					this.getPlayer().setxLoc(top.getxLocation() + top.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(bot))
-					this.getPlayer().setxLoc(bot.getxLocation() + bot.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(left))
-					this.getPlayer().setxLoc(left.getxLocation() + left.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(right))
-					this.getPlayer().setxLoc(right.getxLocation() + right.getWidth() + 5);
-				if (super.detectCollisionPlayerOutsideRightWall(Coin1)) {
-					if (!Coin1.isTaken()) {
-						Coin1.setTaken(true);
-						coinCount -= 1;
-					}
+				this.getPlayer().moveLeft();
+				for (int i = 0; i < objects.length; i++) {
+					if (super.detectCollisionPlayerOutsideRightWall(objects[i]))
+						this.getPlayer().setxLoc(objects[i].getxLocation() + objects[i].getWidth() + 5);
 				}
-				if (super.detectCollisionPlayerOutsideRightWall(Coin2)) {
-					if (!Coin2.isTaken()) {
-						Coin2.setTaken(true);
-						coinCount -= 1;
-					}
-				}
-				if (super.detectCollisionPlayerOutsideRightWall(Coin3)) {
-					if (!Coin3.isTaken()) {
-						Coin3.setTaken(true);
-						coinCount -= 1;
-					}
-				}
+				if (super.detectCollisionPlayerOutsideRightWall(Coin1))
+					if (!Coin1.isTaken())
+						takeCoin(Coin1);
+				if (super.detectCollisionPlayerOutsideRightWall(Coin2))
+					if (!Coin2.isTaken())
+						takeCoin(Coin2);
+				if (super.detectCollisionPlayerOutsideRightWall(Coin3))
+					if (!Coin3.isTaken())
+						takeCoin(Coin3);
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (!super.detectCollisionPlayerInsideRightWall(this.getGame().getMainPanel().getX(),
 					this.getGame().getMainPanel().getY(), this.getGame().getMainPanel().getWidth(),
 					this.getGame().getMainPanel().getHeight())) {
-				this.getPlayer().setxLoc(this.getPlayer().getxLoc() + this.getPlayer().getxVel());
-				if (super.detectCollisionPlayerOutsideLeftWall(center))
-					this.getPlayer().setxLoc(center.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(topLeft))
-					this.getPlayer().setxLoc(topLeft.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(botRight))
-					this.getPlayer().setxLoc(botRight.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(topRight))
-					this.getPlayer().setxLoc(topRight.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(botLeft))
-					this.getPlayer().setxLoc(botLeft.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(top))
-					this.getPlayer().setxLoc(top.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(bot))
-					this.getPlayer().setxLoc(bot.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(left))
-					this.getPlayer().setxLoc(left.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(right))
-					this.getPlayer().setxLoc(right.getxLocation() - this.getPlayer().getWidth() - 5);
-				if (super.detectCollisionPlayerOutsideLeftWall(Coin1)) {
-					if (!Coin1.isTaken()) {
-						Coin1.setTaken(true);
-						coinCount -= 1;
-					}
+				this.getPlayer().moveRight();
+				for (int i = 0; i < objects.length; i++) {
+					if (super.detectCollisionPlayerOutsideLeftWall(objects[i]))
+						this.getPlayer().setxLoc(objects[i].getxLocation() - this.getPlayer().getWidth() - 5);
 				}
-				if (super.detectCollisionPlayerOutsideLeftWall(Coin2)) {
-					if (!Coin2.isTaken()) {
-						Coin2.setTaken(true);
-						coinCount -= 1;
-					}
-				}
-				if (super.detectCollisionPlayerOutsideLeftWall(Coin3)) {
-					if (!Coin3.isTaken()) {
-						Coin3.setTaken(true);
-						coinCount -= 1;
-					}
-				}
+				if (super.detectCollisionPlayerOutsideLeftWall(Coin1))
+					if (!Coin1.isTaken())
+						takeCoin(Coin1);
+				if (super.detectCollisionPlayerOutsideLeftWall(Coin2))
+					if (!Coin2.isTaken())
+						takeCoin(Coin2);
+				if (super.detectCollisionPlayerOutsideLeftWall(Coin3))
+					if (!Coin3.isTaken())
+						takeCoin(Coin3);
+
 			}
 		}
 		this.repaint();
 		if (this.checkForWin()) {
-			if (!this.getGame().isFrenzy()) {
-				JOptionPane.showMessageDialog(this, "You won!");
-				super.gameOver(this);
-			} else
-				try {
-					this.getGame().getCon().getFrenzy().gameOver(this);
-				} catch (InterruptedException | IOException e1) {
-				}
+			super.gameEndScreen("You won!");
 		}
+
 	}
 
 	@Override

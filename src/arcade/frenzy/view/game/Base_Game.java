@@ -4,7 +4,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import acade.frenzy.model.object_creation.Object_Creator;
@@ -49,6 +51,23 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	public Base_Game(Player player, Image image) {
 		super(image);
 		this.player = player;
+	}
+
+	/**
+	 * Brings up the JOptionPane or goes to next game
+	 * 
+	 * @param message
+	 *            the message on the JOptionPane
+	 */
+	public void gameEndScreen(String message) {
+		if (!this.getGame().isFrenzy()) {
+			JOptionPane.showMessageDialog(this, message);
+			this.gameOver(this);
+		} else
+			try {
+				this.getGame().getCon().getFrenzy().gameOver(this);
+			} catch (InterruptedException | IOException e1) {
+			}
 	}
 
 	/**

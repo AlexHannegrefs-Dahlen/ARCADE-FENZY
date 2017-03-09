@@ -104,7 +104,7 @@ public class Jump_The_Car extends Base_Game {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			this.gravityTimer.stop();
-			this.player.setyLoc(this.player.getyLoc() - this.player.getyVel());
+			this.player.moveUp();
 			if (super.detectCollisionPlayerOutsideBottomWall(celing))
 				this.player.setyLoc(celing.getyLocation() + celing.getHeight());
 		}
