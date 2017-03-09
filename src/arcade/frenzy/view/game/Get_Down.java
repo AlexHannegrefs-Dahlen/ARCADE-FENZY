@@ -25,7 +25,7 @@ public class Get_Down extends Base_Game {
 	private Object_Creator TopPlatFormLeft, TopPlatFormRight, MidPlatFormLeft, MidPlatFormRight, BotPlatFormLeft,
 			BotPlatFormRight, FinishLine;
 
-	private int width = 210, height = 105, xvel = 15, yvel = 20;
+	private final int width = 210, height = 105, xvel = 15, yvel = 20;
 
 	private final int TopRightPlatFormHight = 45, TopRightPlatFormWidth = 900, TopRightPlatFrom_Xloc = 0,
 			TopRightPlatForm_Yloc = 200;
