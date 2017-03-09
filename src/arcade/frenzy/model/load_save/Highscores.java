@@ -1,8 +1,10 @@
 package arcade.frenzy.model.load_save;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,6 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import arcade.frenzy.view.main.menu.Main_Menu;
 
@@ -21,6 +26,8 @@ public class Highscores extends JPanel implements ActionListener {
 	private JButton load, reset, mainMenu;
 
 	private JTextPane scores;
+	
+	private JPanel buttonPanel, blankLeft, blankRight;
 
 	private Load scoreLoader;
 
@@ -39,7 +46,14 @@ public class Highscores extends JPanel implements ActionListener {
 		this.setBackground(Color.WHITE);
 
 		Font font2 = new Font("sans-serif", Font.PLAIN, 60);
-
+		Font font3 = new Font("sans-serif", Font.PLAIN, 30);
+		
+		buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridLayout(2, 3, 0, 0));
+		
+		blankLeft = new JPanel();
+		blankRight = new JPanel();
+		
 		Dimension minSize = new Dimension(buttonWidth, 250);
 		Dimension prefSize = new Dimension(buttonWidth, 250);
 		Dimension maxSize = new Dimension(buttonWidth, 460);
@@ -54,6 +68,7 @@ public class Highscores extends JPanel implements ActionListener {
 		load.setPreferredSize(prefSize);
 		load.setMaximumSize(maxSize);
 		load.addActionListener(this);
+		buttonPanel.add(load);
 
 		reset = new JButton("Reset Scores");
 		reset.setIcon(new ImageIcon("MainScreen/redButton.png"));
@@ -65,6 +80,8 @@ public class Highscores extends JPanel implements ActionListener {
 		reset.setPreferredSize(prefSize);
 		reset.setMaximumSize(maxSize);
 		reset.addActionListener(this);
+		buttonPanel.add(reset);
+		
 
 		mainMenu = new JButton("Go to Main Menu");
 		mainMenu.setIcon(new ImageIcon("MainScreen/redButton.png"));
@@ -76,10 +93,7 @@ public class Highscores extends JPanel implements ActionListener {
 		mainMenu.setPreferredSize(prefSize);
 		mainMenu.setMaximumSize(maxSize);
 		mainMenu.addActionListener(this);
-
-		this.add(load);
-		this.add(reset);
-		this.add(mainMenu);
+		buttonPanel.add(mainMenu);
 
 		setScoreLoader(new Load());
 
@@ -88,7 +102,20 @@ public class Highscores extends JPanel implements ActionListener {
 			scores.setText(scoreLoader.loadScores());
 		} catch (IOException e) {
 		}
-		this.add(scores);
+		scores.setEditable(false);
+		StyledDocument doc = scores.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		scores.setFont(font3);
+		
+		blankLeft.setBackground(Color.WHITE);
+		buttonPanel.add(blankLeft);
+		buttonPanel.add(scores);
+		blankRight.setBackground(Color.WHITE);
+		buttonPanel.add(blankRight);
+		
+		this.add(buttonPanel, BorderLayout.NORTH);
 		game.getMainScreen().add(this);
 		game.getMainScreen().setVisible(true);
 	}
