@@ -22,14 +22,14 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Base Contruter
+	 * Base Constructor
 	 */
 	public Base_Game() {
 
 	}
 
 	/**
-	 * Background Image Construter
+	 * Background Image Constructor
 	 * 
 	 * @param image
 	 *            background image
@@ -39,7 +39,7 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	}
 
 	/**
-	 * Background Image Construter + Player Object
+	 * Background Image Constructor + Player Object
 	 * 
 	 * @param player
 	 *            the player
@@ -60,7 +60,8 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	}
 
 	/**
-	 * detects if the player has hit the inside left wall return true if hit
+	 * returns true if the player has collided with the left wall of an object
+	 * that the player is inside of else returns false
 	 */
 	@Override
 	public boolean detectCollisionPlayerInsideLeftWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
@@ -72,7 +73,8 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	}
 
 	/**
-	 * dercts if th player has it the inside right wall returns true if hit
+	 * returns true if the player has collided with the right wall of an object
+	 * that the player is inside of else returns false
 	 */
 	@Override
 	public boolean detectCollisionPlayerInsideRightWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
@@ -83,7 +85,8 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	}
 
 	/**
-	 * detects if the player hits the inside top wall returns true if hit
+	 * returns true if the player has collided with the top wall of an object
+	 * that the player is inside of else returns false
 	 */
 	@Override
 	public boolean detectCollisionPlayerInsideTopWall(int OxLoc, int OyLoc, int Owidth, int Oheight) {
@@ -95,7 +98,8 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	}
 
 	/**
-	 * detects player hits inside bottem wall returns true if hit
+	 * returns true if the player has collided with the Bottom wall of an object
+	 * that the player is inside of else returns false
 	 */
 
 	@Override
@@ -107,14 +111,15 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	}
 
 	/**
-	 * detects Player outside bottem wall returns true if hit
+	 * returns true if the player has collided with the bottom wall of an object
+	 * that the player is outside of else returns false
 	 */
 	@Override
 	public boolean detectCollisionPlayerOutsideBottomWall(Object_Creator object) {
-		if (object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
-				&& object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc())
-			if (this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight()
-					&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location())
+		if (object.getxLocation() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
+				&& object.getxLocation() + object.getWidth() >= this.getPlayer().getxLoc())
+			if (this.getPlayer().getyLoc() <= object.getyLocation() + object.getHeight()
+					&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getyLocation())
 				return true;
 			else
 				return false;
@@ -123,48 +128,51 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	}
 
 	/**
-	 * detects if player hits outside top wall returns true if hit
+	 * returns true if the player has collided with the top wall of an object
+	 * that the player is outside of else returns false
 	 */
 	@Override
 	public boolean detectCollisionPlayerOutsideTopWall(Object_Creator object) {
-		if (this.getPlayer().getyLoc() > object.getY_Location())
+		if (this.getPlayer().getyLoc() > object.getyLocation())
 			return false;
-		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getyLocation()
 				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() + this.getPlayer().getyVel() > object
-						.getY_Location()
-				&& object.getX_Location() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
-				&& object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc())
+						.getyLocation()
+				&& object.getxLocation() <= this.getPlayer().getxLoc() + this.getPlayer().getWidth()
+				&& object.getxLocation() + object.getWidth() >= this.getPlayer().getxLoc())
 			return true;
 		else
 			return false;
 	}
 
 	/**
-	 * detects if player hits outside right wall returns true if hot
+	 * returns true if the player has collided with the right wall of an object
+	 * that the player is outside of else returns false
 	 */
 	@Override
 	public boolean detectCollisionPlayerOutsideRightWall(Object_Creator object) {
-		if (this.getPlayer().getxLoc() < object.getX_Location())
+		if (this.getPlayer().getxLoc() < object.getxLocation())
 			return false;
-		if (object.getX_Location() + object.getWidth() >= this.getPlayer().getxLoc()
-				&& this.getPlayer().getxLoc() - this.getPlayer().getxVel() < object.getX_Location() + object.getWidth()
-				&& this.getPlayer().getxLoc() <= object.getX_Location() + object.getWidth()
-				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
-				&& this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight())
+		if (object.getxLocation() + object.getWidth() >= this.getPlayer().getxLoc()
+				&& this.getPlayer().getxLoc() - this.getPlayer().getxVel() < object.getxLocation() + object.getWidth()
+				&& this.getPlayer().getxLoc() <= object.getxLocation() + object.getWidth()
+				&& this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getyLocation()
+				&& this.getPlayer().getyLoc() <= object.getyLocation() + object.getHeight())
 			return true;
 		else
 			return false;
 	}
 
 	/**
-	 * detects if player hits outside left wall returns true if hit
+	 * returns true if the player has collided with the left wall of an object
+	 * that the player is outside of else returns false
 	 */
 	@Override
 	public boolean detectCollisionPlayerOutsideLeftWall(Object_Creator object) {
-		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getY_Location()
-				&& this.getPlayer().getyLoc() <= object.getY_Location() + object.getHeight())
-			if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= object.getX_Location()
-					&& this.getPlayer().getxLoc() + this.getPlayer().getWidth() <= object.getX_Location()
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= object.getyLocation()
+				&& this.getPlayer().getyLoc() <= object.getyLocation() + object.getHeight())
+			if (this.getPlayer().getxLoc() + this.getPlayer().getWidth() >= object.getxLocation()
+					&& this.getPlayer().getxLoc() + this.getPlayer().getWidth() <= object.getxLocation()
 							+ object.getWidth())
 				return true;
 			else
@@ -185,7 +193,7 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	/**
 	 * 
 	 * @param game
-	 *            refrence to the main menu
+	 *            Reference to the main menu
 	 */
 	public void setGame(Main_Menu game) {
 		this.game = game;
@@ -222,7 +230,7 @@ public abstract class Base_Game extends BackgroundPanel implements Game_Interfac
 	}
 
 	/**
-	 * changes Panel back to the main Panel
+	 * changes Panel back to the main Panel called when not in frenzy mode
 	 * 
 	 * @param gamePlayed
 	 *            active game

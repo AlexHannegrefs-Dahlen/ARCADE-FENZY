@@ -16,7 +16,7 @@ public class Save {
 	 * Saves the High score to a preset text file
 	 * 
 	 * @param highscore
-	 *            the score of the player
+	 *            the players name and the score of the player
 	 * @throws IOException
 	 */
 	public static void save(String highscore) throws IOException {
@@ -31,6 +31,11 @@ public class Save {
 		in.close();
 	}
 
+	/**
+	 * deletes the scores on the file
+	 * 
+	 * @throws FileNotFoundException
+	 */
 	public static void reset() throws FileNotFoundException {
 		FileOutputStream fileStream = new FileOutputStream(new File("scores.txt"));
 		PrintStream ps = new PrintStream(fileStream);

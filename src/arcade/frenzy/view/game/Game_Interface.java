@@ -2,6 +2,10 @@ package arcade.frenzy.view.game;
 
 import acade.frenzy.model.object_creation.Object_Creator;
 
+/**
+ * 
+ * @author Alex Collision detections that are in every game
+ */
 public interface Game_Interface {
 
 	boolean detectCollisionPlayerInsideLeftWall(int OxLoc, int OyLoc, int Owidth, int Oheight);

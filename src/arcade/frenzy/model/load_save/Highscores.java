@@ -27,12 +27,12 @@ public class Highscores extends JPanel implements ActionListener {
 	private int buttonWidth = 500;
 
 	/**
-	 * changes panel to that of te high score screen sets buttens to load the
+	 * changes panel to that of the high score screen sets buttons to load the
 	 * high scores || go back to the main menu sets the high score to the text
 	 * Pane
 	 * 
 	 * @param game
-	 *            refrence to the main menu
+	 *            Reference to the main menu
 	 */
 	public Highscores(Main_Menu game) {
 		this.setGame(game);
@@ -54,7 +54,7 @@ public class Highscores extends JPanel implements ActionListener {
 		load.setPreferredSize(prefSize);
 		load.setMaximumSize(maxSize);
 		load.addActionListener(this);
-		
+
 		reset = new JButton("Reset Scores");
 		reset.setIcon(new ImageIcon("MainScreen/redButton.png"));
 		reset.setHorizontalTextPosition(JButton.CENTER);
@@ -108,11 +108,11 @@ public class Highscores extends JPanel implements ActionListener {
 		this.game = game;
 	}
 
-	/**
-	 * changes the Pane if main menu is pressed to that if the main menus Pane
-	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Used to control the panel based on what button was pressed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == mainMenu) {
@@ -127,13 +127,13 @@ public class Highscores extends JPanel implements ActionListener {
 			}
 
 		} else if (e.getSource() == reset) {
-		
-		if (JOptionPane.showConfirmDialog(this, "Are you sure you want to reset the Highscores?", "Reset Scores",
-				JOptionPane.OK_CANCEL_OPTION) == 0)
-			try {
-				Save.reset();
-			} catch (IOException e1) {
-			}
+
+			if (JOptionPane.showConfirmDialog(this, "Are you sure you want to reset the Highscores?", "Reset Scores",
+					JOptionPane.OK_CANCEL_OPTION) == 0)
+				try {
+					Save.reset();
+				} catch (IOException e1) {
+				}
 		}
 
 	}

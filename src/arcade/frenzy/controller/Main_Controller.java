@@ -15,6 +15,12 @@ import arcade.frenzy.view.game.Jump_The_Car;
 import arcade.frenzy.view.game.Tree_Climber;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
+/**
+ * 
+ * @author Alex
+ *
+ *         Controller for the app
+ */
 public class Main_Controller {
 	private String playersName;
 
@@ -37,7 +43,7 @@ public class Main_Controller {
 	private Highscores highscore;
 
 	/**
-	 * Starts the programe
+	 * Starts the program
 	 */
 
 	public void start() {
@@ -47,10 +53,10 @@ public class Main_Controller {
 	}
 
 	/**
-	 * swiches the games based of the butten clicked
+	 * Switches the games based of the button clicked
 	 * 
 	 * @param buttonClicked
-	 *            The Names Of The Games
+	 *            what game was clicked on
 	 * @throws InterruptedException
 	 * @throws IOException
 	 */
@@ -248,8 +254,7 @@ public class Main_Controller {
 	}
 
 	/**
-	 * Checks to see if its the last game in FranzyMode then resets to the main
-	 * menu
+	 * resets frenzy mode to the main menu
 	 */
 	public void frenzyOver() {
 		this.getGame().getMainPanel().setVisible(true);

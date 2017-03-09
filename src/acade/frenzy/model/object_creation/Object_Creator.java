@@ -7,21 +7,24 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 
+ * @author Alex
+ * 
+ *         Object creator class for the objects in the games
+ *
+ */
 public class Object_Creator {
-	private int Height;
-	private int Width;
-	private int X_Location;
-	private int Y_Location;
-	private int X_Velocity;
-	private int Y_Velocity;
-	private String Img_URL;
-	private BufferedImage picture;
+	private int height;
+	private int width;
+	private int xLocation;
+	private int yLocation;
+	private int xVelocity;
+	private int yVelocity;
+	private String imageFilePath;
+	private BufferedImage objectImage;
 	private Color color;
 	private boolean taken;
-
-	public Object_Creator() {
-
-	}
 
 	/**
 	 * 
@@ -42,39 +45,47 @@ public class Object_Creator {
 	 * @param taken
 	 *            is the object visible
 	 */
-	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
+	public Object_Creator(int height, int width, int xLocation, int yLocation, int xVelocity, int yVelocity,
 			Color color, boolean taken) {
-		this.setHight(height);
+		this.setHeight(height);
 		this.setWidth(width);
-		this.setX_Location(x_location);
-		this.setY_Location(y_location);
-		this.setX_Velocity(x_velocity);
-		this.setY_Velocity(y_velocity);
+		this.setxLocation(xLocation);
+		this.setyLocation(yLocation);
+		this.setxVelocity(xVelocity);
+		this.setyVelocity(yVelocity);
 		this.setColor(color);
 		this.setTaken(taken);
 	}
 
 	/**
 	 * 
-	 * @param height of the object 
-	 * @param width of the object 
-	 * @param x_location of the object 
-	 * @param y_location of the object 
-	 * @param x_velocity of the object 
-	 * @param y_velocity of the object 
-	 * @param img_url of the object 
-	 * @param taken is the object visible 
+	 * @param height
+	 *            of the object
+	 * @param width
+	 *            of the object
+	 * @param x_location
+	 *            of the object
+	 * @param y_location
+	 *            of the object
+	 * @param x_velocity
+	 *            of the object
+	 * @param y_velocity
+	 *            of the object
+	 * @param img_url
+	 *            of the object
+	 * @param taken
+	 *            is the object visible
 	 * @throws IOException
 	 */
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			String img_url, boolean taken) throws IOException {
-		this.setHight(height);
+		this.setHeight(height);
 		this.setWidth(width);
-		this.setX_Location(x_location);
-		this.setY_Location(y_location);
-		this.setX_Velocity(x_velocity);
-		this.setY_Velocity(y_velocity);
-		this.setPicture(ImageIO.read(new File(img_url)));
+		this.setxLocation(x_location);
+		this.setyLocation(y_location);
+		this.setxVelocity(x_velocity);
+		this.setyVelocity(y_velocity);
+		this.setObjectImage(ImageIO.read(new File(img_url)));
 		this.setTaken(taken);
 	}
 
@@ -92,26 +103,23 @@ public class Object_Creator {
 	 * @param y_velocity
 	 *            of the object
 	 * @param img_url
-<<<<<<< HEAD
-	 *            String of the location of the file 
+	 * 
 	 * @throws IOException
-	 *            
+	 * 
 	 * @throws IOException
-	 *             
-=======
-	 *            String of the location of the file
->>>>>>> 0bcb564e5b62be67f39eddfb5cac0b993352c757
+	 * 
+	 * 
 	 */
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			String img_url) throws IOException {
-		this.setHight(height);
+		this.setHeight(height);
 		this.setWidth(width);
-		this.setX_Location(x_location);
-		this.setY_Location(y_location);
-		this.setX_Velocity(x_velocity);
-		this.setY_Velocity(y_velocity);
-		this.setPicture(ImageIO.read(new File(img_url)));
-		this.setImg_URL(img_url);
+		this.setxLocation(x_location);
+		this.setyLocation(y_location);
+		this.setxVelocity(x_velocity);
+		this.setyVelocity(y_velocity);
+		this.setObjectImage(ImageIO.read(new File(img_url)));
+		this.setImageFilePath(img_url);
 
 	}
 
@@ -135,14 +143,134 @@ public class Object_Creator {
 
 	public Object_Creator(int height, int width, int x_location, int y_location, int x_velocity, int y_velocity,
 			Color color) {
-		this.setHight(height);
+		this.setHeight(height);
 		this.setWidth(width);
-		this.setX_Location(x_location);
-		this.setY_Location(y_location);
-		this.setX_Velocity(x_velocity);
-		this.setY_Velocity(y_velocity);
+		this.setxLocation(x_location);
+		this.setyLocation(y_location);
+		this.setxVelocity(x_velocity);
+		this.setyVelocity(y_velocity);
 		this.setColor(color);
 
+	}
+
+	/**
+	 * @return the height
+	 */
+	public int getHeight() {
+		return height;
+	}
+
+	/**
+	 * @param height
+	 *            the height to set
+	 */
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	/**
+	 * @return the width
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * @param width
+	 *            the width to set
+	 */
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	/**
+	 * @return the xLocation
+	 */
+	public int getxLocation() {
+		return xLocation;
+	}
+
+	/**
+	 * @param xLocation
+	 *            the xLocation to set
+	 */
+	public void setxLocation(int xLocation) {
+		this.xLocation = xLocation;
+	}
+
+	/**
+	 * @return the yLocation
+	 */
+	public int getyLocation() {
+		return yLocation;
+	}
+
+	/**
+	 * @param yLocation
+	 *            the yLocation to set
+	 */
+	public void setyLocation(int yLocation) {
+		this.yLocation = yLocation;
+	}
+
+	/**
+	 * @return the xVelocity
+	 */
+	public int getxVelocity() {
+		return xVelocity;
+	}
+
+	/**
+	 * @param xVelocity
+	 *            the xVelocity to set
+	 */
+	public void setxVelocity(int xVelocity) {
+		this.xVelocity = xVelocity;
+	}
+
+	/**
+	 * @return the yVelocity
+	 */
+	public int getyVelocity() {
+		return yVelocity;
+	}
+
+	/**
+	 * @param yVelocity
+	 *            the yVelocity to set
+	 */
+	public void setyVelocity(int yVelocity) {
+		this.yVelocity = yVelocity;
+	}
+
+	/**
+	 * @return the imageFilePath
+	 */
+	public String getImageFilePath() {
+		return imageFilePath;
+	}
+
+	/**
+	 * @param imageFilePath
+	 *            the imageFilePath to set
+	 */
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
+	}
+
+	/**
+	 * @return the objectImage
+	 */
+	public BufferedImage getObjectImage() {
+		return objectImage;
+	}
+
+	/**
+	 * @param objectImage
+	 *            the objectImage to set
+	 */
+	public void setObjectImage(BufferedImage objectImage) {
+		this.objectImage = objectImage;
 	}
 
 	/**
@@ -161,129 +289,6 @@ public class Object_Creator {
 	}
 
 	/**
-	 * @return the height
-	 */
-	public int getHeight() {
-		return Height;
-	}
-
-	/**
-	 * @param height
-	 *            the height to set
-	 */
-	public void setHight(int height) {
-		if (height < 0) {
-			return;
-		}
-		this.Height = height;
-	}
-
-	/**
-	 * @return the width
-	 */
-	public int getWidth() {
-		return Width;
-	}
-
-	/**
-	 * @param width
-	 *            the width to set
-	 */
-	public void setWidth(int width) {
-		if (width < 0) {
-			return;
-		}
-		this.Width = width;
-	}
-
-	/**
-	 * @return the x_Loaction
-	 */
-	public int getX_Location() {
-		return X_Location;
-	}
-
-	/**
-	 * @param x_Location
-	 *            the x_Location to set
-	 */
-	public void setX_Location(int x_Location) {
-		if (x_Location < 0) {
-			return;
-		}
-		this.X_Location = x_Location;
-	}
-
-	/**
-	 * @return the y_Location
-	 */
-	public int getY_Location() {
-		return Y_Location;
-	}
-
-	/**
-	 * @param y_Location
-	 *            the y_Location to set
-	 */
-	public void setY_Location(int y_Location) {
-		if (y_Location < 0) {
-			return;
-		}
-		this.Y_Location = y_Location;
-	}
-
-	/**
-	 * @return the x_Velocity
-	 */
-	public int getX_Velocity() {
-		return X_Velocity;
-	}
-
-	/**
-	 * @param x_Velocity
-	 *            the x_Velocity to set
-	 */
-	public void setX_Velocity(int x_Velocity) {
-		this.X_Velocity = x_Velocity;
-	}
-
-	/**
-	 * @return the y_Velocity
-	 */
-	public int getY_Velocity() {
-		return Y_Velocity;
-	}
-
-	/**
-	 * @param y_Velocity
-	 *            the y_Velocity to set
-	 */
-	public void setY_Velocity(int y_Velocity) {
-		this.Y_Velocity = y_Velocity;
-	}
-
-	/**
-	 * @return the img_URL
-	 */
-	public String getImg_URL() {
-		return Img_URL;
-	}
-
-	/**
-	 * @param img_URL
-	 *            the img_URL to set
-	 */
-	public void setImg_URL(String img_URL) {
-		if (img_URL == null) {
-			return;
-		}
-		if (!(img_URL.contains(".jpg") || img_URL.contains(".png"))) {
-			return;
-		}
-		this.Img_URL = img_URL;
-	}
-
-	/**
 	 * @return the taken
 	 */
 	public boolean isTaken() {
@@ -296,21 +301,6 @@ public class Object_Creator {
 	 */
 	public void setTaken(boolean taken) {
 		this.taken = taken;
-	}
-
-	/**
-	 * @return the picture
-	 */
-	public BufferedImage getPicture() {
-		return picture;
-	}
-
-	/**
-	 * @param picture
-	 *            the picture to set
-	 */
-	public void setPicture(BufferedImage picture) {
-		this.picture = picture;
 	}
 
 }

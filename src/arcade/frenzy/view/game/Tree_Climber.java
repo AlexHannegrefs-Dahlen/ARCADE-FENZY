@@ -15,6 +15,10 @@ import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.view.main.menu.Main_Menu;
 import arcade.frenzy.model.player.Player;
 
+/**
+ * 
+ * @author Alex Tree Climber game
+ */
 public class Tree_Climber extends Base_Game {
 
 	private Object_Creator tree, branch, flippedBranch, hole;
@@ -27,7 +31,6 @@ public class Tree_Climber extends Base_Game {
 	 *            - The Main_Menu instance
 	 * @param player
 	 *            - The Player instance
-	 * @param gui
 	 * @throws IOException
 	 */
 	public Tree_Climber(Main_Menu game, Player player, Image image) throws IOException {
@@ -66,19 +69,22 @@ public class Tree_Climber extends Base_Game {
 
 	}
 
+	/**
+	 * draws out the game objects and the player
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		g.drawImage(tree.getPicture(), tree.getX_Location(), tree.getY_Location(), tree.getWidth(), tree.getHeight(),
+		g.drawImage(tree.getObjectImage(), tree.getxLocation(), tree.getyLocation(), tree.getWidth(), tree.getHeight(),
 				this);
 
-		g.drawImage(branch.getPicture(), branch.getX_Location(), branch.getY_Location(), branch.getWidth(),
+		g.drawImage(branch.getObjectImage(), branch.getxLocation(), branch.getyLocation(), branch.getWidth(),
 				branch.getHeight(), this);
 
-		g.drawImage(flippedBranch.getPicture(), flippedBranch.getX_Location(), flippedBranch.getY_Location(),
+		g.drawImage(flippedBranch.getObjectImage(), flippedBranch.getxLocation(), flippedBranch.getyLocation(),
 				flippedBranch.getWidth(), flippedBranch.getHeight(), this);
 
-		g.drawImage(hole.getPicture(), hole.getX_Location(), hole.getY_Location(), hole.getWidth(), hole.getHeight(),
+		g.drawImage(hole.getObjectImage(), hole.getxLocation(), hole.getyLocation(), hole.getWidth(), hole.getHeight(),
 				this);
 
 		g.drawImage(squirrel, this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), this.getPlayer().getWidth(),
@@ -86,9 +92,6 @@ public class Tree_Climber extends Base_Game {
 
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -96,6 +99,9 @@ public class Tree_Climber extends Base_Game {
 
 	}
 
+	/**
+	 * Player movement
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -104,20 +110,19 @@ public class Tree_Climber extends Base_Game {
 					this.getGame().getMainPanel().getHeight())) {
 				this.getPlayer().setyLoc(this.getPlayer().getyLoc() - this.getPlayer().getyVel());
 			} else {
-				 playerWin();
+				playerWin();
 			}
-		} 
+		}
 		this.repaint();
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -130,6 +135,81 @@ public class Tree_Climber extends Base_Game {
 				this.getGame().getCon().getFrenzy().gameOver(this);
 			} catch (InterruptedException | IOException e1) {
 			}
+	}
+
+	/**
+	 * @return the tree
+	 */
+	public Object_Creator getTree() {
+		return tree;
+	}
+
+	/**
+	 * @param tree
+	 *            the tree to set
+	 */
+	public void setTree(Object_Creator tree) {
+		this.tree = tree;
+	}
+
+	/**
+	 * @return the branch
+	 */
+	public Object_Creator getBranch() {
+		return branch;
+	}
+
+	/**
+	 * @param branch
+	 *            the branch to set
+	 */
+	public void setBranch(Object_Creator branch) {
+		this.branch = branch;
+	}
+
+	/**
+	 * @return the flippedBranch
+	 */
+	public Object_Creator getFlippedBranch() {
+		return flippedBranch;
+	}
+
+	/**
+	 * @param flippedBranch
+	 *            the flippedBranch to set
+	 */
+	public void setFlippedBranch(Object_Creator flippedBranch) {
+		this.flippedBranch = flippedBranch;
+	}
+
+	/**
+	 * @return the hole
+	 */
+	public Object_Creator getHole() {
+		return hole;
+	}
+
+	/**
+	 * @param hole
+	 *            the hole to set
+	 */
+	public void setHole(Object_Creator hole) {
+		this.hole = hole;
+	}
+
+	/**
+	 * @return the squirrel
+	 */
+	public Image getSquirrel() {
+		return squirrel;
+	}
+
+	/**
+	 * @param squirrel
+	 *            the squirrel to set
+	 */
+	public void setSquirrel(Image squirrel) {
+		this.squirrel = squirrel;
 	}
 
 }

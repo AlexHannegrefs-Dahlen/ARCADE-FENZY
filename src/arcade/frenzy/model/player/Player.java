@@ -10,7 +10,7 @@ public class Player {
 	String name;
 
 	/**
-	 * Basic constructor
+	 * Basic Constructor
 	 */
 	public Player() {
 
@@ -46,7 +46,7 @@ public class Player {
 
 	/**
 	 * 
-	 * @return the players name 
+	 * @return the players name
 	 */
 	public String getName() {
 		return this.name;

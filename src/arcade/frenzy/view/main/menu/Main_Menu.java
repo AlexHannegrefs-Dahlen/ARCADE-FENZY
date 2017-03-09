@@ -29,7 +29,7 @@ import arcade.frenzy.controller.Main_Controller;
  *
  */
 public class Main_Menu implements ActionListener {
-	private Main_Controller con;
+	private Main_Controller controller;
 
 	private JFrame mainScreen;
 
@@ -54,7 +54,7 @@ public class Main_Menu implements ActionListener {
 	 *            - the main controller of the program
 	 */
 	public void init(Main_Controller controller) {
-		this.con = controller;
+		this.controller = controller;
 		Font font = new Font("sans-serif", Font.PLAIN, 20);
 		Font font2 = new Font("sans-serif", Font.PLAIN, 60);
 		UIManager.put("Menu.font", font);
@@ -201,77 +201,75 @@ public class Main_Menu implements ActionListener {
 		mainScreen.setVisible(true);
 	}
 
+	/**
+	 * tells the controller when a button on the main screen was clicked
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == collectTheCoins)
 			try {
-				this.con.handleButtonClicked(GameNames.Collect_The_Coins);
+				this.controller.handleButtonClicked(GameNames.Collect_The_Coins);
 			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == frogger)
 			try {
-				this.con.handleButtonClicked(GameNames.Frogger);
+				this.controller.handleButtonClicked(GameNames.Frogger);
 			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == getDown)
 			try {
-				this.con.handleButtonClicked(GameNames.Get_Down);
+				this.controller.handleButtonClicked(GameNames.Get_Down);
 			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == jumpTheCar)
 			try {
-				this.con.handleButtonClicked(GameNames.Jump_The_Car);
+				this.controller.handleButtonClicked(GameNames.Jump_The_Car);
 			} catch (InterruptedException | IOException e2) {
 				e2.printStackTrace();
 			}
 		else if (e.getSource() == treeClimber)
 			try {
-				this.con.handleButtonClicked(GameNames.Tree_Climber);
+				this.controller.handleButtonClicked(GameNames.Tree_Climber);
 			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		else if (e.getSource() == frenzyMode)
 			try {
 				this.setFrenzy(true);
-				this.con.handleButtonClicked(GameNames.Frenzy_Mode);
+				this.controller.handleButtonClicked(GameNames.Frenzy_Mode);
 			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 
 		else if (e.getSource() == viewScores) {
 			try {
-				this.con.handleButtonClicked(GameNames.Highscores);
+				this.controller.handleButtonClicked(GameNames.Highscores);
 			} catch (InterruptedException | IOException e1) {
 				e1.printStackTrace();
 			}
 		}
 
 		else if (e.getSource() == getName) {
-			this.con.setPlayersName(JOptionPane.showInputDialog("Please enter your username"));
-
-			/*
-			 * this.con.setPlayersName(viewScores.getText());
-			 * viewScores.setText("");
-			 */
+			this.controller.setPlayersName(JOptionPane.showInputDialog("Please enter your username"));
 		}
 	}
 
 	/**
-	 * @return the con
+	 * @return the controller
 	 */
 	public Main_Controller getCon() {
-		return con;
+		return controller;
 	}
 
 	/**
 	 * @param con
-	 *            the con to set
+	 *            the controller to set
 	 */
 	public void setCon(Main_Controller con) {
-		this.con = con;
+		this.controller = con;
 	}
 
 	/**
@@ -437,6 +435,119 @@ public class Main_Menu implements ActionListener {
 	 */
 	public void setFrenzy(boolean frenzy) {
 		this.frenzy = frenzy;
+	}
+
+	/**
+	 * @return the controller
+	 */
+	public Main_Controller getController() {
+		return controller;
+	}
+
+	/**
+	 * @param controller
+	 *            the controller to set
+	 */
+	public void setController(Main_Controller controller) {
+		this.controller = controller;
+	}
+
+	/**
+	 * @return the centerPanel
+	 */
+	public BackgroundPanel getCenterPanel() {
+		return centerPanel;
+	}
+
+	/**
+	 * @param centerPanel
+	 *            the centerPanel to set
+	 */
+	public void setCenterPanel(BackgroundPanel centerPanel) {
+		this.centerPanel = centerPanel;
+	}
+
+	/**
+	 * @return the getName
+	 */
+	public JButton getGetName() {
+		return getName;
+	}
+
+	/**
+	 * @param getName
+	 *            the getName to set
+	 */
+	public void setGetName(JButton getName) {
+		this.getName = getName;
+	}
+
+	/**
+	 * @return the viewScores
+	 */
+	public JButton getViewScores() {
+		return viewScores;
+	}
+
+	/**
+	 * @param viewScores
+	 *            the viewScores to set
+	 */
+	public void setViewScores(JButton viewScores) {
+		this.viewScores = viewScores;
+	}
+
+	/**
+	 * @return the backgroundImg
+	 */
+	public Image getBackgroundImg() {
+		return backgroundImg;
+	}
+
+	/**
+	 * @param backgroundImg
+	 *            the backgroundImg to set
+	 */
+	public void setBackgroundImg(Image backgroundImg) {
+		this.backgroundImg = backgroundImg;
+	}
+
+	/**
+	 * @return the backgroundImgFile
+	 */
+	public File getBackgroundImgFile() {
+		return backgroundImgFile;
+	}
+
+	/**
+	 * @param backgroundImgFile
+	 *            the backgroundImgFile to set
+	 */
+	public void setBackgroundImgFile(File backgroundImgFile) {
+		this.backgroundImgFile = backgroundImgFile;
+	}
+
+	/**
+	 * @return the buttonWidth
+	 */
+	public int getButtonWidth() {
+		return buttonWidth;
+	}
+
+	/**
+	 * @param buttonWidth
+	 *            the buttonWidth to set
+	 */
+	public void setButtonWidth(int buttonWidth) {
+		this.buttonWidth = buttonWidth;
+	}
+
+	/**
+	 * @param mainPanel
+	 *            the mainPanel to set
+	 */
+	public void setMainPanel(JPanel mainPanel) {
+		this.mainPanel = mainPanel;
 	}
 
 }

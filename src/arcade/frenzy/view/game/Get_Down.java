@@ -16,6 +16,10 @@ import acade.frenzy.model.object_creation.Object_Creator;
 import arcade.frenzy.model.player.Player;
 import arcade.frenzy.view.main.menu.Main_Menu;
 
+/**
+ * 
+ * @author Alex Get Down game
+ */
 public class Get_Down extends Base_Game {
 	private Timer gravityTimer = new Timer(50, this);
 
@@ -40,6 +44,15 @@ public class Get_Down extends Base_Game {
 
 	private Image playerImage = ImageIO.read(new File("GetDown/blobeLeft.gif"));
 
+	/**
+	 * 
+	 * @param game
+	 *            - game instance
+	 * @param player
+	 *            - player instance
+	 * @param Image
+	 * @throws IOException
+	 */
 	public Get_Down(Main_Menu game, Player player, Image Image) throws IOException {
 		super(Image);
 		this.setGame(game);
@@ -79,48 +92,50 @@ public class Get_Down extends Base_Game {
 		gravityTimer.start();
 	}
 
-	public boolean Winner() {
-		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= this.FinishLine.getY_Location()) {
+	private boolean Winner() {
+		if (this.getPlayer().getyLoc() + this.getPlayer().getHeight() >= this.FinishLine.getyLocation()) {
 			gravityTimer.stop();
 			return true;
 		} else
 			return false;
 	}
 
-	/**
-	 * 
-	 */
-	// Move to Game Ui eventuly
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * paints game objects and the player
+	 */
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 
 		g.drawImage(playerImage, this.getPlayer().getxLoc(), this.getPlayer().getyLoc(), width, height, this);
 
-		g.drawImage(TopPlatFormLeft.getPicture(), TopPlatFormLeft.getX_Location(), TopPlatFormLeft.getY_Location(),
+		g.drawImage(TopPlatFormLeft.getObjectImage(), TopPlatFormLeft.getxLocation(), TopPlatFormLeft.getyLocation(),
 				TopPlatFormLeft.getWidth(), TopPlatFormLeft.getHeight(), this);
 
-		g.drawImage(TopPlatFormRight.getPicture(), TopPlatFormRight.getX_Location(), TopPlatFormRight.getY_Location(),
+		g.drawImage(TopPlatFormRight.getObjectImage(), TopPlatFormRight.getxLocation(), TopPlatFormRight.getyLocation(),
 				TopPlatFormRight.getWidth(), TopPlatFormRight.getHeight(), this);
 
-		g.drawImage(MidPlatFormLeft.getPicture(), MidPlatFormLeft.getX_Location(), MidPlatFormLeft.getY_Location(),
+		g.drawImage(MidPlatFormLeft.getObjectImage(), MidPlatFormLeft.getxLocation(), MidPlatFormLeft.getyLocation(),
 				MidPlatFormLeft.getWidth(), MidPlatFormLeft.getHeight(), this);
 
-		g.drawImage(MidPlatFormRight.getPicture(), MidPlatFormRight.getX_Location(), MidPlatFormRight.getY_Location(),
+		g.drawImage(MidPlatFormRight.getObjectImage(), MidPlatFormRight.getxLocation(), MidPlatFormRight.getyLocation(),
 				MidPlatFormRight.getWidth(), MidPlatFormRight.getHeight(), this);
 
-		g.drawImage(BotPlatFormRight.getPicture(), BotPlatFormRight.getX_Location(), BotPlatFormRight.getY_Location(),
+		g.drawImage(BotPlatFormRight.getObjectImage(), BotPlatFormRight.getxLocation(), BotPlatFormRight.getyLocation(),
 				BotPlatFormRight.getWidth(), BotPlatFormRight.getHeight(), this);
 
-		g.drawImage(BotPlatFormLeft.getPicture(), BotPlatFormLeft.getX_Location(), BotPlatFormLeft.getY_Location(),
+		g.drawImage(BotPlatFormLeft.getObjectImage(), BotPlatFormLeft.getxLocation(), BotPlatFormLeft.getyLocation(),
 				BotPlatFormLeft.getWidth(), BotPlatFormLeft.getHeight(), this);
 
-		g.drawImage(FinishLine.getPicture(), FinishLine.getX_Location(), FinishLine.getY_Location(),
+		g.drawImage(FinishLine.getObjectImage(), FinishLine.getxLocation(), FinishLine.getyLocation(),
 				FinishLine.getWidth(), FinishLine.getHeight(), this);
 	}
 
+	/**
+	 * player movement
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -150,7 +165,6 @@ public class Get_Down extends Base_Game {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -160,6 +174,9 @@ public class Get_Down extends Base_Game {
 
 	}
 
+	/**
+	 * called by the timer to act as gravity
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.getPlayer().setyLoc(this.getPlayer().getyLoc() + this.getPlayer().getyVel());
@@ -196,6 +213,369 @@ public class Get_Down extends Base_Game {
 				this.getGame().getCon().getFrenzy().gameOver(this);
 			} catch (InterruptedException | IOException e1) {
 			}
+	}
+
+	/**
+	 * @return the gravityTimer
+	 */
+	public Timer getGravityTimer() {
+		return gravityTimer;
+	}
+
+	/**
+	 * @param gravityTimer
+	 *            the gravityTimer to set
+	 */
+	public void setGravityTimer(Timer gravityTimer) {
+		this.gravityTimer = gravityTimer;
+	}
+
+	/**
+	 * @return the topPlatFormLeft
+	 */
+	public Object_Creator getTopPlatFormLeft() {
+		return TopPlatFormLeft;
+	}
+
+	/**
+	 * @param topPlatFormLeft
+	 *            the topPlatFormLeft to set
+	 */
+	public void setTopPlatFormLeft(Object_Creator topPlatFormLeft) {
+		TopPlatFormLeft = topPlatFormLeft;
+	}
+
+	/**
+	 * @return the topPlatFormRight
+	 */
+	public Object_Creator getTopPlatFormRight() {
+		return TopPlatFormRight;
+	}
+
+	/**
+	 * @param topPlatFormRight
+	 *            the topPlatFormRight to set
+	 */
+	public void setTopPlatFormRight(Object_Creator topPlatFormRight) {
+		TopPlatFormRight = topPlatFormRight;
+	}
+
+	/**
+	 * @return the midPlatFormLeft
+	 */
+	public Object_Creator getMidPlatFormLeft() {
+		return MidPlatFormLeft;
+	}
+
+	/**
+	 * @param midPlatFormLeft
+	 *            the midPlatFormLeft to set
+	 */
+	public void setMidPlatFormLeft(Object_Creator midPlatFormLeft) {
+		MidPlatFormLeft = midPlatFormLeft;
+	}
+
+	/**
+	 * @return the midPlatFormRight
+	 */
+	public Object_Creator getMidPlatFormRight() {
+		return MidPlatFormRight;
+	}
+
+	/**
+	 * @param midPlatFormRight
+	 *            the midPlatFormRight to set
+	 */
+	public void setMidPlatFormRight(Object_Creator midPlatFormRight) {
+		MidPlatFormRight = midPlatFormRight;
+	}
+
+	/**
+	 * @return the botPlatFormLeft
+	 */
+	public Object_Creator getBotPlatFormLeft() {
+		return BotPlatFormLeft;
+	}
+
+	/**
+	 * @param botPlatFormLeft
+	 *            the botPlatFormLeft to set
+	 */
+	public void setBotPlatFormLeft(Object_Creator botPlatFormLeft) {
+		BotPlatFormLeft = botPlatFormLeft;
+	}
+
+	/**
+	 * @return the botPlatFormRight
+	 */
+	public Object_Creator getBotPlatFormRight() {
+		return BotPlatFormRight;
+	}
+
+	/**
+	 * @param botPlatFormRight
+	 *            the botPlatFormRight to set
+	 */
+	public void setBotPlatFormRight(Object_Creator botPlatFormRight) {
+		BotPlatFormRight = botPlatFormRight;
+	}
+
+	/**
+	 * @return the finishLine
+	 */
+	public Object_Creator getFinishLine() {
+		return FinishLine;
+	}
+
+	/**
+	 * @param finishLine
+	 *            the finishLine to set
+	 */
+	public void setFinishLine(Object_Creator finishLine) {
+		FinishLine = finishLine;
+	}
+
+	/**
+	 * @return the width
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * @param width
+	 *            the width to set
+	 */
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	/**
+	 * @return the height
+	 */
+	public int getHeight() {
+		return height;
+	}
+
+	/**
+	 * @param height
+	 *            the height to set
+	 */
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	/**
+	 * @return the xvel
+	 */
+	public int getXvel() {
+		return xvel;
+	}
+
+	/**
+	 * @param xvel
+	 *            the xvel to set
+	 */
+	public void setXvel(int xvel) {
+		this.xvel = xvel;
+	}
+
+	/**
+	 * @return the yvel
+	 */
+	public int getYvel() {
+		return yvel;
+	}
+
+	/**
+	 * @param yvel
+	 *            the yvel to set
+	 */
+	public void setYvel(int yvel) {
+		this.yvel = yvel;
+	}
+
+	/**
+	 * @return the playerImage
+	 */
+	public Image getPlayerImage() {
+		return playerImage;
+	}
+
+	/**
+	 * @param playerImage
+	 *            the playerImage to set
+	 */
+	public void setPlayerImage(Image playerImage) {
+		this.playerImage = playerImage;
+	}
+
+	/**
+	 * @return the topRightPlatFormHight
+	 */
+	public int getTopRightPlatFormHight() {
+		return TopRightPlatFormHight;
+	}
+
+	/**
+	 * @return the topRightPlatFormWidth
+	 */
+	public int getTopRightPlatFormWidth() {
+		return TopRightPlatFormWidth;
+	}
+
+	/**
+	 * @return the topRightPlatFrom_Xloc
+	 */
+	public int getTopRightPlatFrom_Xloc() {
+		return TopRightPlatFrom_Xloc;
+	}
+
+	/**
+	 * @return the topRightPlatForm_Yloc
+	 */
+	public int getTopRightPlatForm_Yloc() {
+		return TopRightPlatForm_Yloc;
+	}
+
+	/**
+	 * @return the topLeftPlatFormHight
+	 */
+	public int getTopLeftPlatFormHight() {
+		return TopLeftPlatFormHight;
+	}
+
+	/**
+	 * @return the topLeftPlatFormWidth
+	 */
+	public int getTopLeftPlatFormWidth() {
+		return TopLeftPlatFormWidth;
+	}
+
+	/**
+	 * @return the topLeftPlatFrom_Xloc
+	 */
+	public int getTopLeftPlatFrom_Xloc() {
+		return TopLeftPlatFrom_Xloc;
+	}
+
+	/**
+	 * @return the topLeftPlatForm_Yloc
+	 */
+	public int getTopLeftPlatForm_Yloc() {
+		return TopLeftPlatForm_Yloc;
+	}
+
+	/**
+	 * @return the midLeftHight
+	 */
+	public int getMidLeftHight() {
+		return MidLeftHight;
+	}
+
+	/**
+	 * @return the midLeftWidth
+	 */
+	public int getMidLeftWidth() {
+		return MidLeftWidth;
+	}
+
+	/**
+	 * @return the midLeftXloc
+	 */
+	public int getMidLeftXloc() {
+		return MidLeftXloc;
+	}
+
+	/**
+	 * @return the midLeftYloc
+	 */
+	public int getMidLeftYloc() {
+		return MidLeftYloc;
+	}
+
+	/**
+	 * @return the midRightHight
+	 */
+	public int getMidRightHight() {
+		return MidRightHight;
+	}
+
+	/**
+	 * @return the midRightWidth
+	 */
+	public int getMidRightWidth() {
+		return MidRightWidth;
+	}
+
+	/**
+	 * @return the midRightXloc
+	 */
+	public int getMidRightXloc() {
+		return MidRightXloc;
+	}
+
+	/**
+	 * @return the midRightYloc
+	 */
+	public int getMidRightYloc() {
+		return MidRightYloc;
+	}
+
+	/**
+	 * @return the botRightHight
+	 */
+	public int getBotRightHight() {
+		return BotRightHight;
+	}
+
+	/**
+	 * @return the botRightWidth
+	 */
+	public int getBotRightWidth() {
+		return BotRightWidth;
+	}
+
+	/**
+	 * @return the botRightXloc
+	 */
+	public int getBotRightXloc() {
+		return BotRightXloc;
+	}
+
+	/**
+	 * @return the botRightYloc
+	 */
+	public int getBotRightYloc() {
+		return BotRightYloc;
+	}
+
+	/**
+	 * @return the botLeftHight
+	 */
+	public int getBotLeftHight() {
+		return BotLeftHight;
+	}
+
+	/**
+	 * @return the botLeftWidth
+	 */
+	public int getBotLeftWidth() {
+		return BotLeftWidth;
+	}
+
+	/**
+	 * @return the botLeftXloc
+	 */
+	public int getBotLeftXloc() {
+		return BotLeftXloc;
+	}
+
+	/**
+	 * @return the botLeftYloc
+	 */
+	public int getBotLeftYloc() {
+		return BotLeftYloc;
 	}
 
 }
